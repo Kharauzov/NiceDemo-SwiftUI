@@ -6,10 +6,18 @@
 //
 
 import SwiftUI
+import Photos
+import UIKit
 
 struct DogDetailsView: View {
     @State var viewModel: ViewModel
     @Environment(\.dismiss) private var dismiss
+    @State private var scale: CGFloat = 1.0
+    @State private var lastScale: CGFloat = 1.0
+    @State private var offset: CGSize = .zero
+    @State private var lastOffset: CGSize = .zero
+    @State private var showSaveConfirmAlert = false
+    private var loadedImage: Image?
     
     init(dog: Dog) {
         let viewModel = ViewModel(dog: dog, networkService: DogsNetworkService(), favoriteStorage: FavoriteDogBreedsStorage())
@@ -52,6 +60,9 @@ struct DogDetailsView: View {
         .onAppear {
             viewModel.loadRandomImage()
         }
+        .alert("Image saved to gallery!", isPresented: $showSaveConfirmAlert) {
+            Button("Okay", role: .cancel) { }
+        }
     }
     
     private var imageView: some View {
@@ -62,6 +73,31 @@ struct DogDetailsView: View {
                         image
                             .resizable()
                             .scaledToFill() // ensures the image fills container
+                            .scaleEffect(scale)
+                            .offset(offset)
+                            .gesture(
+                                SimultaneousGesture(
+                                MagnifyGesture()
+                                    .onChanged { value in
+                                        scale = max(lastScale * value.magnification, 1)
+                                    }
+                                    .onEnded { _ in
+                                        lastScale = scale
+                                    },
+                                DragGesture()
+                                    .onChanged { value in
+                                        offset = CGSize(
+                                            width: lastOffset.width + value.translation.width,
+                                            height: lastOffset.height + value.translation.height
+                                        )
+                                    }
+                                    .onEnded { _ in
+                                        lastOffset = offset
+                                    }
+                                )
+                            )
+                            .animation(.easeInOut(duration: 0.3), value: scale)
+                            .animation(.easeInOut(duration: 0.3), value: offset)
                     } placeholder: {
                         if viewModel.loading {
                             ProgressView()
@@ -80,6 +116,9 @@ struct DogDetailsView: View {
                 ))
         }
         .padding(.bottom, GridLayout.commonSpace)
+        .onTapGesture(count: 2, perform: {
+            resetImagePositionAndScale()
+        })
     }
     
     private var subbreedsView: some View {
@@ -102,19 +141,48 @@ struct DogDetailsView: View {
     }
     
     private var nextImageButton: some View {
-        Button(action: {
-            viewModel.loadRandomImage()
-        }) {
-            Text("Next image")
-                .font(.paperlogy(.semibold, fontSize: 22))
-                .foregroundColor(Color.AppColors.white)
-                .frame(maxWidth: .infinity)
-                .frame(height: 55)
-                .background(Color.AppColors.primary)
-                .cornerRadius(10)
+        HStack(spacing: GridLayout.commonSpace) {
+            Button(action: {
+                resetImagePositionAndScale()
+                viewModel.loadRandomImage()
+            }) {
+                Text("Next")
+                    .font(.paperlogy(.semibold, fontSize: 22))
+                    .foregroundColor(Color.AppColors.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 55)
+                    .background(Color.AppColors.primary)
+                    .cornerRadius(10)
+            }
+            Button(action: {
+                resetImagePositionAndScale()
+//                saveImageToGallery(<#T##image: UIImage##UIImage#>)
+            }) {
+                Text("Save")
+                    .font(.paperlogy(.semibold, fontSize: 22))
+                    .foregroundColor(Color.AppColors.white)
+                    .frame(maxWidth: .infinity)
+                    .frame(height: 55)
+                    .background(Color.AppColors.primary)
+                    .cornerRadius(10)
+            }
         }
         .padding(.horizontal)
         .padding(.bottom)
+    }
+    
+    private func resetImagePositionAndScale() {
+        offset = .zero
+        lastOffset = offset
+        scale = 1
+        lastScale = scale
+    }
+    
+    private func saveImageToGallery(_ image: UIImage) {
+        PHPhotoLibrary.requestAuthorization { status in
+            guard status == .authorized || status == .limited else { return }
+            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+        }
     }
 }
 
