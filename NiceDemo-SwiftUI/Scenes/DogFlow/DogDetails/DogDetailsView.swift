@@ -6,8 +6,6 @@
 //
 
 import SwiftUI
-import Photos
-import UIKit
 
 struct DogDetailsView: View {
     @State var viewModel: ViewModel
@@ -16,8 +14,6 @@ struct DogDetailsView: View {
     @State private var lastScale: CGFloat = 1.0
     @State private var offset: CGSize = .zero
     @State private var lastOffset: CGSize = .zero
-    @State private var showSaveConfirmAlert = false
-    private var loadedImage: Image?
     
     init(dog: Dog) {
         let viewModel = ViewModel(dog: dog, networkService: DogsNetworkService(), favoriteStorage: FavoriteDogBreedsStorage())
@@ -55,12 +51,12 @@ struct DogDetailsView: View {
         .navigationBarBackButtonHidden(true)
         .background(Color.AppColors.white)
         .clipShape(RoundedRectangle(cornerRadius: 14))
-        .padding(EdgeInsets(top: GridLayout.trippleRegularSpace, leading: GridLayout.doubleRegularSpace, bottom: GridLayout.trippleRegularSpace, trailing: GridLayout.doubleRegularSpace))
+        .padding(EdgeInsets(top: GridLayout.fourthRegularSpace, leading: GridLayout.doubleRegularSpace, bottom: GridLayout.fourthRegularSpace, trailing: GridLayout.doubleRegularSpace))
         .shadow(color: Color.AppColors.primary.opacity(0.75), radius: 15, x: 0, y: 5)
         .onAppear {
             viewModel.loadRandomImage()
         }
-        .alert("Image saved to gallery!", isPresented: $showSaveConfirmAlert) {
+        .alert("Image saved to gallery!", isPresented: $viewModel.showSaveConfirmAlert) {
             Button("Okay", role: .cancel) { }
         }
     }
@@ -69,36 +65,36 @@ struct DogDetailsView: View {
         VStack {
             Rectangle()
                 .overlay {
-                    AsyncImage(url: URL(string: viewModel.randomDogImageUrl)) { image in
-                        image
-                            .resizable()
-                            .scaledToFill() // ensures the image fills container
-                            .scaleEffect(scale)
-                            .offset(offset)
-                            .gesture(
-                                SimultaneousGesture(
-                                MagnifyGesture()
-                                    .onChanged { value in
-                                        scale = max(lastScale * value.magnification, 1)
-                                    }
-                                    .onEnded { _ in
-                                        lastScale = scale
-                                    },
-                                DragGesture()
-                                    .onChanged { value in
-                                        offset = CGSize(
-                                            width: lastOffset.width + value.translation.width,
-                                            height: lastOffset.height + value.translation.height
-                                        )
-                                    }
-                                    .onEnded { _ in
-                                        lastOffset = offset
-                                    }
+                    if let image = viewModel.loadedImage {
+                        Image(uiImage: image)
+                                .resizable()
+                                .scaledToFill() // ensures the image fills container
+                                .scaleEffect(scale)
+                                .offset(offset)
+                                .gesture(
+                                    SimultaneousGesture(
+                                    MagnifyGesture()
+                                        .onChanged { value in
+                                            scale = max(lastScale * value.magnification, 1)
+                                        }
+                                        .onEnded { _ in
+                                            lastScale = scale
+                                        },
+                                    DragGesture()
+                                        .onChanged { value in
+                                            offset = CGSize(
+                                                width: lastOffset.width + value.translation.width,
+                                                height: lastOffset.height + value.translation.height
+                                            )
+                                        }
+                                        .onEnded { _ in
+                                            lastOffset = offset
+                                        }
+                                    )
                                 )
-                            )
-                            .animation(.easeInOut(duration: 0.3), value: scale)
-                            .animation(.easeInOut(duration: 0.3), value: offset)
-                    } placeholder: {
+                                .animation(.easeInOut(duration: 0.3), value: scale)
+                                .animation(.easeInOut(duration: 0.3), value: offset)
+                    } else {
                         if viewModel.loading {
                             ProgressView()
                                 .progressViewStyle(.circular)
@@ -121,27 +117,35 @@ struct DogDetailsView: View {
         })
     }
     
-    private var subbreedsView: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 12) {
-                ForEach(viewModel.dog.subbreeds ?? [], id: \.self) { breed in
-                    Text(breed)
-                        .font(.paperlogy(.semibold, fontSize: 15))
-                        .padding(.horizontal, 16)
-                        .padding(.vertical, 8)
-                        .background(
-                            RoundedRectangle(cornerRadius: 10)
-                                .strokeBorder(Color.AppColors.black, lineWidth: 2)
-                        )
+    @ViewBuilder private var subbreedsView: some View {
+        if let subbreeds = viewModel.dog.subbreeds, subbreeds.count > 0 {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack(spacing: 12) {
+                    ForEach(subbreeds, id: \.self) { breed in
+                        Text(breed)
+                            .font(.paperlogy(.semibold, fontSize: 15))
+                            .padding(.horizontal, 16)
+                            .padding(.vertical, 8)
+                            .background(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .strokeBorder(Color.AppColors.black, lineWidth: 2)
+                            )
+                    }
                 }
+                .padding(.horizontal)
+                .padding(.bottom, 20)
             }
-            .padding(.horizontal)
+        } else {
+            Text("No subbreeds")
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal)
+                .padding(.bottom, 20)
         }
-        .padding(.bottom, 20)
+        
     }
     
     private var nextImageButton: some View {
-        HStack(spacing: GridLayout.commonSpace) {
+        HStack(spacing: GridLayout.doubleRegularSpace) {
             Button(action: {
                 resetImagePositionAndScale()
                 viewModel.loadRandomImage()
@@ -150,19 +154,19 @@ struct DogDetailsView: View {
                     .font(.paperlogy(.semibold, fontSize: 22))
                     .foregroundColor(Color.AppColors.white)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 55)
+                    .frame(height: 45)
                     .background(Color.AppColors.primary)
                     .cornerRadius(10)
             }
             Button(action: {
                 resetImagePositionAndScale()
-//                saveImageToGallery(<#T##image: UIImage##UIImage#>)
+                viewModel.saveImageToGallery()
             }) {
                 Text("Save")
                     .font(.paperlogy(.semibold, fontSize: 22))
                     .foregroundColor(Color.AppColors.white)
                     .frame(maxWidth: .infinity)
-                    .frame(height: 55)
+                    .frame(height: 45)
                     .background(Color.AppColors.primary)
                     .cornerRadius(10)
             }
@@ -177,18 +181,17 @@ struct DogDetailsView: View {
         scale = 1
         lastScale = scale
     }
-    
-    private func saveImageToGallery(_ image: UIImage) {
-        PHPhotoLibrary.requestAuthorization { status in
-            guard status == .authorized || status == .limited else { return }
-            UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-        }
-    }
 }
 
 
 #Preview {
     NavigationStack {
         DogDetailsView(dog: Dog(breed: "Shepard", subbreeds: ["Kelpie", "Shepherd", "Collie", "Cattle Dog", "Terrier", "Dingo"], isFavorite: false))
+    }
+}
+
+#Preview {
+    NavigationStack {
+        DogDetailsView(dog: Dog(breed: "Shepard", subbreeds: [], isFavorite: false))
     }
 }
