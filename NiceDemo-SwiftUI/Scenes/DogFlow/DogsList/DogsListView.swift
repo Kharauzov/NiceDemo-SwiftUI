@@ -67,15 +67,25 @@ struct DogsListView: View {
         }
     }
     
-    private var dogsListView: some View {
-        List(filteredDogs) { dog in
-            DogRowView(dog: dog, onTap: {
-                router.navigateTo(.dogDetails(dog))
-            }, onFavoriteTapped: {
-                viewModel.removeFromFavorite(dog)
-            })
-            .listRowInsets(EdgeInsets())
-            .listRowSeparator(.hidden)
+    @ViewBuilder private var dogsListView: some View {
+        if filteredDogs.count > 0 {
+            List(filteredDogs) { dog in
+                DogRowView(dog: dog, onTap: {
+                    router.navigateTo(.dogDetails(dog))
+                }, onFavoriteTapped: {
+                    viewModel.removeFromFavorite(dog)
+                })
+                .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
+            }
+        } else {
+            VStack {
+                Spacer()
+                Text("No results")
+                    .font(.paperlogy(.medium, fontSize: 20))
+                    .tint(Color.AppColors.black)
+                Spacer()
+            }
         }
     }
     
