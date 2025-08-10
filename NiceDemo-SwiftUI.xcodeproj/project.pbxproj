@@ -56,6 +56,11 @@
 		C5CD42742E43B182005CE23B /* FavoriteDogBreedsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42732E43B182005CE23B /* FavoriteDogBreedsStorage.swift */; };
 		C5CD42762E43B1A8005CE23B /* FavoriteDogBreedsStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42752E43B1A8005CE23B /* FavoriteDogBreedsStoring.swift */; };
 		C5CD42782E43C542005CE23B /* LoadingDogRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42772E43C542005CE23B /* LoadingDogRowView.swift */; };
+		C5D8873B2E4881FA00169957 /* DogCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D8873A2E4881FA00169957 /* DogCardView.swift */; };
+		C5D8873D2E48854B00169957 /* DogCardView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D8873C2E48854B00169957 /* DogCardView+ViewModel.swift */; };
+		C5D8873F2E4885D400169957 /* DogCardContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D8873E2E4885D400169957 /* DogCardContract.swift */; };
+		C5D887412E48873100169957 /* SegmentedUnderlineTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D887402E48873100169957 /* SegmentedUnderlineTabs.swift */; };
+		C5D887432E488BED00169957 /* DogGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D887422E488BED00169957 /* DogGalleryView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -109,6 +114,11 @@
 		C5CD42732E43B182005CE23B /* FavoriteDogBreedsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDogBreedsStorage.swift; sourceTree = "<group>"; };
 		C5CD42752E43B1A8005CE23B /* FavoriteDogBreedsStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDogBreedsStoring.swift; sourceTree = "<group>"; };
 		C5CD42772E43C542005CE23B /* LoadingDogRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDogRowView.swift; sourceTree = "<group>"; };
+		C5D8873A2E4881FA00169957 /* DogCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCardView.swift; sourceTree = "<group>"; };
+		C5D8873C2E48854B00169957 /* DogCardView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogCardView+ViewModel.swift"; sourceTree = "<group>"; };
+		C5D8873E2E4885D400169957 /* DogCardContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCardContract.swift; sourceTree = "<group>"; };
+		C5D887402E48873100169957 /* SegmentedUnderlineTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedUnderlineTabs.swift; sourceTree = "<group>"; };
+		C5D887422E488BED00169957 /* DogGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogGalleryView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +152,8 @@
 		C5BC76342E44FD82007D70F1 /* DogDetails */ = {
 			isa = PBXGroup;
 			children = (
+				C5D887392E48818800169957 /* DogGallery */,
+				C5D887382E48817400169957 /* DogCard */,
 				C5BC76362E44FDA3007D70F1 /* DogDetailsView.swift */,
 				C5BC76382E44FFEA007D70F1 /* DogDetailsView+ViewModel.swift */,
 				C5BC763A2E4502B5007D70F1 /* DogDetailsContract.swift */,
@@ -374,6 +386,7 @@
 			children = (
 				C5CD42422E43AF29005CE23B /* FavoriteButton.swift */,
 				C5CD42432E43AF29005CE23B /* SeparatorView.swift */,
+				C5D887402E48873100169957 /* SegmentedUnderlineTabs.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -393,6 +406,24 @@
 				C5CD42462E43AF29005CE23B /* NiceDemo_SwiftUIApp.swift */,
 			);
 			path = "NiceDemo-SwiftUI";
+			sourceTree = "<group>";
+		};
+		C5D887382E48817400169957 /* DogCard */ = {
+			isa = PBXGroup;
+			children = (
+				C5D8873A2E4881FA00169957 /* DogCardView.swift */,
+				C5D8873C2E48854B00169957 /* DogCardView+ViewModel.swift */,
+				C5D8873E2E4885D400169957 /* DogCardContract.swift */,
+			);
+			path = DogCard;
+			sourceTree = "<group>";
+		};
+		C5D887392E48818800169957 /* DogGallery */ = {
+			isa = PBXGroup;
+			children = (
+				C5D887422E488BED00169957 /* DogGalleryView.swift */,
+			);
+			path = DogGallery;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -484,14 +515,18 @@
 				C5CD42542E43AF29005CE23B /* SignInView+ViewModel.swift in Sources */,
 				C5CD42552E43AF29005CE23B /* DogRowView.swift in Sources */,
 				C5CD42702E43AF9F005CE23B /* DogsListView+ViewModel.swift in Sources */,
+				C5D8873D2E48854B00169957 /* DogCardView+ViewModel.swift in Sources */,
 				C5CD42562E43AF29005CE23B /* DogsListView.swift in Sources */,
 				C5CD42722E43AFE0005CE23B /* DogsListContract.swift in Sources */,
+				C5D8873B2E4881FA00169957 /* DogCardView.swift in Sources */,
 				C5BC76392E44FFEA007D70F1 /* DogDetailsView+ViewModel.swift in Sources */,
 				C5CD42572E43AF29005CE23B /* StartView.swift in Sources */,
 				C5CD42582E43AF29005CE23B /* StartView+ViewModel.swift in Sources */,
+				C5D8873F2E4885D400169957 /* DogCardContract.swift in Sources */,
 				C5CD42592E43AF29005CE23B /* UserCredentialsStorage+Interfaces.swift in Sources */,
 				C5CD425A2E43AF29005CE23B /* UserCredentialsStoring.swift in Sources */,
 				C5CD425B2E43AF29005CE23B /* UserCredentialsStorage.swift in Sources */,
+				C5D887432E488BED00169957 /* DogGalleryView.swift in Sources */,
 				C5CD425C2E43AF29005CE23B /* UserDefaultsLayer.swift in Sources */,
 				C5CD425D2E43AF29005CE23B /* DogsEndpoint.swift in Sources */,
 				C5CD425E2E43AF29005CE23B /* Endpoint.swift in Sources */,
@@ -513,6 +548,7 @@
 				C5CD42692E43AF29005CE23B /* Font+Paperlogy.swift in Sources */,
 				C5CD426A2E43AF29005CE23B /* Constants.swift in Sources */,
 				C5CD426B2E43AF29005CE23B /* GridLayout.swift in Sources */,
+				C5D887412E48873100169957 /* SegmentedUnderlineTabs.swift in Sources */,
 				C5CD426C2E43AF29005CE23B /* FavoriteButton.swift in Sources */,
 				C5BC763B2E4502B5007D70F1 /* DogDetailsContract.swift in Sources */,
 				C5CD426D2E43AF29005CE23B /* SeparatorView.swift in Sources */,
