@@ -19,6 +19,7 @@ extension DogDetailsView {
         private(set) var loading = true
         private(set) var loadedImage: UIImage?
         var showSaveConfirmAlert = false
+        var showDeniedGalleryAlert = false
         
         init(dog: Dog, networkService: DogDetailsNetwork, favoriteStorage: DogDetailsFavoriteStorage) {
             self.dog = dog
@@ -66,7 +67,10 @@ extension DogDetailsView {
                 return
             }
             PHPhotoLibrary.requestAuthorization { status in
-                guard status == .authorized || status == .limited else { return }
+                guard status == .authorized || status == .limited else {
+                    self.showDeniedGalleryAlert = true
+                    return
+                }
                 UIImageWriteToSavedPhotosAlbum(loadedImage, nil, nil, nil)
                 self.showSaveConfirmAlert = true
             }

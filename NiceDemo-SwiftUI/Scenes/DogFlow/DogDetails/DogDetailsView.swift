@@ -59,6 +59,9 @@ struct DogDetailsView: View {
         .alert("Image saved to gallery!", isPresented: $viewModel.showSaveConfirmAlert) {
             Button("Okay", role: .cancel) { }
         }
+        .alert("Can't save image to gallery. Access denied.", isPresented: $viewModel.showDeniedGalleryAlert) {
+            Button("Okay", role: .cancel) { }
+        }
     }
     
     private var imageView: some View {
