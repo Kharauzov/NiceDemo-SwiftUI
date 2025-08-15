@@ -19,6 +19,7 @@ extension DogDetailsView {
         init(dog: Dog, favoriteStorage: DogDetailsFavoriteStorage) {
             self.dog = dog
             self.favoriteStorage = favoriteStorage
+            setFavoriteButtonImageName()
         }
         
         func handleFavoriteButtonTap() {
@@ -28,6 +29,11 @@ extension DogDetailsView {
                 favoriteStorage.addToFavorite(dog)
             }
             dog.isFavorite.toggle()
+            setFavoriteButtonImageName()
+        }
+        
+        private func setFavoriteButtonImageName() {
+            favoriteButtonImageName = dog.isFavorite ? "pawPrintSelected" : "pawPrintNotSelected"
         }
     }
 }

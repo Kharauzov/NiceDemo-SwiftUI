@@ -19,15 +19,23 @@ struct DogDetailsView: View {
     }
     
     @ViewBuilder private var content: some View {
-        ZStack {
-            if selectedTab == .single {
-                DogCardView(dog: viewModel.dog)
-                    .contentTransition(.opacity)           // cross-fade
-            } else {
-                DogGalleryView()
-                    .contentTransition(.opacity)           // cross-fade
+        GeometryReader { geo in
+                let width = geo.size.width
+                ZStack(alignment: .leading) {
+                    DogCardView(dog: viewModel.dog, mode: .main)
+                        .offset(x: selectedTab == .single ? 0 : -width) // slide left when hidden
+                        .zIndex(selectedTab == .single ? 1 : 0)
+                        .allowsHitTesting(selectedTab == .single)
+                        .padding(.bottom, GridLayout.commonSpace)
+                    DogGalleryView(dog: viewModel.dog)
+                        .offset(x: selectedTab == .gallery ? 0 : width) // slide right when hidden
+                        .zIndex(selectedTab == .gallery ? 1 : 0)
+                        .allowsHitTesting(selectedTab == .gallery)
+                }
+                .clipped()
+                .animation(.easeInOut(duration: AnimationDuration.macroFast.timeInterval), value: selectedTab)
+                .ignoresSafeArea()
             }
-        }
     }
     
     var body: some View {
@@ -35,7 +43,6 @@ struct DogDetailsView: View {
             SegmentedUnderlineTabs(tabs: SegmentTab.allCases, selected: $selectedTab, underline: underline)
                 .padding(.top, GridLayout.regularSpace)
             content
-                .animation(.linear(duration: 0.33), value: selectedTab)
         }
         .frame(maxHeight: .infinity)
         .navigationTitle(viewModel.dog.breed.capitalized)
@@ -54,7 +61,7 @@ struct DogDetailsView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Image(systemName: "chevron.left")
+                    Image(systemName: GlobalImages.leftChevron.rawValue)
                         .foregroundColor(Color.AppColors.primary)
                 }
             }
@@ -64,14 +71,6 @@ struct DogDetailsView: View {
     }
 }
 
-extension DogDetailsView {
-    enum SegmentTab: String, CaseIterable {
-        case single
-        case gallery
-    }
-}
-
-
 #Preview {
     NavigationStack {
         DogDetailsView(dog: Dog(breed: "Shepard", subbreeds: ["Kelpie", "Shepherd", "Collie", "Cattle Dog", "Terrier", "Dingo"], isFavorite: false))
@@ -80,6 +79,6 @@ extension DogDetailsView {
 
 #Preview {
     NavigationStack {
-        DogDetailsView(dog: Dog(breed: "Shepard", subbreeds: [], isFavorite: false))
+        DogDetailsView(dog: Dog(breed: "affenpinscher", subbreeds: [], isFavorite: false))
     }
 }

@@ -18,7 +18,7 @@ struct SegmentedUnderlineTabs<T: Hashable & RawRepresentable<String>>: View {
                 Spacer()
                 ForEach(tabs, id: \.self) { tab in
                     Button {
-                        withAnimation(.spring(response: 0.15, dampingFraction: 0.8)) {
+                        withAnimation(.easeInOut(duration: AnimationDuration.macroFast.timeInterval)) {
                             selected = tab
                         }
                     } label: {

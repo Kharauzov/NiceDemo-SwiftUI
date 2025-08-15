@@ -57,7 +57,7 @@ struct DogsListView: View {
     
     private var loadingView: some View {
         List {
-            ForEach((1...10), id: \.self) { _ in
+            ForEach((1...20), id: \.self) { _ in
                 LoadingDogRowView()
                     .listRowInsets(EdgeInsets())
                     .listRowSeparator(.hidden)

@@ -16,7 +16,7 @@ extension DogCardView {
         private(set) var favoriteButtonImageName = ""
         private let networkService: DogCardNetwork
         private(set) var loading = true
-        private(set) var loadedImage: UIImage?
+        var loadedImage: UIImage?
         var showSaveConfirmAlert = false
         var showDeniedGalleryAlert = false
         
@@ -40,7 +40,16 @@ extension DogCardView {
             }
         }
         
-        func loadUIImage(from urlString: String) async throws -> UIImage? {
+        @MainActor
+        func loadImage(url: String) {
+            Task {
+                if let image = try? await loadUIImage(from: url) {
+                    loadedImage = image
+                }
+            }
+        }
+        
+        private func loadUIImage(from urlString: String) async throws -> UIImage? {
             guard let url = URL(string: urlString) else { return nil }
             let (data, _) = try await URLSession.shared.data(from: url)
             // Switch to main thread before creating UIImage if needed for UI use
