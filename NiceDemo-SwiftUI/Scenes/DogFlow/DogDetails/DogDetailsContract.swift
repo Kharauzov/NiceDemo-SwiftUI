@@ -7,11 +7,6 @@
 
 import Foundation
 
-protocol DogDetailsNetwork {
-    func getBreedRandomImage(_ breed: String) async throws -> GetRandomDogImageServerResponse
-}
-extension DogsNetworkService: DogDetailsNetwork {}
-
 protocol DogDetailsFavoriteStorage: AnyObject {
     var favoriteDogBreeds: [String] { get }
     func removeFromFavorite(_ dog: Dog)

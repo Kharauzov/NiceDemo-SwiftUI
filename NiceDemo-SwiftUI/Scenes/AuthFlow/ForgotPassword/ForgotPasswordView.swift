@@ -34,7 +34,7 @@ struct ForgotPasswordView: View {
                 Button {
                     dismiss()
                 } label: {
-                    Image(systemName: "chevron.left")
+                    Image(systemName: GlobalImages.leftChevron.rawValue)
                         .foregroundColor(Color.AppColors.primary)
                 }
             }
@@ -55,8 +55,9 @@ struct ForgotPasswordView: View {
     
     private var descriptionLabel: some View {
         Text("Enter your email and we’ll send you a link to get back to your account.")
-            .font(.paperlogy(.regular, fontSize: 14))
+            .font(.paperlogy(.regular, fontSize: 16))
             .foregroundColor(Color.AppColors.primary)
+            .lineSpacing(GridLayout.regularSpace)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, 50)
     }
@@ -66,7 +67,7 @@ struct ForgotPasswordView: View {
             TextField("Email", text: $email)
                 .textFieldStyle(PlainTextFieldStyle())
                 .padding(.vertical, 12)
-                .font(.paperlogy(.regular, fontSize: 16))
+                .font(.paperlogy(.regular, fontSize: 18))
                 .autocapitalization(.none)
                 .autocorrectionDisabled()
                 .keyboardType(.emailAddress)
