@@ -10,3 +10,7 @@ import Foundation
 enum NetworkConstants {
     static let baseUrl = "https://dog.ceo/api"
 }
+
+enum GlobalImages: String {
+    case leftChevron = "chevron.left"
+}

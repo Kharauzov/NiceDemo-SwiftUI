@@ -60,7 +60,7 @@ struct SignInView: View {
                 TextField("Email", text: $email)
                     .textFieldStyle(PlainTextFieldStyle())
                     .padding(.vertical, 12)
-                    .font(.paperlogy(.regular, fontSize: 16))
+                    .font(.paperlogy(.regular, fontSize: 18))
                     .autocapitalization(.none)
                     .autocorrectionDisabled()
                     .keyboardType(.emailAddress)
@@ -71,7 +71,7 @@ struct SignInView: View {
                 SecureField("Password", text: $password)
                     .textFieldStyle(PlainTextFieldStyle())
                     .padding(.vertical, 12)
-                    .font(.paperlogy(.regular, fontSize: 16))
+                    .font(.paperlogy(.regular, fontSize: 18))
                     .focused($passwordFocusedField, equals: .password)
                 Divider()
             }

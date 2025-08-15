@@ -6,20 +6,18 @@
 //
 
 import SwiftUI
+import UIKit
+import Photos
 
 extension DogDetailsView {
     @Observable
     class ViewModel {
         private(set) var dog: Dog
         private(set) var favoriteButtonImageName = ""
-        private(set) var randomDogImageUrl = ""
-        private let networkService: DogDetailsNetwork
         private let favoriteStorage: DogDetailsFavoriteStorage
-        var loading = true
         
-        init(dog: Dog, networkService: DogDetailsNetwork, favoriteStorage: DogDetailsFavoriteStorage) {
+        init(dog: Dog, favoriteStorage: DogDetailsFavoriteStorage) {
             self.dog = dog
-            self.networkService = networkService
             self.favoriteStorage = favoriteStorage
             setFavoriteButtonImageName()
         }
@@ -32,19 +30,6 @@ extension DogDetailsView {
             }
             dog.isFavorite.toggle()
             setFavoriteButtonImageName()
-        }
-        
-        @MainActor
-        func loadRandomImage() {
-            loading = true
-            Task {
-                do {
-                    let response = try await networkService.getBreedRandomImage(dog.breed)
-                    randomDogImageUrl = response.data ?? ""
-                } catch _ {
-                    // handle error here
-                }
-            }
         }
         
         private func setFavoriteButtonImageName() {

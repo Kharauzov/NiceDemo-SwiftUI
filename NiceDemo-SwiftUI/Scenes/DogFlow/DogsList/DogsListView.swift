@@ -57,7 +57,7 @@ struct DogsListView: View {
     
     private var loadingView: some View {
         List {
-            ForEach((1...10), id: \.self) { _ in
+            ForEach((1...20), id: \.self) { _ in
                 LoadingDogRowView()
                     .listRowInsets(EdgeInsets())
                     .listRowSeparator(.hidden)
@@ -67,15 +67,25 @@ struct DogsListView: View {
         }
     }
     
-    private var dogsListView: some View {
-        List(filteredDogs) { dog in
-            DogRowView(dog: dog, onTap: {
-                router.navigateTo(.dogDetails(dog))
-            }, onFavoriteTapped: {
-                viewModel.removeFromFavorite(dog)
-            })
-            .listRowInsets(EdgeInsets())
-            .listRowSeparator(.hidden)
+    @ViewBuilder private var dogsListView: some View {
+        if filteredDogs.count > 0 {
+            List(filteredDogs) { dog in
+                DogRowView(dog: dog, onTap: {
+                    router.navigateTo(.dogDetails(dog))
+                }, onFavoriteTapped: {
+                    viewModel.removeFromFavorite(dog)
+                })
+                .listRowInsets(EdgeInsets())
+                .listRowSeparator(.hidden)
+            }
+        } else {
+            VStack {
+                Spacer()
+                Text("No results")
+                    .font(.paperlogy(.medium, fontSize: 20))
+                    .tint(Color.AppColors.black)
+                Spacer()
+            }
         }
     }
     
