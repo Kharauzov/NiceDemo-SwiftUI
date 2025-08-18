@@ -68,7 +68,35 @@
 		C5D8873F2E4885D400169957 /* DogCardContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D8873E2E4885D400169957 /* DogCardContract.swift */; };
 		C5D887412E48873100169957 /* SegmentedUnderlineTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D887402E48873100169957 /* SegmentedUnderlineTabs.swift */; };
 		C5D887432E488BED00169957 /* DogGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D887422E488BED00169957 /* DogGalleryView.swift */; };
+		C5EAAEBE2E539AB600E196CD /* WatchNiceDemo Watch App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = C5EAAEB42E539AB400E196CD /* WatchNiceDemo Watch App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C5EAAEC72E539ACC00E196CD /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EAAEC42E539ACC00E196CD /* ContentView.swift */; };
+		C5EAAEC82E539ACC00E196CD /* WatchNiceDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5EAAEC52E539ACC00E196CD /* WatchNiceDemoApp.swift */; };
+		C5EAAEC92E539ACC00E196CD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5EAAEC32E539ACC00E196CD /* Assets.xcassets */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C5EAAEBC2E539AB600E196CD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = C549FE992E41156F003E3C99 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C5EAAEB32E539AB400E196CD;
+			remoteInfo = "WatchNiceDemo Watch App";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		C5EAAEBF2E539AB600E196CD /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				C5EAAEBE2E539AB600E196CD /* WatchNiceDemo Watch App.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		C51AB30E2E4A2FA6002149F3 /* DogGallery+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogGallery+ViewModel.swift"; sourceTree = "<group>"; };
@@ -132,6 +160,10 @@
 		C5D8873E2E4885D400169957 /* DogCardContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCardContract.swift; sourceTree = "<group>"; };
 		C5D887402E48873100169957 /* SegmentedUnderlineTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedUnderlineTabs.swift; sourceTree = "<group>"; };
 		C5D887422E488BED00169957 /* DogGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogGalleryView.swift; sourceTree = "<group>"; };
+		C5EAAEB42E539AB400E196CD /* WatchNiceDemo Watch App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchNiceDemo Watch App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C5EAAEC32E539ACC00E196CD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C5EAAEC42E539ACC00E196CD /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		C5EAAEC52E539ACC00E196CD /* WatchNiceDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchNiceDemoApp.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +176,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C5EAAEB12E539AB400E196CD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -151,6 +190,7 @@
 			isa = PBXGroup;
 			children = (
 				C5CD42472E43AF29005CE23B /* NiceDemo-SwiftUI */,
+				C5EAAEC62E539ACC00E196CD /* WatchNiceDemo Watch App */,
 				C549FEA22E41156F003E3C99 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -159,6 +199,7 @@
 			isa = PBXGroup;
 			children = (
 				C549FEA12E41156F003E3C99 /* NiceDemo-SwiftUI.app */,
+				C5EAAEB42E539AB400E196CD /* WatchNiceDemo Watch App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -446,6 +487,16 @@
 			path = DogGallery;
 			sourceTree = "<group>";
 		};
+		C5EAAEC62E539ACC00E196CD /* WatchNiceDemo Watch App */ = {
+			isa = PBXGroup;
+			children = (
+				C5EAAEC32E539ACC00E196CD /* Assets.xcassets */,
+				C5EAAEC42E539ACC00E196CD /* ContentView.swift */,
+				C5EAAEC52E539ACC00E196CD /* WatchNiceDemoApp.swift */,
+			);
+			path = "WatchNiceDemo Watch App";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -456,10 +507,12 @@
 				C549FE9D2E41156F003E3C99 /* Sources */,
 				C549FE9E2E41156F003E3C99 /* Frameworks */,
 				C549FE9F2E41156F003E3C99 /* Resources */,
+				C5EAAEBF2E539AB600E196CD /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				C5EAAEBD2E539AB600E196CD /* PBXTargetDependency */,
 			);
 			name = "NiceDemo-SwiftUI";
 			packageProductDependencies = (
@@ -468,6 +521,25 @@
 			);
 			productName = "NiceDemo-SwiftUI";
 			productReference = C549FEA12E41156F003E3C99 /* NiceDemo-SwiftUI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C5EAAEB32E539AB400E196CD /* WatchNiceDemo Watch App */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C5EAAEC22E539AB600E196CD /* Build configuration list for PBXNativeTarget "WatchNiceDemo Watch App" */;
+			buildPhases = (
+				C5EAAEB02E539AB400E196CD /* Sources */,
+				C5EAAEB12E539AB400E196CD /* Frameworks */,
+				C5EAAEB22E539AB400E196CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WatchNiceDemo Watch App";
+			packageProductDependencies = (
+			);
+			productName = "WatchNiceDemo Watch App";
+			productReference = C5EAAEB42E539AB400E196CD /* WatchNiceDemo Watch App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -481,6 +553,9 @@
 				LastUpgradeCheck = 1640;
 				TargetAttributes = {
 					C549FEA02E41156F003E3C99 = {
+						CreatedOnToolsVersion = 16.4;
+					};
+					C5EAAEB32E539AB400E196CD = {
 						CreatedOnToolsVersion = 16.4;
 					};
 				};
@@ -504,6 +579,7 @@
 			projectRoot = "";
 			targets = (
 				C549FEA02E41156F003E3C99 /* NiceDemo-SwiftUI */,
+				C5EAAEB32E539AB400E196CD /* WatchNiceDemo Watch App */,
 			);
 		};
 /* End PBXProject section */
@@ -518,6 +594,14 @@
 				C5CD424A2E43AF29005CE23B /* Paperlogy-Regular.ttf in Resources */,
 				C5CD424B2E43AF29005CE23B /* Paperlogy-SemiBold.ttf in Resources */,
 				C5CD424C2E43AF29005CE23B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C5EAAEB22E539AB400E196CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5EAAEC92E539ACC00E196CD /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -585,7 +669,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C5EAAEB02E539AB400E196CD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C5EAAEC72E539ACC00E196CD /* ContentView.swift in Sources */,
+				C5EAAEC82E539ACC00E196CD /* WatchNiceDemoApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C5EAAEBD2E539AB600E196CD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C5EAAEB32E539AB400E196CD /* WatchNiceDemo Watch App */;
+			targetProxy = C5EAAEBC2E539AB600E196CD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		C549FEAA2E411570003E3C99 /* Debug */ = {
@@ -776,6 +877,64 @@
 			};
 			name = Release;
 		};
+		C5EAAEC02E539AB600E196CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B375T6ZNZC;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchNiceDemo;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "serhii.NiceDemo-SwiftUI";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "serhii.NiceDemo-SwiftUI.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.5;
+			};
+			name = Debug;
+		};
+		C5EAAEC12E539AB600E196CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B375T6ZNZC;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchNiceDemo;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "serhii.NiceDemo-SwiftUI";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "serhii.NiceDemo-SwiftUI.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 11.5;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -793,6 +952,15 @@
 			buildConfigurations = (
 				C549FEAD2E411570003E3C99 /* Debug */,
 				C549FEAE2E411570003E3C99 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C5EAAEC22E539AB600E196CD /* Build configuration list for PBXNativeTarget "WatchNiceDemo Watch App" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C5EAAEC02E539AB600E196CD /* Debug */,
+				C5EAAEC12E539AB600E196CD /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
