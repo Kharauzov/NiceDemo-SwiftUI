@@ -13,7 +13,12 @@ struct StartView: View {
     @EnvironmentObject private var appRootManager: AppRootManager
     
     init(_ userCredentialsStorage: UserCredentialsFetching = UserCredentialsStorage()) {
+#if os(watchOS)
         let viewModel = ViewModel(userCredentialsStorage: userCredentialsStorage)
+#endif
+#if os(iOS)
+        let viewModel = ViewModel(userCredentialsStorage: userCredentialsStorage, connectivityService: WCService.shared)
+#endif
         _viewModel = .init(wrappedValue: viewModel)
     }
     
@@ -22,6 +27,9 @@ struct StartView: View {
             ProgressView()
                 .progressViewStyle(.circular)
                 .controlSize(.large)
+#if os(watchOS)
+                .tint(Color.AppColors.primary)
+#endif
         }
         .containerRelativeFrame([.horizontal, .vertical])
         .background(Color.AppColors.white)

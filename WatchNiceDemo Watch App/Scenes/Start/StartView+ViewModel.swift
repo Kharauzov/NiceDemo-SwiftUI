@@ -1,9 +1,11 @@
 //
 //  StartView+ViewModel.swift
-//  NiceDemo-SwiftUI
+//  WatchNiceDemo Watch App
 //
-//  Created by Serhii Kharauzov on 04.08.2025.
+//  Created by Serhii Kharauzov on 19.08.2025.
 //
+
+import Foundation
 
 import SwiftUI
 
@@ -13,17 +15,14 @@ extension StartView {
         var isUserAuthenticated: Bool {
             userCredentialsStorage.isUserAuthenticated
         }
-        private let connectivityService: PhoneSignInConnectivityInterface
         private let userCredentialsStorage: UserCredentialsFetching
         
-        init(userCredentialsStorage: UserCredentialsFetching, connectivityService: PhoneSignInConnectivityInterface) {
+        init(userCredentialsStorage: UserCredentialsFetching) {
             self.userCredentialsStorage = userCredentialsStorage
-            self.connectivityService = connectivityService
         }
         
         func fetchUserAuthState() async -> Bool {
             try? await Task.sleep(nanoseconds: 1_500_000_000) // 1.5 second
-            connectivityService.sendAuth(flag: userCredentialsStorage.isUserAuthenticated)
             return isUserAuthenticated
         }
     }
