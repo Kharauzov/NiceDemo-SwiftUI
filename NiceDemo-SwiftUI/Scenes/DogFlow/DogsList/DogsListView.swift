@@ -35,6 +35,10 @@ struct DogsListView: View {
         }
         .listStyle(.plain)
         .navigationTitle(navigationTitle)
+#if os(watchOS)
+        .toolbarTitleDisplayMode(.large)
+#endif
+#if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
         .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
         .toolbar {
@@ -42,6 +46,7 @@ struct DogsListView: View {
                 toolBarMenu
             }
         }
+#endif
         .task {
             if viewModel.shouldLoadData {
                 viewModel.shouldLoadData.toggle()
@@ -59,8 +64,10 @@ struct DogsListView: View {
         List {
             ForEach((1...20), id: \.self) { _ in
                 LoadingDogRowView()
+#if os(iOS)
                     .listRowInsets(EdgeInsets())
                     .listRowSeparator(.hidden)
+#endif
                     .frame(height: 60)
                     .onTapGesture {}
             }
@@ -75,8 +82,10 @@ struct DogsListView: View {
                 }, onFavoriteTapped: {
                     viewModel.removeFromFavorite(dog)
                 })
+#if os(iOS)
                 .listRowInsets(EdgeInsets())
                 .listRowSeparator(.hidden)
+#endif
             }
         } else {
             VStack {
@@ -88,7 +97,7 @@ struct DogsListView: View {
             }
         }
     }
-    
+#if os(iOS)
     private var toolBarMenu: some View {
         Menu {
             ForEach(FilterOption.allCases, id: \.self) { option in
@@ -104,6 +113,7 @@ struct DogsListView: View {
                 .tint(Color.AppColors.primary)
         }
     }
+#endif
 }
 
 extension DogsListView {
