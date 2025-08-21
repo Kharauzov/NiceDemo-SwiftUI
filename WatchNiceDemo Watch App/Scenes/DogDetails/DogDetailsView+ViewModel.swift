@@ -13,14 +13,16 @@ extension DogDetailsView {
         private(set) var dog: Dog
         private let favoriteStorage: DogDetailsFavoriteStorage
         private let networkService: DogDetailsNetwork
+        private let favoriteBreedsSyncService: FavoriteBreedsSyncService
         private(set) var loading = true
         private(set) var favoriteButtonImageName = ""
         private(set) var randomImageUrl: String?
         
-        init(dog: Dog, favoriteStorage: DogDetailsFavoriteStorage, networkService: DogDetailsNetwork) {
+        init(dog: Dog, favoriteStorage: DogDetailsFavoriteStorage, networkService: DogDetailsNetwork, favoriteBreedsSyncService: FavoriteBreedsSyncService) {
             self.dog = dog
             self.favoriteStorage = favoriteStorage
             self.networkService = networkService
+            self.favoriteBreedsSyncService = favoriteBreedsSyncService
             setFavoriteButtonImageName()
         }
         
@@ -32,6 +34,7 @@ extension DogDetailsView {
             }
             dog.isFavorite.toggle()
             setFavoriteButtonImageName()
+            favoriteBreedsSyncService.sendFavoriteBreedsViaConnectivity()
         }
         
         @MainActor

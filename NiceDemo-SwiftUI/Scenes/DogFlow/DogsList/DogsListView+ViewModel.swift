@@ -9,18 +9,21 @@ import SwiftUI
 
 extension DogsListView {
     @Observable
-    class ViewModel {
+    class ViewModel: FavoriteBreedsSyncDelegate {
         private var dogs = [Dog]()
         private let networkService: DogsListNetwork
         private let favoriteStorage: DogsListFavoriteStorage
+        private let favoriteBreedsSyncService: FavoriteBreedsSyncService
         var networkError: Error?
         var showErrorAlert: Bool = false
         var loading = true
         var shouldLoadData = true
         
-        init(networkService: DogsListNetwork, favoriteStorage: DogsListFavoriteStorage) {
+        init(networkService: DogsListNetwork, favoriteStorage: DogsListFavoriteStorage, favoriteBreedsSyncService: FavoriteBreedsSyncService) {
             self.networkService = networkService
             self.favoriteStorage = favoriteStorage
+            self.favoriteBreedsSyncService = favoriteBreedsSyncService
+            self.favoriteBreedsSyncService.delegate = self
         }
         
         func getDogs(filterOption: DogsListView.FilterOption, searchText: String) -> [Dog] {
@@ -51,6 +54,7 @@ extension DogsListView {
         func removeFromFavorite(_ dog: Dog) {
             favoriteStorage.removeFromFavorite(dog)
             handleFetchedData(dogs)
+            favoriteBreedsSyncService.sendFavoriteBreedsViaConnectivity()
         }
         
         func reloadData() {
@@ -71,6 +75,10 @@ extension DogsListView {
             withAnimation(.spring()) {
                 loading = false
             }
+        }
+        
+        func favoritesDidUpdateFromPeer(_ breeds: [String]) {
+            reloadData()
         }
     }
 }

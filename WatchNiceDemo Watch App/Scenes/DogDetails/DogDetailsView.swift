@@ -9,14 +9,15 @@ import SwiftUI
 import CachedAsyncImage
 
 struct DogDetailsView: View {
-    @Environment(\.dismiss) private var dismiss
     @State private var index = 0
     @State private var isFavorite = false
     @State private var viewModel: ViewModel
     @State private var zoom: CGFloat = 1.0
+    @State private var offset: CGSize = .zero
+    @State private var dragStart: CGSize = .zero
     
     init(dog: Dog, favoriteStorage: DogDetailsFavoriteStorage = FavoriteDogBreedsStorage(), networkService: DogDetailsNetwork = DogsNetworkService()) {
-        let viewModel = ViewModel(dog: dog, favoriteStorage: favoriteStorage, networkService: networkService)
+        let viewModel = ViewModel(dog: dog, favoriteStorage: favoriteStorage, networkService: networkService, favoriteBreedsSyncService: FavoriteBreedsSyncService())
         _viewModel = .init(wrappedValue: viewModel)
     }
     
@@ -24,15 +25,13 @@ struct DogDetailsView: View {
         GeometryReader { geometry in
             ZStack {
                 if let randomImageUrl = viewModel.randomImageUrl, !viewModel.loading {
-                    imageView(url: randomImageUrl)
+                    imageView(url: randomImageUrl, size: geometry.size)
                         .frame(width: geometry.size.width, height: geometry.size.height)
                 } else {
                     progressView
                 }
-                dismissButton
-                    .frame(width: geometry.size.width)
                 bottomControls
-                .frame(width: geometry.size.width, height: geometry.size.height)
+                    .frame(width: geometry.size.width, height: geometry.size.height)
             }
         }
         .task {
@@ -40,10 +39,11 @@ struct DogDetailsView: View {
         }
     }
     
-    private func imageView(url: String) -> some View {
+    private func imageView(url: String, size: CGSize) -> some View {
         CachedAsyncImage(url: URL(string: url))
             .scaledToFill()
             .ignoresSafeArea()
+            .offset(offset)
             .scaleEffect(zoom)
             .focusable(true)
             .digitalCrownRotation(
@@ -55,6 +55,29 @@ struct DogDetailsView: View {
                 isContinuous: false,
                 isHapticFeedbackEnabled: true
             )
+            .gesture(
+                DragGesture()
+                    .onChanged { value in
+                        let proposed = CGSize(
+                            width: dragStart.width + value.translation.width,
+                            height: dragStart.height + value.translation.height
+                        )
+                        offset = clampedOffset(
+                            proposed,
+                            container: size,
+                            zoom: zoom
+                        )
+                    }
+                    .onEnded { _ in
+                        dragStart = offset
+                    }
+            )
+            .onTapGesture(count: 2) {
+                withAnimation(.spring) {
+                    resetImagePositionAndScale()
+                }
+            }
+            .clipped()
     }
     
     private var progressView: some View {
@@ -64,31 +87,13 @@ struct DogDetailsView: View {
             .tint(Color.AppColors.white)
     }
     
-    private var dismissButton: some View {
-        VStack {
-            HStack {
-                Button {
-                    dismiss()
-                } label: {
-                    Image(systemName: "xmark")
-                        .font(.system(size: 16, weight: .bold))
-                        .padding(8)
-                        .background(.ultraThinMaterial, in: Circle())
-                }
-                .buttonStyle(.plain)
-                Spacer()
-            }
-            .padding([.top, .leading], GridLayout.regularSpace)
-            Spacer()
-        }
-    }
-    
     private var bottomControls: some View {
         VStack {
             Spacer()
             HStack(spacing: 12) {
                 Button {
                     WKInterfaceDevice.current().play(.directionUp)
+                    resetImagePositionAndScale()
                     viewModel.loadRandomImage()
                 } label: {
                     Label("Next", systemImage: "arrow.right")
@@ -119,6 +124,27 @@ struct DogDetailsView: View {
             .padding(.bottom, GridLayout.doubleRegularSpace)
         }
         .ignoresSafeArea(edges: .bottom)
+    }
+    
+    /// Clamp pan so the image can't be dragged beyond its visible bounds.
+    private func clampedOffset(_ proposed: CGSize, container: CGSize, zoom: CGFloat) -> CGSize {
+        // When zoom == 1, no panning allowed.
+        guard zoom > 1 else { return .zero }
+        
+        // Assuming the image fits inside the container (scaledToFit),
+        // the extra "virtual size" you can pan equals container * (zoom - 1).
+        let maxX = (container.width  * (zoom - 1)) / 2
+        let maxY = (container.height * (zoom - 1)) / 2
+        
+        let x = min(max(proposed.width,  -maxX), maxX)
+        let y = min(max(proposed.height, -maxY), maxY)
+        return CGSize(width: x, height: y)
+    }
+    
+    private func resetImagePositionAndScale() {
+        zoom = 1
+        offset = .zero
+        dragStart = .zero
     }
 }
 

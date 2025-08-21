@@ -10,12 +10,21 @@
 		C51AB30F2E4A2FA6002149F3 /* DogGallery+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51AB30E2E4A2FA6002149F3 /* DogGallery+ViewModel.swift */; };
 		C51AB3112E4A3093002149F3 /* GetBreedRandomImagesServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51AB3102E4A3093002149F3 /* GetBreedRandomImagesServerResponse.swift */; };
 		C51AB3132E4A311B002149F3 /* DogGalleryContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51AB3122E4A311B002149F3 /* DogGalleryContract.swift */; };
+		C533A8C22E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533A8C12E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift */; };
+		C533A8C32E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533A8C12E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift */; };
+		C533A8C52E5631BC00EEE267 /* FavoriteBreedsSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533A8C42E5631BC00EEE267 /* FavoriteBreedsSyncService.swift */; };
+		C533A8C62E5631BC00EEE267 /* FavoriteBreedsSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533A8C42E5631BC00EEE267 /* FavoriteBreedsSyncService.swift */; };
+		C533A8C82E5633DE00EEE267 /* FavoriteBreedsPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533A8C72E5633DE00EEE267 /* FavoriteBreedsPayload.swift */; };
+		C533A8C92E5633DE00EEE267 /* FavoriteBreedsPayload.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533A8C72E5633DE00EEE267 /* FavoriteBreedsPayload.swift */; };
+		C533A8CB2E5634B600EEE267 /* FavoriteBreedsStorageInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533A8CA2E5634B600EEE267 /* FavoriteBreedsStorageInterface.swift */; };
+		C533A8CC2E5634B600EEE267 /* FavoriteBreedsStorageInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533A8CA2E5634B600EEE267 /* FavoriteBreedsStorageInterface.swift */; };
 		C549FEDE2E4129A1003E3C99 /* AppRouter in Frameworks */ = {isa = PBXBuildFile; productRef = C549FEDD2E4129A1003E3C99 /* AppRouter */; };
 		C56E6B822E4F89480064490A /* GalleryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C56E6B812E4F89480064490A /* GalleryCellView.swift */; };
 		C57FC69D2E4D19D3005A8991 /* CachedAsyncImage in Frameworks */ = {isa = PBXBuildFile; productRef = C57FC69C2E4D19D3005A8991 /* CachedAsyncImage */; };
 		C57FC69F2E4DDA23005A8991 /* DogDetailsView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FC69E2E4DDA23005A8991 /* DogDetailsView+Extensions.swift */; };
 		C57FC6A12E4E41AF005A8991 /* AnimationDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C57FC6A02E4E41AF005A8991 /* AnimationDuration.swift */; };
-		C5B273422E54B16100B42907 /* SignInViewContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B273412E54B16100B42907 /* SignInViewContract.swift */; };
+		C596B5BB2E57513D0071A932 /* WatchFavoriteBreedsConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C596B5BA2E57513D0071A932 /* WatchFavoriteBreedsConnectivity.swift */; };
+		C596B5BC2E57513D0071A932 /* WatchFavoriteBreedsConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C596B5BA2E57513D0071A932 /* WatchFavoriteBreedsConnectivity.swift */; };
 		C5B273432E54B6B700B42907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CD423D2E43AF29005CE23B /* Assets.xcassets */; };
 		C5B273452E54BDDB00B42907 /* SignInViewContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B273442E54BDDB00B42907 /* SignInViewContract.swift */; };
 		C5B273492E54C06D00B42907 /* StartView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B273482E54C06D00B42907 /* StartView+ViewModel.swift */; };
@@ -154,11 +163,15 @@
 		C51AB30E2E4A2FA6002149F3 /* DogGallery+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogGallery+ViewModel.swift"; sourceTree = "<group>"; };
 		C51AB3102E4A3093002149F3 /* GetBreedRandomImagesServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBreedRandomImagesServerResponse.swift; sourceTree = "<group>"; };
 		C51AB3122E4A311B002149F3 /* DogGalleryContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogGalleryContract.swift; sourceTree = "<group>"; };
+		C533A8C12E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSignInConnectivityInterface.swift; sourceTree = "<group>"; };
+		C533A8C42E5631BC00EEE267 /* FavoriteBreedsSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedsSyncService.swift; sourceTree = "<group>"; };
+		C533A8C72E5633DE00EEE267 /* FavoriteBreedsPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedsPayload.swift; sourceTree = "<group>"; };
+		C533A8CA2E5634B600EEE267 /* FavoriteBreedsStorageInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedsStorageInterface.swift; sourceTree = "<group>"; };
 		C549FEA12E41156F003E3C99 /* NiceDemo-SwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "NiceDemo-SwiftUI.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C56E6B812E4F89480064490A /* GalleryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryCellView.swift; sourceTree = "<group>"; };
 		C57FC69E2E4DDA23005A8991 /* DogDetailsView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogDetailsView+Extensions.swift"; sourceTree = "<group>"; };
 		C57FC6A02E4E41AF005A8991 /* AnimationDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnimationDuration.swift; sourceTree = "<group>"; };
-		C5B273412E54B16100B42907 /* SignInViewContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewContract.swift; sourceTree = "<group>"; };
+		C596B5BA2E57513D0071A932 /* WatchFavoriteBreedsConnectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchFavoriteBreedsConnectivity.swift; sourceTree = "<group>"; };
 		C5B273442E54BDDB00B42907 /* SignInViewContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewContract.swift; sourceTree = "<group>"; };
 		C5B273482E54C06D00B42907 /* StartView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StartView+ViewModel.swift"; sourceTree = "<group>"; };
 		C5B2734A2E54C24900B42907 /* WatchNiceDemo-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WatchNiceDemo-Watch-App-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -247,6 +260,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C533A8BB2E55F9B800EEE267 /* WatchConnectivity */ = {
+			isa = PBXGroup;
+			children = (
+				C5EAAEF32E53AD0F00E196CD /* WCService.swift */,
+				C533A8C42E5631BC00EEE267 /* FavoriteBreedsSyncService.swift */,
+			);
+			path = WatchConnectivity;
+			sourceTree = "<group>";
+		};
+		C533A8C02E5603F500EEE267 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				C533A8C12E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift */,
+				C533A8CA2E5634B600EEE267 /* FavoriteBreedsStorageInterface.swift */,
+				C596B5BA2E57513D0071A932 /* WatchFavoriteBreedsConnectivity.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 		C549FE982E41156F003E3C99 = {
 			isa = PBXGroup;
 			children = (
@@ -327,6 +359,7 @@
 			isa = PBXGroup;
 			children = (
 				C5CD420E2E43AF29005CE23B /* Dog.swift */,
+				C533A8C72E5633DE00EEE267 /* FavoriteBreedsPayload.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -464,10 +497,10 @@
 		C5CD42332E43AF29005CE23B /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				C533A8BB2E55F9B800EEE267 /* WatchConnectivity */,
 				C5CD42222E43AF29005CE23B /* LocalStorage */,
 				C5CD42312E43AF29005CE23B /* Network */,
 				C5CD42322E43AF29005CE23B /* Validator.swift */,
-				C5EAAEF32E53AD0F00E196CD /* WCService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -534,6 +567,7 @@
 		C5CD42472E43AF29005CE23B /* NiceDemo-SwiftUI */ = {
 			isa = PBXGroup;
 			children = (
+				C533A8C02E5603F500EEE267 /* Protocols */,
 				C5CD42412E43AF29005CE23B /* Utils */,
 				C5CD420B2E43AF29005CE23B /* Routing */,
 				C5CD420D2E43AF29005CE23B /* Extensions */,
@@ -600,7 +634,6 @@
 			children = (
 				C5EAAEE22E539DC100E196CD /* SignInView.swift */,
 				C5EAAEF12E53ABC200E196CD /* SignInView+ViewModel.swift */,
-				C5B273412E54B16100B42907 /* SignInViewContract.swift */,
 			);
 			path = SignIn;
 			sourceTree = "<group>";
@@ -729,6 +762,7 @@
 			files = (
 				C5CD424E2E43AF29005CE23B /* AppRootManager.swift in Sources */,
 				C5EAAEF42E53AD0F00E196CD /* WCService.swift in Sources */,
+				C533A8C82E5633DE00EEE267 /* FavoriteBreedsPayload.swift in Sources */,
 				C57FC6A12E4E41AF005A8991 /* AnimationDuration.swift in Sources */,
 				C5CD424F2E43AF29005CE23B /* AuthRouting.swift in Sources */,
 				C5CD42502E43AF29005CE23B /* Color+Extension.swift in Sources */,
@@ -744,11 +778,14 @@
 				C5D8873B2E4881FA00169957 /* DogCardView.swift in Sources */,
 				C5BC76392E44FFEA007D70F1 /* DogDetailsView+ViewModel.swift in Sources */,
 				C51AB30F2E4A2FA6002149F3 /* DogGallery+ViewModel.swift in Sources */,
+				C533A8CB2E5634B600EEE267 /* FavoriteBreedsStorageInterface.swift in Sources */,
+				C596B5BB2E57513D0071A932 /* WatchFavoriteBreedsConnectivity.swift in Sources */,
 				C5CD42572E43AF29005CE23B /* StartView.swift in Sources */,
 				C5CD42582E43AF29005CE23B /* StartView+ViewModel.swift in Sources */,
 				C5D8873F2E4885D400169957 /* DogCardContract.swift in Sources */,
 				C51AB3112E4A3093002149F3 /* GetBreedRandomImagesServerResponse.swift in Sources */,
 				C5CD42592E43AF29005CE23B /* UserCredentialsStorage+Interfaces.swift in Sources */,
+				C533A8C52E5631BC00EEE267 /* FavoriteBreedsSyncService.swift in Sources */,
 				C5CD425A2E43AF29005CE23B /* UserCredentialsStoring.swift in Sources */,
 				C5CD425B2E43AF29005CE23B /* UserCredentialsStorage.swift in Sources */,
 				C5D887432E488BED00169957 /* DogGalleryView.swift in Sources */,
@@ -766,6 +803,7 @@
 				C5CD42632E43AF29005CE23B /* HTTPMethod.swift in Sources */,
 				C5CD42762E43B1A8005CE23B /* FavoriteDogBreedsStoring.swift in Sources */,
 				C5CD42642E43AF29005CE23B /* HTTPTask.swift in Sources */,
+				C533A8C22E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift in Sources */,
 				C5CD42742E43B182005CE23B /* FavoriteDogBreedsStorage.swift in Sources */,
 				C5CD42652E43AF29005CE23B /* NetworkError.swift in Sources */,
 				C5CD42662E43AF29005CE23B /* NetworkService.swift in Sources */,
@@ -792,7 +830,6 @@
 			files = (
 				C5EAAED52E539CA600E196CD /* DogsRouting.swift in Sources */,
 				C5B273642E54F9F500B42907 /* DogDetailsContract.swift in Sources */,
-				C5B273422E54B16100B42907 /* SignInViewContract.swift in Sources */,
 				C5EAAEF52E53AD0F00E196CD /* WCService.swift in Sources */,
 				C5EAAED72E539CAA00E196CD /* Color+Extension.swift in Sources */,
 				C5B273512E54CEF800B42907 /* FavoriteDogBreedsStorage.swift in Sources */,
@@ -804,12 +841,14 @@
 				C5B2734B2E54CED300B42907 /* DogsListContract.swift in Sources */,
 				C5B2734C2E54CED300B42907 /* LoadingDogRowView.swift in Sources */,
 				C5B2734D2E54CED300B42907 /* DogsListView+ViewModel.swift in Sources */,
+				C533A8C32E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift in Sources */,
 				C5B2734E2E54CED300B42907 /* DogsListView.swift in Sources */,
 				C5B2734F2E54CED300B42907 /* DogRowView.swift in Sources */,
 				C5B273492E54C06D00B42907 /* StartView+ViewModel.swift in Sources */,
 				C5EAAECC2E539C8000E196CD /* Font+Paperlogy.swift in Sources */,
 				C5EAAEEE2E539F0E00E196CD /* UserCredentialsStorage+Interfaces.swift in Sources */,
 				C5EAAED12E539C8600E196CD /* Colors.swift in Sources */,
+				C533A8C62E5631BC00EEE267 /* FavoriteBreedsSyncService.swift in Sources */,
 				C5EAAED22E539C9800E196CD /* Constants.swift in Sources */,
 				C5EAAEEA2E539ECB00E196CD /* UserCredentialsStorage.swift in Sources */,
 				C5B273652E54FA4900B42907 /* DogCardContract.swift in Sources */,
@@ -829,12 +868,15 @@
 				C5EAAEDD2E539CFC00E196CD /* Dog.swift in Sources */,
 				C5B273502E54CEF100B42907 /* DogsNetworkService.swift in Sources */,
 				C5EAAECA2E539C4400E196CD /* NiceDemo_SwiftUIApp.swift in Sources */,
+				C533A8C92E5633DE00EEE267 /* FavoriteBreedsPayload.swift in Sources */,
 				C5B273522E54CF1600B42907 /* HTTPMethod.swift in Sources */,
+				C533A8CC2E5634B600EEE267 /* FavoriteBreedsStorageInterface.swift in Sources */,
 				C5B273532E54CF1600B42907 /* NetworkError.swift in Sources */,
 				C5B273542E54CF1600B42907 /* NetworkService.swift in Sources */,
 				C5B273552E54CF1600B42907 /* HTTPTask.swift in Sources */,
 				C5EAAEEC2E539EDF00E196CD /* UserCredentialsStoring.swift in Sources */,
 				C5EAAEE32E539DC100E196CD /* SignInView.swift in Sources */,
+				C596B5BC2E57513D0071A932 /* WatchFavoriteBreedsConnectivity.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

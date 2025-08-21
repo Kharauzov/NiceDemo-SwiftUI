@@ -21,7 +21,7 @@ struct DogsListView: View {
     }
     
     init(_ networkService: DogsListNetwork = DogsNetworkService(), favoriteStorage: DogsListFavoriteStorage = FavoriteDogBreedsStorage()) {
-        let viewModel = ViewModel(networkService: networkService, favoriteStorage: favoriteStorage)
+        let viewModel = ViewModel(networkService: networkService, favoriteStorage: favoriteStorage, favoriteBreedsSyncService: FavoriteBreedsSyncService())
         _viewModel = .init(wrappedValue: viewModel)
     }
     

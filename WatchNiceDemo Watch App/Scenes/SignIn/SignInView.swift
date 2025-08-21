@@ -12,7 +12,7 @@ struct SignInView: View {
     @EnvironmentObject private var appRootManager: AppRootManager
     
     init(connectivityService: WatchSignInConnectivityInterface = WCService.shared) {
-        let viewModel = ViewModel(connectivityService: connectivityService)
+        let viewModel = ViewModel(connectivityService: connectivityService, userCredentialsStorage: UserCredentialsStorage())
         _viewModel = .init(wrappedValue: viewModel)
     }
     
@@ -36,6 +36,7 @@ struct SignInView: View {
         .frame(maxWidth: .infinity)
         .task {
             viewModel.connectivityService.isAuthenticatedChanged = { flag in
+                viewModel.saveAuthState(flag)
                 if flag {
                     showDogsListView()
                 }

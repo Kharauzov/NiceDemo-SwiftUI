@@ -1,8 +1,8 @@
 //
-//  SignInViewContract.swift
-//  WatchNiceDemo Watch App
+//  WatchSignInConnectivityInterface.swift
+//  NiceDemo-SwiftUI
 //
-//  Created by Serhii Kharauzov on 19.08.2025.
+//  Created by Serhii Kharauzov on 20.08.2025.
 //
 
 import Foundation

@@ -17,7 +17,7 @@ struct StartView: View {
         let viewModel = ViewModel(userCredentialsStorage: userCredentialsStorage)
 #endif
 #if os(iOS)
-        let viewModel = ViewModel(userCredentialsStorage: userCredentialsStorage, connectivityService: WCService.shared)
+        let viewModel = ViewModel(userCredentialsStorage: userCredentialsStorage, connectivityService: WCService.shared, favoriteBreedsSyncService: FavoriteBreedsSyncService())
 #endif
         _viewModel = .init(wrappedValue: viewModel)
     }

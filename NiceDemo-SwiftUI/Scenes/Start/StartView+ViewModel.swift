@@ -15,15 +15,20 @@ extension StartView {
         }
         private let connectivityService: PhoneSignInConnectivityInterface
         private let userCredentialsStorage: UserCredentialsFetching
+        private let favoriteBreedsSyncService: FavoriteBreedsSyncService
         
-        init(userCredentialsStorage: UserCredentialsFetching, connectivityService: PhoneSignInConnectivityInterface) {
+        init(userCredentialsStorage: UserCredentialsFetching, connectivityService: PhoneSignInConnectivityInterface, favoriteBreedsSyncService: FavoriteBreedsSyncService) {
             self.userCredentialsStorage = userCredentialsStorage
             self.connectivityService = connectivityService
+            self.favoriteBreedsSyncService = favoriteBreedsSyncService
         }
         
         func fetchUserAuthState() async -> Bool {
             try? await Task.sleep(nanoseconds: 1_500_000_000) // 1.5 second
-            connectivityService.sendAuth(flag: userCredentialsStorage.isUserAuthenticated)
+            connectivityService.sendAuth(flag: isUserAuthenticated)
+            if isUserAuthenticated {
+                favoriteBreedsSyncService.sendFavoriteBreedsViaConnectivity()
+            }
             return isUserAuthenticated
         }
     }
