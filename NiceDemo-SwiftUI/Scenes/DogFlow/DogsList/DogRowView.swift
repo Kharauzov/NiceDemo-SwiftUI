@@ -11,7 +11,20 @@ struct DogRowView: View {
     let dog: Dog
     var onTap: (() -> Void)?
     var onFavoriteTapped: (() -> Void)?
-    
+    private var favoriteButtonSize: CGFloat {
+#if os(watchOS)
+        35
+#else
+        40
+#endif
+    }
+    private var horizontalPadding: CGFloat {
+#if os(watchOS)
+        0
+#else
+        GridLayout.doubleRegularSpace
+#endif
+    }
     var body: some View {
         VStack {
             HStack {
@@ -32,13 +45,15 @@ struct DogRowView: View {
                     FavoriteButton {
                         onFavoriteTapped?()
                     }
-                    .frame(width: 40, height: 40)
+                    .frame(width: favoriteButtonSize, height: favoriteButtonSize)
                     .buttonStyle(BorderlessButtonStyle())
                 }
             }
+            #if os(iOS)
             SeparatorView()
+            #endif
         }
-        .padding(.horizontal, GridLayout.doubleRegularSpace)
+        .padding(.horizontal, horizontalPadding)
         .padding(.vertical, GridLayout.regularSpace)
         .contentShape(Rectangle()) // Makes full row tappable
         .onTapGesture {

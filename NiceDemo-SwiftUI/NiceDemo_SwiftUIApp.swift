@@ -32,9 +32,11 @@ struct NiceDemo_SwiftUIApp: App {
         case .signIn:
             NavigationStack(path: $authRouter.path) {
                 SignInView()
+                #if os(iOS)
                     .navigationDestination(for: AuthRoutingDestination.self) { destination in
                         authDestinationView(for: destination)
                     }
+                #endif
             }
         case .dogsList:
             NavigationStack(path: $dogsFlowRouter.path) {
@@ -49,11 +51,14 @@ struct NiceDemo_SwiftUIApp: App {
 
 @ViewBuilder
 private func authDestinationView(for destination: AuthRoutingDestination) -> some View {
+    #if os(iOS)
     switch destination {
     case .forgotPassword:
         ForgotPasswordView()
     }
+    #endif
 }
+
 
 @ViewBuilder
 private func dogsFlowDestinationView(for destination: DogsRoutingDestination) -> some View {

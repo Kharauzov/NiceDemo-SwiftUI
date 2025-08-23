@@ -9,6 +9,7 @@ import Foundation
 
 protocol FavoriteDogBreedsStoring: AnyObject {
     var favoriteDogBreeds: [String] { get set }
+    var favoriteBreedsUpdatedAt: TimeInterval { get set }
 }
 
 extension UserDefaultsLayer: FavoriteDogBreedsStoring {}
