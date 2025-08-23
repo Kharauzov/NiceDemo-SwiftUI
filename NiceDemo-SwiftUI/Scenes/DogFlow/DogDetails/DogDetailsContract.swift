@@ -13,3 +13,9 @@ protocol DogDetailsFavoriteStorage: AnyObject {
     func addToFavorite(_ dog: Dog)
 }
 extension FavoriteDogBreedsStorage: DogDetailsFavoriteStorage {}
+
+// Used inside Watch app
+protocol DogDetailsNetwork {
+    func getBreedRandomImage(_ breed: String) async throws -> GetRandomDogImageServerResponse
+}
+extension DogsNetworkService: DogDetailsNetwork {}

@@ -21,7 +21,7 @@ struct SignInView: View {
     }
     
     init(_ userCredentialsStorage: UserCredentialsUpdating = UserCredentialsStorage()) {
-        let viewModel = ViewModel(userCredentialsStorage: userCredentialsStorage)
+        let viewModel = ViewModel(userCredentialsStorage: userCredentialsStorage, connectivityService: WCService.shared)
         _viewModel = .init(wrappedValue: viewModel)
     }
     

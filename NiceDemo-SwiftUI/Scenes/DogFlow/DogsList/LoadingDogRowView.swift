@@ -45,7 +45,9 @@ struct LoadingDogRowView: View {
         ForEach((1...10), id: \.self) { _ in
             LoadingDogRowView()
                 .listRowInsets(EdgeInsets())
+            #if os(iOS)
                 .listRowSeparator(.hidden)
+            #endif
                 .frame(height: 60)
         }
     }

@@ -13,7 +13,6 @@ extension DogCardView {
     @Observable
     class ViewModel {
         private(set) var dog: Dog
-        private(set) var favoriteButtonImageName = ""
         private let networkService: DogCardNetwork
         private(set) var loading = true
         var loadedImage: UIImage?

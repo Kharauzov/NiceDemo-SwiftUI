@@ -11,12 +11,14 @@ extension SignInView {
     @Observable
     class ViewModel {
         private let userCredentialsStorage: UserCredentialsUpdating
+        private let connectivityService: PhoneSignInConnectivityInterface
         private let validator = Validator()
         var validationError: Validator.ValidationError?
         var showErrorAlert: Bool = false
         
-        init(userCredentialsStorage: UserCredentialsUpdating) {
+        init(userCredentialsStorage: UserCredentialsUpdating, connectivityService: PhoneSignInConnectivityInterface) {
             self.userCredentialsStorage = userCredentialsStorage
+            self.connectivityService = connectivityService
         }
         
         /// Returns value if it is valid. In other case returns nil.
@@ -59,6 +61,7 @@ extension SignInView {
                 if true {
                     // we store, that user authenticated successfully
                     userCredentialsStorage.isUserAuthenticated = true
+                    connectivityService.sendAuth(flag: true)
                     completion(true)
                 } else {
                     // show appropriate UI, that error occured

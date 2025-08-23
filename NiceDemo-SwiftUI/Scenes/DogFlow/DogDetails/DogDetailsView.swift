@@ -14,7 +14,7 @@ struct DogDetailsView: View {
     @Namespace private var underline
     
     init(dog: Dog) {
-        let viewModel = ViewModel(dog: dog, favoriteStorage: FavoriteDogBreedsStorage())
+        let viewModel = ViewModel(dog: dog, favoriteStorage: FavoriteDogBreedsStorage(), favoriteBreedsSyncService: FavoriteBreedsSyncService())
         _viewModel = .init(wrappedValue: viewModel)
     }
     
