@@ -16,7 +16,6 @@ class WCService: NSObject {
     var isAuthenticated: Bool = false {
         didSet {
             if oldValue != isAuthenticated {
-                print("Auth changed: \(isAuthenticated)")
                 isAuthenticatedChanged?(isAuthenticated)
             }
         }
@@ -24,7 +23,6 @@ class WCService: NSObject {
     var favBreedsPayload: FavoriteBreedsPayload? {
         didSet {
             if oldValue != favBreedsPayload, let favBreedsPayload {
-                print("favoriteBreeds changed: \(favBreedsPayload)")
                 favBreedsPayloadChanged?(favBreedsPayload)
             }
         }

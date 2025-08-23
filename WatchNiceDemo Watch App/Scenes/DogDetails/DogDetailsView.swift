@@ -22,17 +22,17 @@ struct DogDetailsView: View {
     }
     
     var body: some View {
-        GeometryReader { geometry in
-            ZStack {
-                if let randomImageUrl = viewModel.randomImageUrl, !viewModel.loading {
-                    imageView(url: randomImageUrl, size: geometry.size)
-                        .frame(width: geometry.size.width, height: geometry.size.height)
-                } else {
-                    progressView
-                }
-                bottomControls
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+        let screenSize = WKInterfaceDevice.current().screenBounds.size
+        ZStack {
+            if let randomImageUrl = viewModel.randomImageUrl, !viewModel.loading {
+                imageView(url: randomImageUrl, size: screenSize)
+                    .frame(width: screenSize.width, height: screenSize.height + 20)
+                        .clipShape(Rectangle())
+            } else {
+                progressView
             }
+            bottomControls
+                .frame(width: screenSize.width, height: screenSize.height)
         }
         .task {
             viewModel.loadRandomImage()
@@ -121,7 +121,7 @@ struct DogDetailsView: View {
                 .contentShape(Capsule())
             }
             .padding(.horizontal, 10)
-            .padding(.bottom, GridLayout.doubleRegularSpace)
+            .padding(.bottom, GridLayout.trippleRegularSpace)
         }
         .ignoresSafeArea(edges: .bottom)
     }
