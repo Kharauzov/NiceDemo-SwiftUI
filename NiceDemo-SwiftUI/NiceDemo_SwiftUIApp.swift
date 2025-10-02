@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AppRouter
+import ComposableArchitecture
 
 @main
 struct NiceDemo_SwiftUIApp: App {
@@ -28,15 +29,17 @@ struct NiceDemo_SwiftUIApp: App {
     private var rootContent: some View {
         switch appRootManager.rootView {
         case .start:
-            StartView()
+            StartView(store: Store(initialState: StartFeature.State()) {
+                StartFeature()
+            })
         case .signIn:
             NavigationStack(path: $authRouter.path) {
                 SignInView()
-                #if os(iOS)
+#if os(iOS)
                     .navigationDestination(for: AuthRoutingDestination.self) { destination in
                         authDestinationView(for: destination)
                     }
-                #endif
+#endif
             }
         case .dogsList:
             NavigationStack(path: $dogsFlowRouter.path) {
@@ -51,12 +54,12 @@ struct NiceDemo_SwiftUIApp: App {
 
 @ViewBuilder
 private func authDestinationView(for destination: AuthRoutingDestination) -> some View {
-    #if os(iOS)
+#if os(iOS)
     switch destination {
     case .forgotPassword:
         ForgotPasswordView()
     }
-    #endif
+#endif
 }
 
 
