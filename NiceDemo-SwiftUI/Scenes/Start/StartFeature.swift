@@ -38,7 +38,9 @@ struct StartFeature {
             switch action {
             case .fetchUserAuthState:
                 return .run { send in
-                    try? await Task.sleep(nanoseconds: 1_500_000_000) // 1.5 second
+                    if !isRunningTests {
+                        try? await Task.sleep(nanoseconds: 1_500_000_000) // 1.5 second
+                    }
                     let isUserAuthenticated = userCredentialsStorage.isUserAuthenticated
 #if os(iOS)
                     connectivityService.sendAuth(flag: isUserAuthenticated)

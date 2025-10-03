@@ -70,3 +70,5 @@ private func dogsFlowDestinationView(for destination: DogsRoutingDestination) ->
         DogDetailsView(dog: dog)
     }
 }
+
+let isRunningTests = NSClassFromString("XCTestCase") != nil
