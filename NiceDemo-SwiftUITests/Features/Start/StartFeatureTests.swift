@@ -22,7 +22,7 @@ struct StartFeatureTests {
         let store = TestStore(initialState: StartFeature.State()) {
             StartFeature()
         } withDependencies: {
-            $0.userCredentialsStorage = userCredentialsStorage
+            $0.userCredentialsFetchStorage = userCredentialsStorage
             $0.connectivityService = connectivityService
             $0.favoriteBreedsSyncService = favoriteBreedsSyncService
         }
@@ -46,7 +46,7 @@ struct StartFeatureTests {
         let store = TestStore(initialState: StartFeature.State()) {
             StartFeature()
         } withDependencies: {
-            $0.userCredentialsStorage = userCredentialsStorage
+            $0.userCredentialsFetchStorage = userCredentialsStorage
             $0.connectivityService = connectivityService
             $0.favoriteBreedsSyncService = favoriteBreedsSyncService
         }

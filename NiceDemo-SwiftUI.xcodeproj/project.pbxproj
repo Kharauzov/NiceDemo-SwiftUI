@@ -38,6 +38,8 @@
 		C5A49F632E912BB300C3BFA0 /* SignInEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F622E912BB300C3BFA0 /* SignInEnvironment.swift */; };
 		C5A49F652E912C0500C3BFA0 /* SignInCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F642E912C0500C3BFA0 /* SignInCredentials.swift */; };
 		C5A49F662E912C0500C3BFA0 /* SignInCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F642E912C0500C3BFA0 /* SignInCredentials.swift */; };
+		C5A49F6E2E913AF900C3BFA0 /* SignInFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F6D2E913AF900C3BFA0 /* SignInFeatureTests.swift */; };
+		C5A49F702E913B3F00C3BFA0 /* MockUserCredentialsUpdating.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F6F2E913B3F00C3BFA0 /* MockUserCredentialsUpdating.swift */; };
 		C5B273432E54B6B700B42907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CD423D2E43AF29005CE23B /* Assets.xcassets */; };
 		C5B273452E54BDDB00B42907 /* SignInViewContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B273442E54BDDB00B42907 /* SignInViewContract.swift */; };
 		C5B2734B2E54CED300B42907 /* DogsListContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42712E43AFE0005CE23B /* DogsListContract.swift */; };
@@ -202,6 +204,8 @@
 		C5984F852E904FAF000BFEA3 /* SignInFeature+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignInFeature+Dependencies.swift"; sourceTree = "<group>"; };
 		C5A49F622E912BB300C3BFA0 /* SignInEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEnvironment.swift; sourceTree = "<group>"; };
 		C5A49F642E912C0500C3BFA0 /* SignInCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCredentials.swift; sourceTree = "<group>"; };
+		C5A49F6D2E913AF900C3BFA0 /* SignInFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFeatureTests.swift; sourceTree = "<group>"; };
+		C5A49F6F2E913B3F00C3BFA0 /* MockUserCredentialsUpdating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserCredentialsUpdating.swift; sourceTree = "<group>"; };
 		C5B273442E54BDDB00B42907 /* SignInViewContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewContract.swift; sourceTree = "<group>"; };
 		C5B273602E54ED1F00B42907 /* DogDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogDetailsView.swift; sourceTree = "<group>"; };
 		C5B273622E54ED2500B42907 /* DogDetailsView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogDetailsView+ViewModel.swift"; sourceTree = "<group>"; };
@@ -344,6 +348,7 @@
 				C5984F602E8FC853000BFEA3 /* MockUserCredentialsFetching.swift */,
 				C5984F632E8FDA38000BFEA3 /* MockFavoriteBreedsSyncService.swift */,
 				C5984F662E8FDE13000BFEA3 /* MockPhoneSignInConnectivityService.swift */,
+				C5A49F6F2E913B3F00C3BFA0 /* MockUserCredentialsUpdating.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -368,9 +373,18 @@
 		C5984F7D2E8FE0BB000BFEA3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				C5A49F6C2E913AD600C3BFA0 /* SignIn */,
 				C5984F7C2E8FE0BB000BFEA3 /* Start */,
 			);
 			path = Features;
+			sourceTree = "<group>";
+		};
+		C5A49F6C2E913AD600C3BFA0 /* SignIn */ = {
+			isa = PBXGroup;
+			children = (
+				C5A49F6D2E913AF900C3BFA0 /* SignInFeatureTests.swift */,
+			);
+			path = SignIn;
 			sourceTree = "<group>";
 		};
 		C5B2735F2E54ED1000B42907 /* DogDetails */ = {
@@ -940,8 +954,10 @@
 			files = (
 				C5984F7F2E8FE0CA000BFEA3 /* StartFeatureTests.swift in Sources */,
 				C5984F802E8FE0F5000BFEA3 /* MockUserCredentialsFetching.swift in Sources */,
+				C5A49F6E2E913AF900C3BFA0 /* SignInFeatureTests.swift in Sources */,
 				C5984F812E8FE100000BFEA3 /* MockFavoriteBreedsSyncService.swift in Sources */,
 				C5984F822E8FE108000BFEA3 /* MockPhoneSignInConnectivityService.swift in Sources */,
+				C5A49F702E913B3F00C3BFA0 /* MockUserCredentialsUpdating.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
