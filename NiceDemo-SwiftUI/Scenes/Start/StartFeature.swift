@@ -12,7 +12,7 @@ import ComposableArchitecture
 @Reducer
 struct StartFeature {
     @Dependency(\.connectivityService) var connectivityService
-    @Dependency(\.userCredentialsStorage) var userCredentialsStorage
+    @Dependency(\.userCredentialsFetchStorage) var userCredentialsStorage
     @Dependency(\.favoriteBreedsSyncService) var favoriteBreedsSyncService
     
     enum ScreenToShow: Equatable {

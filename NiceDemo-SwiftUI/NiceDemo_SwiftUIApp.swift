@@ -34,11 +34,15 @@ struct NiceDemo_SwiftUIApp: App {
             })
         case .signIn:
             NavigationStack(path: $authRouter.path) {
-                SignInView()
 #if os(iOS)
-                    .navigationDestination(for: AuthRoutingDestination.self) { destination in
-                        authDestinationView(for: destination)
-                    }
+                SignInView(store: Store(initialState: SignInFeature.State()) {
+                    SignInFeature()
+                })
+                .navigationDestination(for: AuthRoutingDestination.self) { destination in
+                    authDestinationView(for: destination)
+                }
+#elseif os(watchOS)
+                SignInView()
 #endif
             }
         case .dogsList:

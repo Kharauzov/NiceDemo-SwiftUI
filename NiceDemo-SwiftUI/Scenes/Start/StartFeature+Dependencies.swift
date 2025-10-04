@@ -11,7 +11,7 @@ private struct ConnectivityServiceKey: DependencyKey {
     static let liveValue: PhoneSignInConnectivityInterface = WCService.shared
 }
 
-private struct UserCredentialsStorageKey: DependencyKey {
+private struct UserCredentialsFetchingKey: DependencyKey {
     static let liveValue: UserCredentialsFetching = UserCredentialsStorage()
 }
 
@@ -24,9 +24,9 @@ extension DependencyValues {
         get { self[ConnectivityServiceKey.self] }
         set { self[ConnectivityServiceKey.self] = newValue }
     }
-    var userCredentialsStorage: UserCredentialsFetching {
-        get { self[UserCredentialsStorageKey.self] }
-        set { self[UserCredentialsStorageKey.self] = newValue }
+    var userCredentialsFetchStorage: UserCredentialsFetching {
+        get { self[UserCredentialsFetchingKey.self] }
+        set { self[UserCredentialsFetchingKey.self] = newValue }
     }
     var favoriteBreedsSyncService: FavoriteBreedsSyncService {
         get { self[FavoriteBreedsSyncServiceKey.self] }

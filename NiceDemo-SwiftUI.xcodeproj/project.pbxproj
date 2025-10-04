@@ -33,6 +33,11 @@
 		C5984F802E8FE0F5000BFEA3 /* MockUserCredentialsFetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5984F602E8FC853000BFEA3 /* MockUserCredentialsFetching.swift */; };
 		C5984F812E8FE100000BFEA3 /* MockFavoriteBreedsSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5984F632E8FDA38000BFEA3 /* MockFavoriteBreedsSyncService.swift */; };
 		C5984F822E8FE108000BFEA3 /* MockPhoneSignInConnectivityService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5984F662E8FDE13000BFEA3 /* MockPhoneSignInConnectivityService.swift */; };
+		C5984F842E903F76000BFEA3 /* SignInFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5984F832E903F76000BFEA3 /* SignInFeature.swift */; };
+		C5984F862E904FAF000BFEA3 /* SignInFeature+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5984F852E904FAF000BFEA3 /* SignInFeature+Dependencies.swift */; };
+		C5A49F632E912BB300C3BFA0 /* SignInEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F622E912BB300C3BFA0 /* SignInEnvironment.swift */; };
+		C5A49F652E912C0500C3BFA0 /* SignInCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F642E912C0500C3BFA0 /* SignInCredentials.swift */; };
+		C5A49F662E912C0500C3BFA0 /* SignInCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F642E912C0500C3BFA0 /* SignInCredentials.swift */; };
 		C5B273432E54B6B700B42907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CD423D2E43AF29005CE23B /* Assets.xcassets */; };
 		C5B273452E54BDDB00B42907 /* SignInViewContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B273442E54BDDB00B42907 /* SignInViewContract.swift */; };
 		C5B2734B2E54CED300B42907 /* DogsListContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42712E43AFE0005CE23B /* DogsListContract.swift */; };
@@ -79,7 +84,6 @@
 		C5CD42512E43AF29005CE23B /* Dog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD420E2E43AF29005CE23B /* Dog.swift */; };
 		C5CD42522E43AF29005CE23B /* ForgotPasswordView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42102E43AF29005CE23B /* ForgotPasswordView.swift */; };
 		C5CD42532E43AF29005CE23B /* SignInView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42122E43AF29005CE23B /* SignInView.swift */; };
-		C5CD42542E43AF29005CE23B /* SignInView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42132E43AF29005CE23B /* SignInView+ViewModel.swift */; };
 		C5CD42552E43AF29005CE23B /* DogRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42162E43AF29005CE23B /* DogRowView.swift */; };
 		C5CD42562E43AF29005CE23B /* DogsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42172E43AF29005CE23B /* DogsListView.swift */; };
 		C5CD42572E43AF29005CE23B /* StartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42192E43AF29005CE23B /* StartView.swift */; };
@@ -194,6 +198,10 @@
 		C5984F662E8FDE13000BFEA3 /* MockPhoneSignInConnectivityService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockPhoneSignInConnectivityService.swift; sourceTree = "<group>"; };
 		C5984F6D2E8FE05A000BFEA3 /* NiceDemo-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "NiceDemo-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5984F7E2E8FE0CA000BFEA3 /* StartFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFeatureTests.swift; sourceTree = "<group>"; };
+		C5984F832E903F76000BFEA3 /* SignInFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFeature.swift; sourceTree = "<group>"; };
+		C5984F852E904FAF000BFEA3 /* SignInFeature+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignInFeature+Dependencies.swift"; sourceTree = "<group>"; };
+		C5A49F622E912BB300C3BFA0 /* SignInEnvironment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInEnvironment.swift; sourceTree = "<group>"; };
+		C5A49F642E912C0500C3BFA0 /* SignInCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCredentials.swift; sourceTree = "<group>"; };
 		C5B273442E54BDDB00B42907 /* SignInViewContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewContract.swift; sourceTree = "<group>"; };
 		C5B273602E54ED1F00B42907 /* DogDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogDetailsView.swift; sourceTree = "<group>"; };
 		C5B273622E54ED2500B42907 /* DogDetailsView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogDetailsView+ViewModel.swift"; sourceTree = "<group>"; };
@@ -211,7 +219,6 @@
 		C5CD420E2E43AF29005CE23B /* Dog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dog.swift; sourceTree = "<group>"; };
 		C5CD42102E43AF29005CE23B /* ForgotPasswordView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordView.swift; sourceTree = "<group>"; };
 		C5CD42122E43AF29005CE23B /* SignInView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInView.swift; sourceTree = "<group>"; };
-		C5CD42132E43AF29005CE23B /* SignInView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignInView+ViewModel.swift"; sourceTree = "<group>"; };
 		C5CD42162E43AF29005CE23B /* DogRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogRowView.swift; sourceTree = "<group>"; };
 		C5CD42172E43AF29005CE23B /* DogsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListView.swift; sourceTree = "<group>"; };
 		C5CD42192E43AF29005CE23B /* StartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartView.swift; sourceTree = "<group>"; };
@@ -420,6 +427,7 @@
 			children = (
 				C5CD420E2E43AF29005CE23B /* Dog.swift */,
 				C533A8C72E5633DE00EEE267 /* FavoriteBreedsPayload.swift */,
+				C5A49F642E912C0500C3BFA0 /* SignInCredentials.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -437,7 +445,9 @@
 			isa = PBXGroup;
 			children = (
 				C5CD42122E43AF29005CE23B /* SignInView.swift */,
-				C5CD42132E43AF29005CE23B /* SignInView+ViewModel.swift */,
+				C5984F832E903F76000BFEA3 /* SignInFeature.swift */,
+				C5984F852E904FAF000BFEA3 /* SignInFeature+Dependencies.swift */,
+				C5A49F622E912BB300C3BFA0 /* SignInEnvironment.swift */,
 				C5B273442E54BDDB00B42907 /* SignInViewContract.swift */,
 			);
 			path = SignIn;
@@ -858,6 +868,7 @@
 			files = (
 				C5CD424E2E43AF29005CE23B /* AppRootManager.swift in Sources */,
 				C5EAAEF42E53AD0F00E196CD /* WCService.swift in Sources */,
+				C5984F862E904FAF000BFEA3 /* SignInFeature+Dependencies.swift in Sources */,
 				C533A8C82E5633DE00EEE267 /* FavoriteBreedsPayload.swift in Sources */,
 				C57FC6A12E4E41AF005A8991 /* AnimationDuration.swift in Sources */,
 				C5CD424F2E43AF29005CE23B /* AuthRouting.swift in Sources */,
@@ -865,7 +876,6 @@
 				C5CD42512E43AF29005CE23B /* Dog.swift in Sources */,
 				C5CD42522E43AF29005CE23B /* ForgotPasswordView.swift in Sources */,
 				C5CD42532E43AF29005CE23B /* SignInView.swift in Sources */,
-				C5CD42542E43AF29005CE23B /* SignInView+ViewModel.swift in Sources */,
 				C5CD42552E43AF29005CE23B /* DogRowView.swift in Sources */,
 				C5CD42702E43AF9F005CE23B /* DogsListView+ViewModel.swift in Sources */,
 				C5D8873D2E48854B00169957 /* DogCardView+ViewModel.swift in Sources */,
@@ -903,6 +913,7 @@
 				C5CD42742E43B182005CE23B /* FavoriteDogBreedsStorage.swift in Sources */,
 				C5CD42652E43AF29005CE23B /* NetworkError.swift in Sources */,
 				C5CD42662E43AF29005CE23B /* NetworkService.swift in Sources */,
+				C5984F842E903F76000BFEA3 /* SignInFeature.swift in Sources */,
 				C5CD42672E43AF29005CE23B /* Validator.swift in Sources */,
 				C5CD42682E43AF29005CE23B /* Colors.swift in Sources */,
 				C5B273452E54BDDB00B42907 /* SignInViewContract.swift in Sources */,
@@ -912,6 +923,8 @@
 				C51AB3132E4A311B002149F3 /* DogGalleryContract.swift in Sources */,
 				C5CD426B2E43AF29005CE23B /* GridLayout.swift in Sources */,
 				C5D887412E48873100169957 /* SegmentedUnderlineTabs.swift in Sources */,
+				C5A49F662E912C0500C3BFA0 /* SignInCredentials.swift in Sources */,
+				C5A49F632E912BB300C3BFA0 /* SignInEnvironment.swift in Sources */,
 				C5CD426C2E43AF29005CE23B /* FavoriteButton.swift in Sources */,
 				C5BC763B2E4502B5007D70F1 /* DogDetailsContract.swift in Sources */,
 				C5CB776A2E8E7B5700F14960 /* StartFeature+Dependencies.swift in Sources */,
@@ -968,6 +981,7 @@
 				C5B2735E2E54CF7200B42907 /* FavoriteButton.swift in Sources */,
 				C5B273562E54CF1B00B42907 /* GetBreedRandomImagesServerResponse.swift in Sources */,
 				C5B273572E54CF1B00B42907 /* GetAllDogsServerResponse.swift in Sources */,
+				C5A49F652E912C0500C3BFA0 /* SignInCredentials.swift in Sources */,
 				C5B273582E54CF1B00B42907 /* BaseResponse.swift in Sources */,
 				C5B273592E54CF1B00B42907 /* GetRandomDogImageServerResponse.swift in Sources */,
 				C5EAAEEF2E539F2F00E196CD /* StartView.swift in Sources */,
