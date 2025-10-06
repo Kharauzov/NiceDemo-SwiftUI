@@ -14,6 +14,9 @@ struct NiceDemo_SwiftUIApp: App {
     @State private var authRouter = SimpleRouter<AuthRoutingDestination, AuthRoutingSheet>()
     @State private var dogsFlowRouter = SimpleRouter<DogsRoutingDestination, DogsRoutingSheet>()
     @State private var appRootManager = AppRootManager()
+    private let dogsListStore = Store(initialState: DogsListFeature.State()) {
+        DogsListFeature()
+    }
     
     var body: some Scene {
         WindowGroup {
@@ -47,10 +50,10 @@ struct NiceDemo_SwiftUIApp: App {
             }
         case .dogsList:
             NavigationStack(path: $dogsFlowRouter.path) {
-                DogsListView()
-                    .navigationDestination(for: DogsRoutingDestination.self) { destination in
-                        dogsFlowDestinationView(for: destination)
-                    }
+                DogsListView(store: dogsListStore)
+                .navigationDestination(for: DogsRoutingDestination.self) { destination in
+                    dogsFlowDestinationView(for: destination)
+                }
             }
         }
     }

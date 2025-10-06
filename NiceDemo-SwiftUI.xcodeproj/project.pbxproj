@@ -40,11 +40,16 @@
 		C5A49F662E912C0500C3BFA0 /* SignInCredentials.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F642E912C0500C3BFA0 /* SignInCredentials.swift */; };
 		C5A49F6E2E913AF900C3BFA0 /* SignInFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F6D2E913AF900C3BFA0 /* SignInFeatureTests.swift */; };
 		C5A49F702E913B3F00C3BFA0 /* MockUserCredentialsUpdating.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F6F2E913B3F00C3BFA0 /* MockUserCredentialsUpdating.swift */; };
+		C5A49F732E91718600C3BFA0 /* DogsListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F722E91718600C3BFA0 /* DogsListFeature.swift */; };
+		C5A49F742E91718600C3BFA0 /* DogsListFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F722E91718600C3BFA0 /* DogsListFeature.swift */; };
+		C5A49F792E9183FA00C3BFA0 /* DogsListFeature+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F782E9183FA00C3BFA0 /* DogsListFeature+Dependencies.swift */; };
+		C5A49F7A2E9183FA00C3BFA0 /* DogsListFeature+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F782E9183FA00C3BFA0 /* DogsListFeature+Dependencies.swift */; };
+		C5A49F7C2E92629700C3BFA0 /* DogsListFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F7B2E92629700C3BFA0 /* DogsListFilter.swift */; };
+		C5A49F7D2E92629700C3BFA0 /* DogsListFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5A49F7B2E92629700C3BFA0 /* DogsListFilter.swift */; };
 		C5B273432E54B6B700B42907 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5CD423D2E43AF29005CE23B /* Assets.xcassets */; };
 		C5B273452E54BDDB00B42907 /* SignInViewContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5B273442E54BDDB00B42907 /* SignInViewContract.swift */; };
 		C5B2734B2E54CED300B42907 /* DogsListContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42712E43AFE0005CE23B /* DogsListContract.swift */; };
 		C5B2734C2E54CED300B42907 /* LoadingDogRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42772E43C542005CE23B /* LoadingDogRowView.swift */; };
-		C5B2734D2E54CED300B42907 /* DogsListView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD426F2E43AF9F005CE23B /* DogsListView+ViewModel.swift */; };
 		C5B2734E2E54CED300B42907 /* DogsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42172E43AF29005CE23B /* DogsListView.swift */; };
 		C5B2734F2E54CED300B42907 /* DogRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42162E43AF29005CE23B /* DogRowView.swift */; };
 		C5B273502E54CEF100B42907 /* DogsNetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42262E43AF29005CE23B /* DogsNetworkService.swift */; };
@@ -111,7 +116,6 @@
 		C5CD426C2E43AF29005CE23B /* FavoriteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42422E43AF29005CE23B /* FavoriteButton.swift */; };
 		C5CD426D2E43AF29005CE23B /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42432E43AF29005CE23B /* SeparatorView.swift */; };
 		C5CD426E2E43AF29005CE23B /* NiceDemo_SwiftUIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42462E43AF29005CE23B /* NiceDemo_SwiftUIApp.swift */; };
-		C5CD42702E43AF9F005CE23B /* DogsListView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD426F2E43AF9F005CE23B /* DogsListView+ViewModel.swift */; };
 		C5CD42722E43AFE0005CE23B /* DogsListContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42712E43AFE0005CE23B /* DogsListContract.swift */; };
 		C5CD42742E43B182005CE23B /* FavoriteDogBreedsStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42732E43B182005CE23B /* FavoriteDogBreedsStorage.swift */; };
 		C5CD42762E43B1A8005CE23B /* FavoriteDogBreedsStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42752E43B1A8005CE23B /* FavoriteDogBreedsStoring.swift */; };
@@ -206,6 +210,9 @@
 		C5A49F642E912C0500C3BFA0 /* SignInCredentials.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInCredentials.swift; sourceTree = "<group>"; };
 		C5A49F6D2E913AF900C3BFA0 /* SignInFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInFeatureTests.swift; sourceTree = "<group>"; };
 		C5A49F6F2E913B3F00C3BFA0 /* MockUserCredentialsUpdating.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockUserCredentialsUpdating.swift; sourceTree = "<group>"; };
+		C5A49F722E91718600C3BFA0 /* DogsListFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListFeature.swift; sourceTree = "<group>"; };
+		C5A49F782E9183FA00C3BFA0 /* DogsListFeature+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogsListFeature+Dependencies.swift"; sourceTree = "<group>"; };
+		C5A49F7B2E92629700C3BFA0 /* DogsListFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListFilter.swift; sourceTree = "<group>"; };
 		C5B273442E54BDDB00B42907 /* SignInViewContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewContract.swift; sourceTree = "<group>"; };
 		C5B273602E54ED1F00B42907 /* DogDetailsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogDetailsView.swift; sourceTree = "<group>"; };
 		C5B273622E54ED2500B42907 /* DogDetailsView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogDetailsView+ViewModel.swift"; sourceTree = "<group>"; };
@@ -254,7 +261,6 @@
 		C5CD42432E43AF29005CE23B /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		C5CD42452E43AF29005CE23B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5CD42462E43AF29005CE23B /* NiceDemo_SwiftUIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiceDemo_SwiftUIApp.swift; sourceTree = "<group>"; };
-		C5CD426F2E43AF9F005CE23B /* DogsListView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogsListView+ViewModel.swift"; sourceTree = "<group>"; };
 		C5CD42712E43AFE0005CE23B /* DogsListContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListContract.swift; sourceTree = "<group>"; };
 		C5CD42732E43B182005CE23B /* FavoriteDogBreedsStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDogBreedsStorage.swift; sourceTree = "<group>"; };
 		C5CD42752E43B1A8005CE23B /* FavoriteDogBreedsStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDogBreedsStoring.swift; sourceTree = "<group>"; };
@@ -387,6 +393,15 @@
 			path = SignIn;
 			sourceTree = "<group>";
 		};
+		C5A49F7E2E92804B00C3BFA0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C5CD42162E43AF29005CE23B /* DogRowView.swift */,
+				C5CD42772E43C542005CE23B /* LoadingDogRowView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		C5B2735F2E54ED1000B42907 /* DogDetails */ = {
 			isa = PBXGroup;
 			children = (
@@ -479,11 +494,12 @@
 		C5CD42182E43AF29005CE23B /* DogsList */ = {
 			isa = PBXGroup;
 			children = (
+				C5A49F7E2E92804B00C3BFA0 /* Views */,
 				C5CD42172E43AF29005CE23B /* DogsListView.swift */,
-				C5CD426F2E43AF9F005CE23B /* DogsListView+ViewModel.swift */,
+				C5A49F722E91718600C3BFA0 /* DogsListFeature.swift */,
+				C5A49F782E9183FA00C3BFA0 /* DogsListFeature+Dependencies.swift */,
+				C5A49F7B2E92629700C3BFA0 /* DogsListFilter.swift */,
 				C5CD42712E43AFE0005CE23B /* DogsListContract.swift */,
-				C5CD42162E43AF29005CE23B /* DogRowView.swift */,
-				C5CD42772E43C542005CE23B /* LoadingDogRowView.swift */,
 			);
 			path = DogsList;
 			sourceTree = "<group>";
@@ -891,14 +907,15 @@
 				C5CD42522E43AF29005CE23B /* ForgotPasswordView.swift in Sources */,
 				C5CD42532E43AF29005CE23B /* SignInView.swift in Sources */,
 				C5CD42552E43AF29005CE23B /* DogRowView.swift in Sources */,
-				C5CD42702E43AF9F005CE23B /* DogsListView+ViewModel.swift in Sources */,
 				C5D8873D2E48854B00169957 /* DogCardView+ViewModel.swift in Sources */,
 				C5CD42562E43AF29005CE23B /* DogsListView.swift in Sources */,
+				C5A49F7C2E92629700C3BFA0 /* DogsListFilter.swift in Sources */,
 				C5CD42722E43AFE0005CE23B /* DogsListContract.swift in Sources */,
 				C5D8873B2E4881FA00169957 /* DogCardView.swift in Sources */,
 				C5BC76392E44FFEA007D70F1 /* DogDetailsView+ViewModel.swift in Sources */,
 				C51AB30F2E4A2FA6002149F3 /* DogGallery+ViewModel.swift in Sources */,
 				C533A8CB2E5634B600EEE267 /* FavoriteBreedsStorageInterface.swift in Sources */,
+				C5A49F7A2E9183FA00C3BFA0 /* DogsListFeature+Dependencies.swift in Sources */,
 				C596B5BB2E57513D0071A932 /* WatchFavoriteBreedsConnectivity.swift in Sources */,
 				C5CD42572E43AF29005CE23B /* StartView.swift in Sources */,
 				C5D8873F2E4885D400169957 /* DogCardContract.swift in Sources */,
@@ -927,6 +944,7 @@
 				C5CD42742E43B182005CE23B /* FavoriteDogBreedsStorage.swift in Sources */,
 				C5CD42652E43AF29005CE23B /* NetworkError.swift in Sources */,
 				C5CD42662E43AF29005CE23B /* NetworkService.swift in Sources */,
+				C5A49F732E91718600C3BFA0 /* DogsListFeature.swift in Sources */,
 				C5984F842E903F76000BFEA3 /* SignInFeature.swift in Sources */,
 				C5CD42672E43AF29005CE23B /* Validator.swift in Sources */,
 				C5CD42682E43AF29005CE23B /* Colors.swift in Sources */,
@@ -971,6 +989,7 @@
 				C5EAAED72E539CAA00E196CD /* Color+Extension.swift in Sources */,
 				C5B273512E54CEF800B42907 /* FavoriteDogBreedsStorage.swift in Sources */,
 				C5B2735A2E54CF2100B42907 /* Endpoint.swift in Sources */,
+				C5A49F792E9183FA00C3BFA0 /* DogsListFeature+Dependencies.swift in Sources */,
 				C5B2735B2E54CF2100B42907 /* DogsEndpoint.swift in Sources */,
 				C5EAAED62E539CA600E196CD /* AppRootManager.swift in Sources */,
 				C5984F4A2E8E86A6000BFEA3 /* StartFeature+Dependencies.swift in Sources */,
@@ -978,7 +997,7 @@
 				C5EAAEDE2E539D9F00E196CD /* AuthRouting.swift in Sources */,
 				C5B2734B2E54CED300B42907 /* DogsListContract.swift in Sources */,
 				C5B2734C2E54CED300B42907 /* LoadingDogRowView.swift in Sources */,
-				C5B2734D2E54CED300B42907 /* DogsListView+ViewModel.swift in Sources */,
+				C5A49F742E91718600C3BFA0 /* DogsListFeature.swift in Sources */,
 				C533A8C32E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift in Sources */,
 				C5B2734E2E54CED300B42907 /* DogsListView.swift in Sources */,
 				C5B2734F2E54CED300B42907 /* DogRowView.swift in Sources */,
@@ -1012,6 +1031,7 @@
 				C5B273522E54CF1600B42907 /* HTTPMethod.swift in Sources */,
 				C533A8CC2E5634B600EEE267 /* FavoriteBreedsStorageInterface.swift in Sources */,
 				C5B273532E54CF1600B42907 /* NetworkError.swift in Sources */,
+				C5A49F7D2E92629700C3BFA0 /* DogsListFilter.swift in Sources */,
 				C5B273542E54CF1600B42907 /* NetworkService.swift in Sources */,
 				C5B273552E54CF1600B42907 /* HTTPTask.swift in Sources */,
 				C5EAAEEC2E539EDF00E196CD /* UserCredentialsStoring.swift in Sources */,
