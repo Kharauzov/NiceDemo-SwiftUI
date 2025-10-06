@@ -10,7 +10,6 @@ import ComposableArchitecture
 // MARK: - DogsListNetwork Dependency
 private enum DogsListNetworkKey: DependencyKey {
     static let liveValue: DogsListNetwork = DogsNetworkService()
-//    static let testValue: DogsListNetwork = MockDogsListNetwork()
 }
 
 extension DependencyValues {
@@ -23,7 +22,6 @@ extension DependencyValues {
 // MARK: - DogsListFavoriteStorage Dependency
 private enum DogsListFavoriteStorageKey: DependencyKey {
     static let liveValue: DogsListFavoriteStorage = FavoriteDogBreedsStorage()
-//    static let testValue: DogsListFavoriteStorage = MockFavoriteStorage()
 }
 
 extension DependencyValues {

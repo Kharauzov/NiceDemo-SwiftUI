@@ -78,7 +78,8 @@ struct DogsListFeature {
                 handleFetchedData(&state, fetchedDogs: response.formattedData)
                 return .none
             case .handleFetchedDogsList(.failure(let error)):
-                debugPrint("handleFetchedDogsList error: \(error.localizedDescription)")
+                state.isLoading = false
+                // handle error if needed
                 return .none
             case .reloadData:
                 handleFetchedData(&state, fetchedDogs: state.dogs)

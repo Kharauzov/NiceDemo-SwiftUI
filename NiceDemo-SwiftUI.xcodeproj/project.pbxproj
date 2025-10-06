@@ -10,6 +10,11 @@
 		C51AB30F2E4A2FA6002149F3 /* DogGallery+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51AB30E2E4A2FA6002149F3 /* DogGallery+ViewModel.swift */; };
 		C51AB3112E4A3093002149F3 /* GetBreedRandomImagesServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51AB3102E4A3093002149F3 /* GetBreedRandomImagesServerResponse.swift */; };
 		C51AB3132E4A311B002149F3 /* DogGalleryContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51AB3122E4A311B002149F3 /* DogGalleryContract.swift */; };
+		C5296ABF2E93F20E00F22945 /* DogsListFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5296ABE2E93F20E00F22945 /* DogsListFeatureTests.swift */; };
+		C5296AC12E93F26000F22945 /* MockDogsListNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5296AC02E93F26000F22945 /* MockDogsListNetwork.swift */; };
+		C5296AC32E93F52100F22945 /* MockDogsListFavoriteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5296AC22E93F52100F22945 /* MockDogsListFavoriteStorage.swift */; };
+		C5296AC72E9411F800F22945 /* MockWatchFavoriteBreedsConnectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5296AC62E9411F800F22945 /* MockWatchFavoriteBreedsConnectivity.swift */; };
+		C5296AC92E94138200F22945 /* MockFavoriteBreedsStorageInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5296AC82E94138200F22945 /* MockFavoriteBreedsStorageInterface.swift */; };
 		C533A8C22E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533A8C12E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift */; };
 		C533A8C32E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533A8C12E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift */; };
 		C533A8C52E5631BC00EEE267 /* FavoriteBreedsSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C533A8C42E5631BC00EEE267 /* FavoriteBreedsSyncService.swift */; };
@@ -190,6 +195,11 @@
 		C51AB30E2E4A2FA6002149F3 /* DogGallery+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogGallery+ViewModel.swift"; sourceTree = "<group>"; };
 		C51AB3102E4A3093002149F3 /* GetBreedRandomImagesServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBreedRandomImagesServerResponse.swift; sourceTree = "<group>"; };
 		C51AB3122E4A311B002149F3 /* DogGalleryContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogGalleryContract.swift; sourceTree = "<group>"; };
+		C5296ABE2E93F20E00F22945 /* DogsListFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListFeatureTests.swift; sourceTree = "<group>"; };
+		C5296AC02E93F26000F22945 /* MockDogsListNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDogsListNetwork.swift; sourceTree = "<group>"; };
+		C5296AC22E93F52100F22945 /* MockDogsListFavoriteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDogsListFavoriteStorage.swift; sourceTree = "<group>"; };
+		C5296AC62E9411F800F22945 /* MockWatchFavoriteBreedsConnectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockWatchFavoriteBreedsConnectivity.swift; sourceTree = "<group>"; };
+		C5296AC82E94138200F22945 /* MockFavoriteBreedsStorageInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFavoriteBreedsStorageInterface.swift; sourceTree = "<group>"; };
 		C533A8C12E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSignInConnectivityInterface.swift; sourceTree = "<group>"; };
 		C533A8C42E5631BC00EEE267 /* FavoriteBreedsSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedsSyncService.swift; sourceTree = "<group>"; };
 		C533A8C72E5633DE00EEE267 /* FavoriteBreedsPayload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteBreedsPayload.swift; sourceTree = "<group>"; };
@@ -308,6 +318,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C5296ABD2E93F1EE00F22945 /* DogsList */ = {
+			isa = PBXGroup;
+			children = (
+				C5296ABE2E93F20E00F22945 /* DogsListFeatureTests.swift */,
+			);
+			path = DogsList;
+			sourceTree = "<group>";
+		};
 		C533A8BB2E55F9B800EEE267 /* WatchConnectivity */ = {
 			isa = PBXGroup;
 			children = (
@@ -355,6 +373,10 @@
 				C5984F632E8FDA38000BFEA3 /* MockFavoriteBreedsSyncService.swift */,
 				C5984F662E8FDE13000BFEA3 /* MockPhoneSignInConnectivityService.swift */,
 				C5A49F6F2E913B3F00C3BFA0 /* MockUserCredentialsUpdating.swift */,
+				C5296AC02E93F26000F22945 /* MockDogsListNetwork.swift */,
+				C5296AC22E93F52100F22945 /* MockDogsListFavoriteStorage.swift */,
+				C5296AC62E9411F800F22945 /* MockWatchFavoriteBreedsConnectivity.swift */,
+				C5296AC82E94138200F22945 /* MockFavoriteBreedsStorageInterface.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -379,6 +401,7 @@
 		C5984F7D2E8FE0BB000BFEA3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				C5296ABD2E93F1EE00F22945 /* DogsList */,
 				C5A49F6C2E913AD600C3BFA0 /* SignIn */,
 				C5984F7C2E8FE0BB000BFEA3 /* Start */,
 			);
@@ -971,9 +994,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				C5984F7F2E8FE0CA000BFEA3 /* StartFeatureTests.swift in Sources */,
+				C5296AC12E93F26000F22945 /* MockDogsListNetwork.swift in Sources */,
+				C5296AC32E93F52100F22945 /* MockDogsListFavoriteStorage.swift in Sources */,
 				C5984F802E8FE0F5000BFEA3 /* MockUserCredentialsFetching.swift in Sources */,
 				C5A49F6E2E913AF900C3BFA0 /* SignInFeatureTests.swift in Sources */,
+				C5296ABF2E93F20E00F22945 /* DogsListFeatureTests.swift in Sources */,
 				C5984F812E8FE100000BFEA3 /* MockFavoriteBreedsSyncService.swift in Sources */,
+				C5296AC92E94138200F22945 /* MockFavoriteBreedsStorageInterface.swift in Sources */,
+				C5296AC72E9411F800F22945 /* MockWatchFavoriteBreedsConnectivity.swift in Sources */,
 				C5984F822E8FE108000BFEA3 /* MockPhoneSignInConnectivityService.swift in Sources */,
 				C5A49F702E913B3F00C3BFA0 /* MockUserCredentialsUpdating.swift in Sources */,
 			);
@@ -1252,7 +1280,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B375T6ZNZC;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "serhii.NiceDemo-SwiftUITests";
@@ -1278,7 +1306,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = B375T6ZNZC;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
 				MACOSX_DEPLOYMENT_TARGET = 26.0;
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "serhii.NiceDemo-SwiftUITests";

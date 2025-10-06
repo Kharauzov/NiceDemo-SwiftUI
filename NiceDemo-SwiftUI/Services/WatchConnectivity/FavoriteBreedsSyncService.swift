@@ -19,7 +19,7 @@ class FavoriteBreedsSyncService {
     }
     
     deinit {
-        continuation?.finish()
+        finishStream()
     }
     
     init(favoriteBreedsStorage: FavoriteBreedsStorageInterface = FavoriteDogBreedsStorage(), connectivityService: WatchFavoriteBreedsConnectivity = WCService.shared) {
@@ -33,6 +33,10 @@ class FavoriteBreedsSyncService {
                 continuation?.yield(payload.breeds)
             }
         }
+    }
+    
+    func finishStream() {
+        continuation?.finish()
     }
     
     func sendFavoriteBreedsViaConnectivity() {
