@@ -64,7 +64,9 @@ private func authDestinationView(for destination: AuthRoutingDestination) -> som
 #if os(iOS)
     switch destination {
     case .forgotPassword:
-        ForgotPasswordView()
+        ForgotPasswordView(store: Store(initialState: ForgotPasswordFeature.State()) {
+            ForgotPasswordFeature()
+        })
     }
 #endif
 }
