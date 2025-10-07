@@ -10,6 +10,10 @@ App’s routing inside iOS version contains of 2 flows:
 
 Every screen built on **MVVM** architecture, using AppRouter dependency for clean and manageble navigation.
 
+**UPDATE**
+
+Recently I started migration of architecture to TCA. Latest progress can be found at corresponding branch [feature/TCA](https://github.com/Kharauzov/NiceDemo-SwiftUI/tree/feature/TCA)
+
 ## Features
 * Watch version with sync mechanism for auth state and favorite breeds
 * Custom segmented control triggering animated sliding of inner screens
