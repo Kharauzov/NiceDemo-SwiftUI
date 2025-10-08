@@ -6,39 +6,34 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 import CachedAsyncImage
 
 struct DogGalleryView: View {
     @Namespace private var hero
-    @State var viewModel: ViewModel
-    @State private var selectedImageUrl: String? = nil
-    @State private var showDetail = false
-    private let heroTransitionDuration: CGFloat = AnimationDuration.microSlow.timeInterval
-    
-    init(dog: Dog) {
-        let viewModel = ViewModel(dog: dog, networkService: DogsNetworkService())
-        _viewModel = .init(wrappedValue: viewModel)
-    }
+    @Bindable var store: StoreOf<DogGalleryFeature>
     
     var body: some View {
         ZStack {
             gridView
-            if let selectedImageUrl, showDetail {
+            if let selectedImageUrl = store.selectedImageUrl, store.showDetail {
                 dogCardView(selectedImageUrl: selectedImageUrl)
             }
         }
-        .animation(.bouncy, value: showDetail)
+        .animation(.bouncy, value: store.showDetail)
         .task {
-            if viewModel.shouldLoadData {
-                viewModel.shouldLoadData.toggle()
-                viewModel.loadRandomImages()
-            }
+            await store.send(.onAppear).finish()
         }
         .background(.white)
     }
     
     @ViewBuilder func dogCardView(selectedImageUrl: String) -> some View {
-        DogCardView(dog: viewModel.dog, mode: .fromGallery(selectedImageUrl), hero: hero, selectedImage: viewModel.downloadedImages[selectedImageUrl]) {
+        DogCardView(
+            dog: store.dog,
+            mode: .fromGallery(selectedImageUrl),
+            hero: hero,
+            selectedImage: store.downloadedImages[selectedImageUrl]
+        ) {
             close()
         }
         .zIndex(1)
@@ -53,12 +48,10 @@ struct DogGalleryView: View {
             VStack {
                 LazyVGrid(columns: Array(repeating: GridItem(.flexible()), count: columns),
                           spacing: spacing) {
-                    ForEach(viewModel.randomImagesUrls, id: \.self) { url in
+                    ForEach(store.randomImagesUrls, id: \.self) { url in
                         VStack {
                             GalleryCellView(url: url) { loadedImage in
-                                if let loadedImage {
-                                    viewModel.downloadedImages[url.absoluteString] = loadedImage
-                                }
+                                store.send(.imageLoaded(urlString: url.absoluteString, image: loadedImage))
                             }
                             .frame(width: tileWidth, height: tileWidth)
                             .clipShape(RoundedRectangle(cornerRadius: 22))
@@ -81,10 +74,7 @@ struct DogGalleryView: View {
                             in: hero
                         )
                         .onTapGesture {
-                            selectedImageUrl = url.absoluteString
-                            withAnimation(.easeIn(duration: heroTransitionDuration)) {
-                                showDetail = true
-                            }
+                            store.send(.selectImage(urlString: url.absoluteString))
                         }
                     }
                 }
@@ -95,13 +85,15 @@ struct DogGalleryView: View {
     }
     
     private func close() {
-        withAnimation(.easeIn(duration: heroTransitionDuration)) {
-            showDetail = false
-        }
-        selectedImageUrl = nil
+        store.send(.closeDetail)
     }
 }
 
 #Preview {
-    DogGalleryView(dog: Dog(breed: "affenpinscher", subbreeds: [], isFavorite: false))
+    DogGalleryView(
+        store: Store(initialState: DogGalleryFeature.State(dog: Dog(breed: "affenpinscher", subbreeds: [], isFavorite: false))) {
+            DogGalleryFeature()
+        }
+    )
 }
+

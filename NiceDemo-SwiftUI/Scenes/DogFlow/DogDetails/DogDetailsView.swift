@@ -6,16 +6,21 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct DogDetailsView: View {
     @State var viewModel: ViewModel
     @Environment(\.dismiss) private var dismiss
     @State private var selectedTab: SegmentTab = .single
     @Namespace private var underline
+    private let dogGalleryStore: StoreOf<DogGalleryFeature>
     
     init(dog: Dog) {
         let viewModel = ViewModel(dog: dog, favoriteStorage: FavoriteDogBreedsStorage(), favoriteBreedsSyncService: FavoriteBreedsSyncService())
         _viewModel = .init(wrappedValue: viewModel)
+        dogGalleryStore = Store(initialState: DogGalleryFeature.State(dog: dog)) {
+            DogGalleryFeature()
+        }
     }
     
     @ViewBuilder private var content: some View {
@@ -27,7 +32,7 @@ struct DogDetailsView: View {
                         .zIndex(selectedTab == .single ? 1 : 0)
                         .allowsHitTesting(selectedTab == .single)
                         .padding(.bottom, GridLayout.commonSpace)
-                    DogGalleryView(dog: viewModel.dog)
+                    DogGalleryView(store: dogGalleryStore)
                         .offset(x: selectedTab == .gallery ? 0 : width) // slide right when hidden
                         .zIndex(selectedTab == .gallery ? 1 : 0)
                         .allowsHitTesting(selectedTab == .gallery)

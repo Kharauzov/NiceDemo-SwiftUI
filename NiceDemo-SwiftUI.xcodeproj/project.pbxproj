@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		C51AB30F2E4A2FA6002149F3 /* DogGallery+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51AB30E2E4A2FA6002149F3 /* DogGallery+ViewModel.swift */; };
+		C513E7F82E96E2FF002F958A /* DogGalleryFeature+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C513E7F62E96D815002F958A /* DogGalleryFeature+Dependencies.swift */; };
+		C513E7F92E96E303002F958A /* DogGalleryFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C513E7F72E96D81C002F958A /* DogGalleryFeature.swift */; };
 		C51AB3112E4A3093002149F3 /* GetBreedRandomImagesServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51AB3102E4A3093002149F3 /* GetBreedRandomImagesServerResponse.swift */; };
 		C51AB3132E4A311B002149F3 /* DogGalleryContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51AB3122E4A311B002149F3 /* DogGalleryContract.swift */; };
 		C5296ABF2E93F20E00F22945 /* DogsListFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5296ABE2E93F20E00F22945 /* DogsListFeatureTests.swift */; };
@@ -193,7 +194,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		C51AB30E2E4A2FA6002149F3 /* DogGallery+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogGallery+ViewModel.swift"; sourceTree = "<group>"; };
+		C513E7F62E96D815002F958A /* DogGalleryFeature+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogGalleryFeature+Dependencies.swift"; sourceTree = "<group>"; };
+		C513E7F72E96D81C002F958A /* DogGalleryFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogGalleryFeature.swift; sourceTree = "<group>"; };
 		C51AB3102E4A3093002149F3 /* GetBreedRandomImagesServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBreedRandomImagesServerResponse.swift; sourceTree = "<group>"; };
 		C51AB3122E4A311B002149F3 /* DogGalleryContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogGalleryContract.swift; sourceTree = "<group>"; };
 		C5296ABE2E93F20E00F22945 /* DogsListFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListFeatureTests.swift; sourceTree = "<group>"; };
@@ -723,7 +725,8 @@
 			isa = PBXGroup;
 			children = (
 				C5D887422E488BED00169957 /* DogGalleryView.swift */,
-				C51AB30E2E4A2FA6002149F3 /* DogGallery+ViewModel.swift */,
+				C513E7F72E96D81C002F958A /* DogGalleryFeature.swift */,
+				C513E7F62E96D815002F958A /* DogGalleryFeature+Dependencies.swift */,
 				C51AB3122E4A311B002149F3 /* DogGalleryContract.swift */,
 			);
 			path = DogGallery;
@@ -936,10 +939,10 @@
 				C5D8873D2E48854B00169957 /* DogCardView+ViewModel.swift in Sources */,
 				C5CD42562E43AF29005CE23B /* DogsListView.swift in Sources */,
 				C5A49F7C2E92629700C3BFA0 /* DogsListFilter.swift in Sources */,
+				C513E7F92E96E303002F958A /* DogGalleryFeature.swift in Sources */,
 				C5CD42722E43AFE0005CE23B /* DogsListContract.swift in Sources */,
 				C5D8873B2E4881FA00169957 /* DogCardView.swift in Sources */,
 				C5BC76392E44FFEA007D70F1 /* DogDetailsView+ViewModel.swift in Sources */,
-				C51AB30F2E4A2FA6002149F3 /* DogGallery+ViewModel.swift in Sources */,
 				C533A8CB2E5634B600EEE267 /* FavoriteBreedsStorageInterface.swift in Sources */,
 				C5A49F7A2E9183FA00C3BFA0 /* DogsListFeature+Dependencies.swift in Sources */,
 				C596B5BB2E57513D0071A932 /* WatchFavoriteBreedsConnectivity.swift in Sources */,
@@ -983,6 +986,7 @@
 				C5D887412E48873100169957 /* SegmentedUnderlineTabs.swift in Sources */,
 				C5A49F662E912C0500C3BFA0 /* SignInCredentials.swift in Sources */,
 				C5A49F632E912BB300C3BFA0 /* SignInEnvironment.swift in Sources */,
+				C513E7F82E96E2FF002F958A /* DogGalleryFeature+Dependencies.swift in Sources */,
 				C5CD426C2E43AF29005CE23B /* FavoriteButton.swift in Sources */,
 				C5BC763B2E4502B5007D70F1 /* DogDetailsContract.swift in Sources */,
 				C5CB776A2E8E7B5700F14960 /* StartFeature+Dependencies.swift in Sources */,
