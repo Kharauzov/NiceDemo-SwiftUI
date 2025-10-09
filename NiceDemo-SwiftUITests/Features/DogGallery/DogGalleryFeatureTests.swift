@@ -2,7 +2,7 @@
 //  DogGalleryFeatureTests.swift
 //  NiceDemo-SwiftUITests
 //
-//  Created by Tests on 09.10.2025.
+//  Created by Serhii Kharauzov on 09.10.2025.
 //
 
 import Testing

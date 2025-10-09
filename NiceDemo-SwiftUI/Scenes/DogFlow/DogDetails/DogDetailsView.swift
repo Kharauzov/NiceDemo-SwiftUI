@@ -14,6 +14,7 @@ struct DogDetailsView: View {
     @State private var selectedTab: SegmentTab = .single
     @Namespace private var underline
     private let dogGalleryStore: StoreOf<DogGalleryFeature>
+    private let dogCardStore: StoreOf<DogCardFeature>
     
     init(dog: Dog) {
         let viewModel = ViewModel(dog: dog, favoriteStorage: FavoriteDogBreedsStorage(), favoriteBreedsSyncService: FavoriteBreedsSyncService())
@@ -21,26 +22,29 @@ struct DogDetailsView: View {
         dogGalleryStore = Store(initialState: DogGalleryFeature.State(dog: dog)) {
             DogGalleryFeature()
         }
+        dogCardStore = Store(initialState: DogCardFeature.State(dog: dog, mode: .main)) {
+            DogCardFeature()
+        }
     }
     
     @ViewBuilder private var content: some View {
         GeometryReader { geo in
-                let width = geo.size.width
-                ZStack(alignment: .leading) {
-                    DogCardView(dog: viewModel.dog, mode: .main)
-                        .offset(x: selectedTab == .single ? 0 : -width) // slide left when hidden
-                        .zIndex(selectedTab == .single ? 1 : 0)
-                        .allowsHitTesting(selectedTab == .single)
-                        .padding(.bottom, GridLayout.commonSpace)
-                    DogGalleryView(store: dogGalleryStore)
-                        .offset(x: selectedTab == .gallery ? 0 : width) // slide right when hidden
-                        .zIndex(selectedTab == .gallery ? 1 : 0)
-                        .allowsHitTesting(selectedTab == .gallery)
-                }
-                .clipped()
-                .animation(.easeInOut(duration: AnimationDuration.macroFast.timeInterval), value: selectedTab)
-                .ignoresSafeArea()
+            let width = geo.size.width
+            ZStack(alignment: .leading) {
+                DogCardView(store: dogCardStore)
+                    .offset(x: selectedTab == .single ? 0 : -width) // slide left when hidden
+                    .zIndex(selectedTab == .single ? 1 : 0)
+                    .allowsHitTesting(selectedTab == .single)
+                    .padding(.bottom, GridLayout.commonSpace)
+                DogGalleryView(store: dogGalleryStore)
+                    .offset(x: selectedTab == .gallery ? 0 : width) // slide right when hidden
+                    .zIndex(selectedTab == .gallery ? 1 : 0)
+                    .allowsHitTesting(selectedTab == .gallery)
             }
+            .clipped()
+            .animation(.easeInOut(duration: AnimationDuration.macroFast.timeInterval), value: selectedTab)
+            .ignoresSafeArea()
+        }
     }
     
     var body: some View {
@@ -87,3 +91,4 @@ struct DogDetailsView: View {
         DogDetailsView(dog: Dog(breed: "affenpinscher", subbreeds: [], isFavorite: false))
     }
 }
+

@@ -11,6 +11,8 @@
 		C513E7F92E96E303002F958A /* DogGalleryFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C513E7F72E96D81C002F958A /* DogGalleryFeature.swift */; };
 		C513E7FC2E97A3EB002F958A /* DogGalleryFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C513E7FA2E97A37C002F958A /* DogGalleryFeatureTests.swift */; };
 		C513E7FF2E97A973002F958A /* MockDogGalleryNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C513E7FE2E97A973002F958A /* MockDogGalleryNetwork.swift */; };
+		C513E8012E97B648002F958A /* DogCardFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C513E8002E97B648002F958A /* DogCardFeature.swift */; };
+		C513E8032E97BBEC002F958A /* DogCardFeature+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C513E8022E97BBEC002F958A /* DogCardFeature+Dependencies.swift */; };
 		C51AB3112E4A3093002149F3 /* GetBreedRandomImagesServerResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51AB3102E4A3093002149F3 /* GetBreedRandomImagesServerResponse.swift */; };
 		C51AB3132E4A311B002149F3 /* DogGalleryContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C51AB3122E4A311B002149F3 /* DogGalleryContract.swift */; };
 		C5296ABF2E93F20E00F22945 /* DogsListFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5296ABE2E93F20E00F22945 /* DogsListFeatureTests.swift */; };
@@ -130,7 +132,6 @@
 		C5CD42762E43B1A8005CE23B /* FavoriteDogBreedsStoring.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42752E43B1A8005CE23B /* FavoriteDogBreedsStoring.swift */; };
 		C5CD42782E43C542005CE23B /* LoadingDogRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CD42772E43C542005CE23B /* LoadingDogRowView.swift */; };
 		C5D8873B2E4881FA00169957 /* DogCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D8873A2E4881FA00169957 /* DogCardView.swift */; };
-		C5D8873D2E48854B00169957 /* DogCardView+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D8873C2E48854B00169957 /* DogCardView+ViewModel.swift */; };
 		C5D8873F2E4885D400169957 /* DogCardContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D8873E2E4885D400169957 /* DogCardContract.swift */; };
 		C5D887412E48873100169957 /* SegmentedUnderlineTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D887402E48873100169957 /* SegmentedUnderlineTabs.swift */; };
 		C5D887432E488BED00169957 /* DogGalleryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D887422E488BED00169957 /* DogGalleryView.swift */; };
@@ -200,6 +201,8 @@
 		C513E7F72E96D81C002F958A /* DogGalleryFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogGalleryFeature.swift; sourceTree = "<group>"; };
 		C513E7FA2E97A37C002F958A /* DogGalleryFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogGalleryFeatureTests.swift; sourceTree = "<group>"; };
 		C513E7FE2E97A973002F958A /* MockDogGalleryNetwork.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDogGalleryNetwork.swift; sourceTree = "<group>"; };
+		C513E8002E97B648002F958A /* DogCardFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCardFeature.swift; sourceTree = "<group>"; };
+		C513E8022E97BBEC002F958A /* DogCardFeature+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogCardFeature+Dependencies.swift"; sourceTree = "<group>"; };
 		C51AB3102E4A3093002149F3 /* GetBreedRandomImagesServerResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetBreedRandomImagesServerResponse.swift; sourceTree = "<group>"; };
 		C51AB3122E4A311B002149F3 /* DogGalleryContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogGalleryContract.swift; sourceTree = "<group>"; };
 		C5296ABE2E93F20E00F22945 /* DogsListFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsListFeatureTests.swift; sourceTree = "<group>"; };
@@ -284,7 +287,6 @@
 		C5CD42752E43B1A8005CE23B /* FavoriteDogBreedsStoring.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDogBreedsStoring.swift; sourceTree = "<group>"; };
 		C5CD42772E43C542005CE23B /* LoadingDogRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingDogRowView.swift; sourceTree = "<group>"; };
 		C5D8873A2E4881FA00169957 /* DogCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCardView.swift; sourceTree = "<group>"; };
-		C5D8873C2E48854B00169957 /* DogCardView+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogCardView+ViewModel.swift"; sourceTree = "<group>"; };
 		C5D8873E2E4885D400169957 /* DogCardContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCardContract.swift; sourceTree = "<group>"; };
 		C5D887402E48873100169957 /* SegmentedUnderlineTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedUnderlineTabs.swift; sourceTree = "<group>"; };
 		C5D887422E488BED00169957 /* DogGalleryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogGalleryView.swift; sourceTree = "<group>"; };
@@ -729,8 +731,9 @@
 			isa = PBXGroup;
 			children = (
 				C5D8873A2E4881FA00169957 /* DogCardView.swift */,
-				C5D8873C2E48854B00169957 /* DogCardView+ViewModel.swift */,
 				C5D8873E2E4885D400169957 /* DogCardContract.swift */,
+				C513E8002E97B648002F958A /* DogCardFeature.swift */,
+				C513E8022E97BBEC002F958A /* DogCardFeature+Dependencies.swift */,
 			);
 			path = DogCard;
 			sourceTree = "<group>";
@@ -950,7 +953,6 @@
 				C5CD42522E43AF29005CE23B /* ForgotPasswordView.swift in Sources */,
 				C5CD42532E43AF29005CE23B /* SignInView.swift in Sources */,
 				C5CD42552E43AF29005CE23B /* DogRowView.swift in Sources */,
-				C5D8873D2E48854B00169957 /* DogCardView+ViewModel.swift in Sources */,
 				C5CD42562E43AF29005CE23B /* DogsListView.swift in Sources */,
 				C5A49F7C2E92629700C3BFA0 /* DogsListFilter.swift in Sources */,
 				C513E7F92E96E303002F958A /* DogGalleryFeature.swift in Sources */,
@@ -974,6 +976,7 @@
 				C5CD425E2E43AF29005CE23B /* Endpoint.swift in Sources */,
 				C5CD425F2E43AF29005CE23B /* DogsNetworkService.swift in Sources */,
 				C5CD42602E43AF29005CE23B /* BaseResponse.swift in Sources */,
+				C513E8032E97BBEC002F958A /* DogCardFeature+Dependencies.swift in Sources */,
 				C56E6B822E4F89480064490A /* GalleryCellView.swift in Sources */,
 				C5CD42612E43AF29005CE23B /* GetAllDogsServerResponse.swift in Sources */,
 				C5CD42622E43AF29005CE23B /* GetRandomDogImageServerResponse.swift in Sources */,
@@ -1008,6 +1011,7 @@
 				C5BC76372E44FDA3007D70F1 /* DogDetailsView.swift in Sources */,
 				C5CD426E2E43AF29005CE23B /* NiceDemo_SwiftUIApp.swift in Sources */,
 				C5447CFE2E950B9E007446D7 /* ForgotPasswordEnvironment.swift in Sources */,
+				C513E8012E97B648002F958A /* DogCardFeature.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

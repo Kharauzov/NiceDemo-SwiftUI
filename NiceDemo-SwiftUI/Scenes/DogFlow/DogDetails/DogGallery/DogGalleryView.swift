@@ -28,11 +28,16 @@ struct DogGalleryView: View {
     }
     
     @ViewBuilder func dogCardView(selectedImageUrl: String) -> some View {
-        DogCardView(
+        let cardStore = Store(initialState: DogCardFeature.State(
             dog: store.dog,
             mode: .fromGallery(selectedImageUrl),
-            hero: hero,
             selectedImage: store.downloadedImages[selectedImageUrl]
+        )) {
+            DogCardFeature()
+        }
+        DogCardView(
+            store: cardStore,
+            hero: hero
         ) {
             close()
         }
