@@ -92,6 +92,7 @@ struct DogsListFeatureTests {
                 Dog(breed: "Test2", subbreeds: [], isFavorite: false)
             ]
         }
+        await store.finish()
         #expect(networkService.getDogsCalled == 1)
     }
     
@@ -116,6 +117,7 @@ struct DogsListFeatureTests {
         await store.receive(\.handleFetchedDogsList) {
             $0.isLoading = false
         }
+        await store.finish()
         #expect(store.state.dogs.isEmpty)
     }
     

@@ -9,7 +9,7 @@ import Foundation
 @testable import NiceDemo_SwiftUI
 
 class MockDogsListNetwork: DogsListNetwork {
-    var getDogsCalled = 0
+    private(set) var getDogsCalled = 0
     var getDogsResponse = GetAllDogsServerResponse(data: [:])
     var shouldThrowError = false
     
