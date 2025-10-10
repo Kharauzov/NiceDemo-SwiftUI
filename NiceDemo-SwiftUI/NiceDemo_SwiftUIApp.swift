@@ -76,7 +76,18 @@ private func authDestinationView(for destination: AuthRoutingDestination) -> som
 private func dogsFlowDestinationView(for destination: DogsRoutingDestination) -> some View {
     switch destination {
     case .dogDetails(let dog):
+        #if os(iOS)
+        DogDetailsView(
+            store: Store(initialState: DogDetailsFeature.State(
+                dog: dog
+            )) {
+                DogDetailsFeature()
+            }
+        )
+        
+#elseif os(watchOS)
         DogDetailsView(dog: dog)
+        #endif
     }
 }
 
