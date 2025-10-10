@@ -20,3 +20,25 @@ extension DependencyValues {
         set { self[DogCardNetworkKey.self] = newValue }
     }
 }
+
+struct DogCardURLSessionKey: DependencyKey {
+    static var liveValue: DogCardURLSession = SimpleDataLoader()
+}
+
+extension DependencyValues {
+    var dogCardURLSession: DogCardURLSession {
+        get { self[DogCardURLSessionKey.self] }
+        set { self[DogCardURLSessionKey.self] = newValue }
+    }
+}
+
+struct DogCardPhotoLibraryInterfaceKey: DependencyKey {
+    static var liveValue: DogCardPhotoLibraryInterface = PhotoLibraryService()
+}
+
+extension DependencyValues {
+    var photoLibraryService: DogCardPhotoLibraryInterface {
+        get { self[DogCardPhotoLibraryInterfaceKey.self] }
+        set { self[DogCardPhotoLibraryInterfaceKey.self] = newValue }
+    }
+}

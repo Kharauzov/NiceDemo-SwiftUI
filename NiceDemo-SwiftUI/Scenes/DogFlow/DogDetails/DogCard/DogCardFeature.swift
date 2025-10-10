@@ -6,12 +6,13 @@
 //
 
 import ComposableArchitecture
-import UIKit
 import Photos
 
 @Reducer
 struct DogCardFeature {
     @Dependency(\.dogCardNetwork) var networkService
+    @Dependency(\.dogCardURLSession) var urlSession
+    @Dependency(\.photoLibraryService) var photoLibraryService
     
     enum CancelID {
         case loadImage
@@ -22,14 +23,13 @@ struct DogCardFeature {
         var dog: Dog
         var mode: DogCardView.ViewMode
         var isLoading: Bool = true
-        var loadedImage: UIImage? = nil
+        var loadedImageData: Data? = nil
         var showSaveConfirmAlert = false
         var showDeniedGalleryAlert = false
-        
         // Inputs when launched from gallery
         var selectedImageUrl: String? = nil
         @ObservationStateIgnored
-        var selectedImage: UIImage? = nil
+        var selectedImageData: Data? = nil
     }
     
     enum Action: BindableAction {
@@ -38,7 +38,7 @@ struct DogCardFeature {
         case loadRandomImage
         case loadImage(url: String)
         case handleRandomImage(Result<GetRandomDogImageServerResponse, Error>)
-        case imageDataLoaded(UIImage?)
+        case imageDataLoaded(Data?)
         case saveTapped
         case savedToPhotos
         case saveDenied
@@ -56,8 +56,8 @@ struct DogCardFeature {
                 case .main:
                     return .send(.loadRandomImage)
                 case .fromGallery(let url):
-                    if let preselected = state.selectedImage {
-                        state.loadedImage = preselected
+                    if let selectedImageData = state.selectedImageData {
+                        state.loadedImageData = selectedImageData
                         state.isLoading = false
                         return .none
                     } else {
@@ -95,24 +95,23 @@ struct DogCardFeature {
                         await send(.imageDataLoaded(nil))
                         return
                     }
-                    let (data, _) = try await URLSession.shared.data(from: url)
-                    let image = UIImage(data: data)
-                    await send(.imageDataLoaded(image))
+                    let data = try await urlSession.data(from: url)
+                    await send(.imageDataLoaded(data))
                 } catch: { _, send in
                     await send(.imageDataLoaded(nil))
                 }
                     .cancellable(id: CancelID.loadImage, cancelInFlight: true)
                 
-            case .imageDataLoaded(let image):
-                state.loadedImage = image
+            case .imageDataLoaded(let data):
+                state.loadedImageData = data
                 state.isLoading = false
                 return .none
                 
             case .saveTapped:
-                guard let loadedImage = state.loadedImage else { return .none }
+                guard let loadedImageData = state.loadedImageData else { return .none }
                 return .run { send in
                     let status = await withCheckedContinuation { continuation in
-                        PHPhotoLibrary.requestAuthorization { status in
+                        photoLibraryService.requestAuthorization { status in
                             continuation.resume(returning: status)
                         }
                     }
@@ -120,7 +119,7 @@ struct DogCardFeature {
                         await send(.saveDenied)
                         return
                     }
-                    UIImageWriteToSavedPhotosAlbum(loadedImage, nil, nil, nil)
+                    photoLibraryService.saveImageInPhotoAlbum(loadedImageData)
                     await send(.savedToPhotos)
                 }
             case .savedToPhotos:

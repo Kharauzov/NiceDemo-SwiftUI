@@ -31,7 +31,7 @@ struct DogGalleryView: View {
         let cardStore = Store(initialState: DogCardFeature.State(
             dog: store.dog,
             mode: .fromGallery(selectedImageUrl),
-            selectedImage: store.downloadedImages[selectedImageUrl]
+            selectedImageData: store.downloadedImages[selectedImageUrl]?.pngData()
         )) {
             DogCardFeature()
         }

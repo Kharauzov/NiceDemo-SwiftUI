@@ -80,7 +80,7 @@ struct DogCardView: View {
         VStack {
             Rectangle()
                 .overlay {
-                    if let image = store.loadedImage {
+                    if let imageData = store.loadedImageData, let image = UIImage(data: imageData) {
                         Image(uiImage: image)
                             .resizable()
                             .scaledToFill()
@@ -239,11 +239,11 @@ extension DogCardView {
             dog: Dog(breed: "affenpinscher", subbreeds: ["Kelpie", "Shepherd", "Collie", "Cattle Dog", "Terrier", "Dingo"], isFavorite: false),
             mode: .fromGallery("https://images.dog.ceo/breeds/hound-blood/n02088466_6901.jpg"),
             isLoading: true,
-            loadedImage: nil,
+            loadedImageData: nil,
             showSaveConfirmAlert: false,
             showDeniedGalleryAlert: false,
             selectedImageUrl: "https://images.dog.ceo/breeds/hound-blood/n02088466_6901.jpg",
-            selectedImage: nil
+            selectedImageData: nil
         )) {
             DogCardFeature()
         }
