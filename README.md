@@ -12,7 +12,8 @@ Every screen built on **MVVM** architecture, using AppRouter dependency for clea
 
 **UPDATE**
 
-Recently I started migration of architecture to TCA. Latest progress can be found at corresponding branch [feature/TCA](https://github.com/Kharauzov/NiceDemo-SwiftUI/tree/feature/TCA)
+Recently I completed migration of architecture to TCA. Latest progress can be found at corresponding branch [feature/TCA](https://github.com/Kharauzov/NiceDemo-SwiftUI/tree/feature/TCA)
+Reducers were covered by unit tests as well.
 
 ## Features
 * Watch version with sync mechanism for auth state and favorite breeds
