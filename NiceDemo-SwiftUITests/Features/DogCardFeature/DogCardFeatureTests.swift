@@ -68,9 +68,8 @@ struct DogCardFeatureTests {
             dog: dog,
             mode: .fromGallery(selectedURL),
             isLoading: true,
-            loadedImageData: nil,
-            selectedImageUrl: selectedURL,
-            selectedImageData: preselectedImageData
+            loadedImageData: preselectedImageData,
+            selectedImageUrl: selectedURL
         )) {
             DogCardFeature()
         } withDependencies: {
@@ -80,7 +79,6 @@ struct DogCardFeatureTests {
         
         // when
         await store.send(.onAppear) {
-            $0.loadedImageData = preselectedImageData
             $0.isLoading = false
         }
         await store.finish()
@@ -106,8 +104,7 @@ struct DogCardFeatureTests {
             mode: .fromGallery(urlString),
             isLoading: false,
             loadedImageData: nil,
-            selectedImageUrl: urlString,
-            selectedImageData: nil
+            selectedImageUrl: urlString
         )) {
             DogCardFeature()
         } withDependencies: {

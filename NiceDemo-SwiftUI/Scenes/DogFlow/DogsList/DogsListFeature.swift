@@ -77,7 +77,7 @@ struct DogsListFeature {
             case .handleFetchedDogsList(.success(let response)):
                 handleFetchedData(&state, fetchedDogs: response.formattedData)
                 return .none
-            case .handleFetchedDogsList(.failure(let error)):
+            case .handleFetchedDogsList(.failure):
                 state.isLoading = false
                 // handle error if needed
                 return .none

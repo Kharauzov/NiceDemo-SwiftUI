@@ -93,7 +93,9 @@ struct DogCardView: View {
                                             scale = max(lastScale * value.magnification, 1)
                                         }
                                         .onEnded { _ in
-                                            lastScale = scale
+                                            withAnimation(.easeInOut(duration: 0.3)) {
+                                                lastScale = scale
+                                            }
                                         },
                                     DragGesture()
                                         .onChanged { value in
@@ -103,12 +105,12 @@ struct DogCardView: View {
                                             )
                                         }
                                         .onEnded { _ in
-                                            lastOffset = offset
+                                            withAnimation(.easeInOut(duration: 0.3)) {
+                                                lastOffset = offset
+                                            }
                                         }
                                 )
                             )
-                            .animation(.easeInOut(duration: 0.3), value: scale)
-                            .animation(.easeInOut(duration: 0.3), value: offset)
                     } else {
                         if store.isLoading {
                             ProgressView()
@@ -212,10 +214,12 @@ struct DogCardView: View {
     }
 
     private func resetImagePositionAndScale() {
-        offset = .zero
-        lastOffset = offset
-        scale = 1
-        lastScale = scale
+        withAnimation(.easeInOut(duration: 0.3)) {
+            offset = .zero
+            lastOffset = offset
+            scale = 1
+            lastScale = scale
+        }
     }
 }
 
@@ -242,8 +246,7 @@ extension DogCardView {
             loadedImageData: nil,
             showSaveConfirmAlert: false,
             showDeniedGalleryAlert: false,
-            selectedImageUrl: "https://images.dog.ceo/breeds/hound-blood/n02088466_6901.jpg",
-            selectedImageData: nil
+            selectedImageUrl: "https://images.dog.ceo/breeds/hound-blood/n02088466_6901.jpg"
         )) {
             DogCardFeature()
         }

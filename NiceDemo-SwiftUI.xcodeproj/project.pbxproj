@@ -341,6 +341,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		C50660EC2E9AD83200A5575E /* DogCardFeature */ = {
+			isa = PBXGroup;
+			children = (
+				C513E8042E97CCF8002F958A /* DogCardFeatureTests.swift */,
+			);
+			path = DogCardFeature;
+			sourceTree = "<group>";
+		};
 		C513E7FD2E97A95E002F958A /* DogGallery */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,7 +444,7 @@
 		C5984F7D2E8FE0BB000BFEA3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
-				C513E8042E97CCF8002F958A /* DogCardFeatureTests.swift */,
+				C50660EC2E9AD83200A5575E /* DogCardFeature */,
 				C513E7FD2E97A95E002F958A /* DogGallery */,
 				C5296ABD2E93F1EE00F22945 /* DogsList */,
 				C5A49F6C2E913AD600C3BFA0 /* SignIn */,

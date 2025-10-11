@@ -28,8 +28,6 @@ struct DogCardFeature {
         var showDeniedGalleryAlert = false
         // Inputs when launched from gallery
         var selectedImageUrl: String? = nil
-        @ObservationStateIgnored
-        var selectedImageData: Data? = nil
     }
     
     enum Action: BindableAction {
@@ -56,8 +54,7 @@ struct DogCardFeature {
                 case .main:
                     return .send(.loadRandomImage)
                 case .fromGallery(let url):
-                    if let selectedImageData = state.selectedImageData {
-                        state.loadedImageData = selectedImageData
+                    if state.loadedImageData != nil {
                         state.isLoading = false
                         return .none
                     } else {
