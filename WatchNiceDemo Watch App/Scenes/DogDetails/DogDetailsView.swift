@@ -7,24 +7,19 @@
 
 import SwiftUI
 import CachedAsyncImage
+import ComposableArchitecture
 
 struct DogDetailsView: View {
-    @State private var index = 0
-    @State private var isFavorite = false
-    @State private var viewModel: ViewModel
-    @State private var zoom: CGFloat = 1.0
-    @State private var offset: CGSize = .zero
-    @State private var dragStart: CGSize = .zero
+    @Bindable var store: StoreOf<DogDetailsFeature>
     
-    init(dog: Dog, favoriteStorage: DogDetailsFavoriteStorage = FavoriteDogBreedsStorage(), networkService: DogDetailsNetwork = DogsNetworkService()) {
-        let viewModel = ViewModel(dog: dog, favoriteStorage: favoriteStorage, networkService: networkService, favoriteBreedsSyncService: FavoriteBreedsSyncService())
-        _viewModel = .init(wrappedValue: viewModel)
+    init(store: StoreOf<DogDetailsFeature>) {
+        self.store = store
     }
     
     var body: some View {
         let screenSize = WKInterfaceDevice.current().screenBounds.size
         ZStack {
-            if let randomImageUrl = viewModel.randomImageUrl, !viewModel.loading {
+            if let randomImageUrl = store.randomImageUrl, !store.loading {
                 imageView(url: randomImageUrl, size: screenSize)
                     .frame(width: screenSize.width, height: screenSize.height + 20)
                         .clipShape(Rectangle())
@@ -35,7 +30,7 @@ struct DogDetailsView: View {
                 .frame(width: screenSize.width, height: screenSize.height)
         }
         .task {
-            viewModel.loadRandomImage()
+            store.send(.onAppear)
         }
     }
     
@@ -43,11 +38,14 @@ struct DogDetailsView: View {
         CachedAsyncImage(url: URL(string: url))
             .scaledToFill()
             .ignoresSafeArea()
-            .offset(offset)
-            .scaleEffect(zoom)
+            .offset(store.offset)
+            .scaleEffect(store.zoom)
             .focusable(true)
             .digitalCrownRotation(
-                $zoom,
+                Binding(
+                    get: { store.zoom },
+                    set: { store.send(.imageZoomChanged($0)) }
+                ),
                 from: 1.0,
                 through: 3.0,
                 by: 0.1,
@@ -59,22 +57,23 @@ struct DogDetailsView: View {
                 DragGesture()
                     .onChanged { value in
                         let proposed = CGSize(
-                            width: dragStart.width + value.translation.width,
-                            height: dragStart.height + value.translation.height
+                            width: store.dragStart.width + value.translation.width,
+                            height: store.dragStart.height + value.translation.height
                         )
-                        offset = clampedOffset(
+                        let clamped = clampedOffset(
                             proposed,
                             container: size,
-                            zoom: zoom
+                            zoom: store.zoom
                         )
+                        store.send(.imageOffsetChanged(clamped))
                     }
                     .onEnded { _ in
-                        dragStart = offset
+                        store.send(.dragStartChanged(store.offset))
                     }
             )
             .onTapGesture(count: 2) {
                 withAnimation(.spring) {
-                    resetImagePositionAndScale()
+                    _ = store.send(.resetImagePositionAndScale)
                 }
             }
             .clipped()
@@ -93,8 +92,8 @@ struct DogDetailsView: View {
             HStack(spacing: 12) {
                 Button {
                     WKInterfaceDevice.current().play(.directionUp)
-                    resetImagePositionAndScale()
-                    viewModel.loadRandomImage()
+                    store.send(.resetImagePositionAndScale)
+                    store.send(.loadRandomImage)
                 } label: {
                     Label("Next", systemImage: "arrow.right")
                         .font(.headline)
@@ -110,9 +109,9 @@ struct DogDetailsView: View {
                 
                 Button {
                     WKInterfaceDevice.current().play(.success)
-                    viewModel.handleFavoriteButtonTap()
+                    store.send(.favoriteButtonTapped)
                 } label: {
-                    Image(systemName: viewModel.favoriteButtonImageName)
+                    Image(systemName: store.favoriteButtonImageName)
                         .font(.system(size: 18, weight: .semibold))
                         .padding(10)
                 }
@@ -141,13 +140,10 @@ struct DogDetailsView: View {
         return CGSize(width: x, height: y)
     }
     
-    private func resetImagePositionAndScale() {
-        zoom = 1
-        offset = .zero
-        dragStart = .zero
-    }
 }
 
 #Preview {
-    DogDetailsView(dog: Dog(breed: "affenpinscher", subbreeds: nil))
+    DogDetailsView(store: Store(initialState: DogDetailsFeature.State(dog: Dog(breed: "affenpinscher", subbreeds: nil))) {
+        DogDetailsFeature()
+    })
 }
