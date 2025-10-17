@@ -94,7 +94,7 @@ struct DogDetailsFeature: Reducer {
             }
             
             func setFavoriteButtonImageName() {
-                state.favoriteButtonImageName = state.dog.isFavorite ? "heart.fill" : "heart"
+                state.favoriteButtonImageName = state.dog.isFavorite ? ImageName.heartOn.rawValue : ImageName.heartOff.rawValue
             }
         }
     }

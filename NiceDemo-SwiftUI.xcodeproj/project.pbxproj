@@ -140,6 +140,9 @@
 		C5D70A0A2EA1E92A00F9F347 /* SignInFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D70A072EA1E92A00F9F347 /* SignInFeature.swift */; };
 		C5D70A0D2EA1EC1900F9F347 /* DogDetailsFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D70A0B2EA1EC1900F9F347 /* DogDetailsFeature.swift */; };
 		C5D70A0E2EA1EC1900F9F347 /* DogDetailsFeature+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D70A0C2EA1EC1900F9F347 /* DogDetailsFeature+Dependencies.swift */; };
+		C5D70A152EA213E200F9F347 /* ForgotPasswordFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D70A112EA1F5E100F9F347 /* ForgotPasswordFeatureTests.swift */; };
+		C5D70A162EA2149700F9F347 /* DogDetailsFeatureTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D70A0F2EA1F5E100F9F347 /* DogDetailsFeatureTests.swift */; };
+		C5D70A182EA215BA00F9F347 /* MockDogDetailsFavoriteStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D70A172EA215BA00F9F347 /* MockDogDetailsFavoriteStorage.swift */; };
 		C5D8873B2E4881FA00169957 /* DogCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D8873A2E4881FA00169957 /* DogCardView.swift */; };
 		C5D8873F2E4885D400169957 /* DogCardContract.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D8873E2E4885D400169957 /* DogCardContract.swift */; };
 		C5D887412E48873100169957 /* SegmentedUnderlineTabs.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5D887402E48873100169957 /* SegmentedUnderlineTabs.swift */; };
@@ -304,6 +307,9 @@
 		C5D70A082EA1E92A00F9F347 /* SignInFeature+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SignInFeature+Dependencies.swift"; sourceTree = "<group>"; };
 		C5D70A0B2EA1EC1900F9F347 /* DogDetailsFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogDetailsFeature.swift; sourceTree = "<group>"; };
 		C5D70A0C2EA1EC1900F9F347 /* DogDetailsFeature+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogDetailsFeature+Dependencies.swift"; sourceTree = "<group>"; };
+		C5D70A0F2EA1F5E100F9F347 /* DogDetailsFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogDetailsFeatureTests.swift; sourceTree = "<group>"; };
+		C5D70A112EA1F5E100F9F347 /* ForgotPasswordFeatureTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordFeatureTests.swift; sourceTree = "<group>"; };
+		C5D70A172EA215BA00F9F347 /* MockDogDetailsFavoriteStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockDogDetailsFavoriteStorage.swift; sourceTree = "<group>"; };
 		C5D8873A2E4881FA00169957 /* DogCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCardView.swift; sourceTree = "<group>"; };
 		C5D8873E2E4885D400169957 /* DogCardContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCardContract.swift; sourceTree = "<group>"; };
 		C5D887402E48873100169957 /* SegmentedUnderlineTabs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedUnderlineTabs.swift; sourceTree = "<group>"; };
@@ -412,6 +418,7 @@
 		C5984F5F2E8FC839000BFEA3 /* Mocks */ = {
 			isa = PBXGroup;
 			children = (
+				C5D70A172EA215BA00F9F347 /* MockDogDetailsFavoriteStorage.swift */,
 				C5984F602E8FC853000BFEA3 /* MockUserCredentialsFetching.swift */,
 				C5984F632E8FDA38000BFEA3 /* MockFavoriteBreedsSyncService.swift */,
 				C5984F662E8FDE13000BFEA3 /* MockPhoneSignInConnectivityService.swift */,
@@ -448,6 +455,8 @@
 		C5984F7D2E8FE0BB000BFEA3 /* Features */ = {
 			isa = PBXGroup;
 			children = (
+				C5D70A102EA1F5E100F9F347 /* DogDetails */,
+				C5D70A122EA1F5E100F9F347 /* ForgotPassword */,
 				C50660EC2E9AD83200A5575E /* DogCardFeature */,
 				C513E7FD2E97A95E002F958A /* DogGallery */,
 				C5296ABD2E93F1EE00F22945 /* DogsList */,
@@ -760,6 +769,22 @@
 			path = "NiceDemo-SwiftUI";
 			sourceTree = "<group>";
 		};
+		C5D70A102EA1F5E100F9F347 /* DogDetails */ = {
+			isa = PBXGroup;
+			children = (
+				C5D70A0F2EA1F5E100F9F347 /* DogDetailsFeatureTests.swift */,
+			);
+			path = DogDetails;
+			sourceTree = "<group>";
+		};
+		C5D70A122EA1F5E100F9F347 /* ForgotPassword */ = {
+			isa = PBXGroup;
+			children = (
+				C5D70A112EA1F5E100F9F347 /* ForgotPasswordFeatureTests.swift */,
+			);
+			path = ForgotPassword;
+			sourceTree = "<group>";
+		};
 		C5D887382E48817400169957 /* DogCard */ = {
 			isa = PBXGroup;
 			children = (
@@ -1063,14 +1088,17 @@
 				C5296AC32E93F52100F22945 /* MockDogsListFavoriteStorage.swift in Sources */,
 				C5984F802E8FE0F5000BFEA3 /* MockUserCredentialsFetching.swift in Sources */,
 				C513E7FF2E97A973002F958A /* MockDogGalleryNetwork.swift in Sources */,
+				C5D70A162EA2149700F9F347 /* DogDetailsFeatureTests.swift in Sources */,
 				C513E8062E97CD1C002F958A /* DogCardFeatureTests.swift in Sources */,
 				C5A49F6E2E913AF900C3BFA0 /* SignInFeatureTests.swift in Sources */,
 				C5296ABF2E93F20E00F22945 /* DogsListFeatureTests.swift in Sources */,
+				C5D70A152EA213E200F9F347 /* ForgotPasswordFeatureTests.swift in Sources */,
 				C5984F812E8FE100000BFEA3 /* MockFavoriteBreedsSyncService.swift in Sources */,
 				C5296AC92E94138200F22945 /* MockFavoriteBreedsStorageInterface.swift in Sources */,
 				C57E23CD2E97D24000C2513E /* MockDogCardURLSession.swift in Sources */,
 				C513E7FC2E97A3EB002F958A /* DogGalleryFeatureTests.swift in Sources */,
 				C5296AC72E9411F800F22945 /* MockWatchFavoriteBreedsConnectivity.swift in Sources */,
+				C5D70A182EA215BA00F9F347 /* MockDogDetailsFavoriteStorage.swift in Sources */,
 				C5984F822E8FE108000BFEA3 /* MockPhoneSignInConnectivityService.swift in Sources */,
 				C5A49F702E913B3F00C3BFA0 /* MockUserCredentialsUpdating.swift in Sources */,
 			);

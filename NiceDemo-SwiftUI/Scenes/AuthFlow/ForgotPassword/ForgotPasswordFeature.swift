@@ -13,7 +13,7 @@ struct ForgotPasswordFeature: Reducer {
     private let environment = ForgotPasswordEnvironment()
     
     @ObservableState
-    struct State {
+    struct State: Equatable {
         var email: String = ""
         let successAlertText = "We sent you instructions for password recovery on your email."
         var shouldDismiss = false

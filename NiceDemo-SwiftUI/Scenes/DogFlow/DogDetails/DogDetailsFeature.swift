@@ -78,7 +78,7 @@ struct DogDetailsFeature {
             }
             
             func setFavoriteButtonImageName() {
-                state.favoriteButtonImageName = state.dog.isFavorite ? "pawPrintSelected" : "pawPrintNotSelected"
+                state.favoriteButtonImageName = state.dog.isFavorite ? ImageName.favoriteOn.rawValue : ImageName.favoriteOff.rawValue
             }
         }
     }

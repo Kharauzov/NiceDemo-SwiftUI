@@ -13,14 +13,14 @@ import WatchConnectivity
 class WCService: NSObject {
     static let shared = WCService()
     private let session: WCSession? = WCSession.isSupported() ? WCSession.default : nil
-    var isAuthenticated: Bool = false {
+    private(set) var isAuthenticated: Bool = false {
         didSet {
             if oldValue != isAuthenticated {
                 authenticatedContinuation?.yield(isAuthenticated)
             }
         }
     }
-    var favBreedsPayload: FavoriteBreedsPayload? {
+    private(set) var favBreedsPayload: FavoriteBreedsPayload? {
         didSet {
             if oldValue != favBreedsPayload, let favBreedsPayload {
                 favBreedsContinuation?.yield(favBreedsPayload)

@@ -10,10 +10,6 @@ import ComposableArchitecture
 
 struct DogCardView: View {
     @Environment(\.dismiss) private var dismiss
-    @State private var scale: CGFloat = 1.0
-    @State private var lastScale: CGFloat = 1.0
-    @State private var offset: CGSize = .zero
-    @State private var lastOffset: CGSize = .zero
     var hero: Namespace.ID?
     @Namespace private var defaultNamespace
     private var shadowColor: Color {
@@ -84,29 +80,31 @@ struct DogCardView: View {
                         Image(uiImage: image)
                             .resizable()
                             .scaledToFill()
-                            .scaleEffect(scale)
-                            .offset(offset)
+                            .scaleEffect(store.scale)
+                            .offset(store.offset)
                             .gesture(
                                 SimultaneousGesture(
                                     MagnifyGesture()
                                         .onChanged { value in
-                                            scale = max(lastScale * value.magnification, 1)
+                                            let newScale = max(store.lastScale * value.magnification, 1)
+                                            store.send(.scaleChanged(newScale))
                                         }
                                         .onEnded { _ in
                                             withAnimation(.easeInOut(duration: 0.3)) {
-                                                lastScale = scale
+                                                _ = store.send(.scaleEnded)
                                             }
                                         },
                                     DragGesture()
                                         .onChanged { value in
-                                            offset = CGSize(
-                                                width: lastOffset.width + value.translation.width,
-                                                height: lastOffset.height + value.translation.height
+                                            let newOffset = CGSize(
+                                                width: store.lastOffset.width + value.translation.width,
+                                                height: store.lastOffset.height + value.translation.height
                                             )
+                                            store.send(.offsetChanged(newOffset))
                                         }
                                         .onEnded { _ in
                                             withAnimation(.easeInOut(duration: 0.3)) {
-                                                lastOffset = offset
+                                                _ = store.send(.offsetEnded)
                                             }
                                         }
                                 )
@@ -215,10 +213,7 @@ struct DogCardView: View {
 
     private func resetImagePositionAndScale() {
         withAnimation(.easeInOut(duration: 0.3)) {
-            offset = .zero
-            lastOffset = offset
-            scale = 1
-            lastScale = scale
+            _ = store.send(.resetImagePositionAndScale)
         }
     }
 }
