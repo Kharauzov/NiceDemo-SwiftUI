@@ -8,17 +8,18 @@ App’s routing inside iOS version contains of 2 flows:
 * Auth: SignIn -> ForgotPassword 
 * Dogs: DogsList -> DogDetails -> DogCard + DogGallery
 
-Every screen built on **MVVM** architecture, using AppRouter dependency for clean and manageble navigation.
+Every screen built on **The Composable Architecture**, using AppRouter dependency for clean and manageble navigation.
+Reducers were covered by unit tests as well.
 
 **UPDATE**
 
-Recently I completed migration of architecture to TCA. Latest progress can be found at corresponding branch [feature/TCA](https://github.com/Kharauzov/NiceDemo-SwiftUI/tree/feature/TCA)
-Reducers were covered by unit tests as well.
+Recently I completed full migration of architecture to TCA. Previous progress for MVVM architecture can be found at corresponding branch [feature/MVVM](https://github.com/Kharauzov/NiceDemo-SwiftUI/tree/feature/MVVM)
 
 ## Features
 * Watch version with sync mechanism for auth state and favorite breeds
 * Custom segmented control triggering animated sliding of inner screens
 * Custom hero transition from gallery into card
+* Unit Tests for business logic 
 * Local storage for keeping favorite dog breeds
 * Zooming dog photo
 * Saving dog photo to gallery
