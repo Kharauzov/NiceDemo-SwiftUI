@@ -6,53 +6,55 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct DogDetailsView: View {
-    @State var viewModel: ViewModel
     @Environment(\.dismiss) private var dismiss
-    @State private var selectedTab: SegmentTab = .single
     @Namespace private var underline
-    
-    init(dog: Dog) {
-        let viewModel = ViewModel(dog: dog, favoriteStorage: FavoriteDogBreedsStorage(), favoriteBreedsSyncService: FavoriteBreedsSyncService())
-        _viewModel = .init(wrappedValue: viewModel)
+    @Bindable var store: StoreOf<DogDetailsFeature>
+
+    init(store: StoreOf<DogDetailsFeature>) {
+        self.store = store
     }
-    
+
     @ViewBuilder private var content: some View {
         GeometryReader { geo in
-                let width = geo.size.width
-                ZStack(alignment: .leading) {
-                    DogCardView(dog: viewModel.dog, mode: .main)
-                        .offset(x: selectedTab == .single ? 0 : -width) // slide left when hidden
-                        .zIndex(selectedTab == .single ? 1 : 0)
-                        .allowsHitTesting(selectedTab == .single)
-                        .padding(.bottom, GridLayout.commonSpace)
-                    DogGalleryView(dog: viewModel.dog)
-                        .offset(x: selectedTab == .gallery ? 0 : width) // slide right when hidden
-                        .zIndex(selectedTab == .gallery ? 1 : 0)
-                        .allowsHitTesting(selectedTab == .gallery)
-                }
-                .clipped()
-                .animation(.easeInOut(duration: AnimationDuration.macroFast.timeInterval), value: selectedTab)
-                .ignoresSafeArea()
+            let width = geo.size.width
+            ZStack(alignment: .leading) {
+                DogCardView(store: store.scope(state: \.dogCard, action: \.dogCard))
+                    .offset(x: store.selectedTab == .single ? 0 : -width) // slide left when hidden
+                    .zIndex(store.selectedTab == .single ? 1 : 0)
+                    .allowsHitTesting(store.selectedTab == .single)
+                    .padding(.bottom, GridLayout.commonSpace)
+                DogGalleryView(store: store.scope(state: \.dogGallery, action: \.dogGallery))
+                    .offset(x: store.selectedTab == .gallery ? 0 : width) // slide right when hidden
+                    .zIndex(store.selectedTab == .gallery ? 1 : 0)
+                    .allowsHitTesting(store.selectedTab == .gallery)
             }
+            .clipped()
+            .animation(.easeInOut(duration: AnimationDuration.macroFast.timeInterval), value: store.selectedTab)
+            .ignoresSafeArea()
+        }
     }
-    
+
     var body: some View {
         VStack {
-            SegmentedUnderlineTabs(tabs: SegmentTab.allCases, selected: $selectedTab, underline: underline)
-                .padding(.top, GridLayout.regularSpace)
+            SegmentedUnderlineTabs(tabs: SegmentTab.allCases, selected: Binding(
+                get: { store.selectedTab },
+                set: { store.send(.setTab($0)) }
+            ), underline: underline)
+            .padding(.top, GridLayout.regularSpace)
             content
         }
         .frame(maxHeight: .infinity)
-        .navigationTitle(viewModel.dog.breed.capitalized)
+        .navigationTitle(store.dog.breed.capitalized)
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {
-                    viewModel.handleFavoriteButtonTap()
+                    store.send(.favoriteTapped)
                 } label: {
-                    Image(viewModel.favoriteButtonImageName)
+                    Image(store.favoriteButtonImageName)
                         .renderingMode(.template)
                         .tint(Color.AppColors.primary)
                 }
@@ -68,17 +70,32 @@ struct DogDetailsView: View {
         }
         .navigationBarBackButtonHidden(true)
         .background(Color.AppColors.white)
+        .task {
+            await store.send(.onAppear).finish()
+        }
     }
 }
 
 #Preview {
     NavigationStack {
-        DogDetailsView(dog: Dog(breed: "Shepard", subbreeds: ["Kelpie", "Shepherd", "Collie", "Cattle Dog", "Terrier", "Dingo"], isFavorite: false))
+        DogDetailsView(
+            store: Store(initialState: DogDetailsFeature.State(
+                dog: Dog(breed: "Shepard", subbreeds: ["Kelpie", "Shepherd", "Collie", "Cattle Dog", "Terrier", "Dingo"], isFavorite: false)
+            )) {
+                DogDetailsFeature()
+            }
+        )
     }
 }
 
 #Preview {
     NavigationStack {
-        DogDetailsView(dog: Dog(breed: "affenpinscher", subbreeds: [], isFavorite: false))
+        DogDetailsView(
+            store: Store(initialState: DogDetailsFeature.State(
+                dog: Dog(breed: "affenpinscher", subbreeds: [], isFavorite: false)
+            )) {
+                DogDetailsFeature()
+            }
+        )
     }
 }

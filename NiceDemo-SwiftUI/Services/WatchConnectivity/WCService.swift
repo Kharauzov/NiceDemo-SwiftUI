@@ -13,30 +13,47 @@ import WatchConnectivity
 class WCService: NSObject {
     static let shared = WCService()
     private let session: WCSession? = WCSession.isSupported() ? WCSession.default : nil
-    var isAuthenticated: Bool = false {
+    private(set) var isAuthenticated: Bool = false {
         didSet {
             if oldValue != isAuthenticated {
-                isAuthenticatedChanged?(isAuthenticated)
+                authenticatedContinuation?.yield(isAuthenticated)
             }
         }
     }
-    var favBreedsPayload: FavoriteBreedsPayload? {
+    private(set) var favBreedsPayload: FavoriteBreedsPayload? {
         didSet {
             if oldValue != favBreedsPayload, let favBreedsPayload {
-                favBreedsPayloadChanged?(favBreedsPayload)
+                favBreedsContinuation?.yield(favBreedsPayload)
             }
         }
     }
-    var isAuthenticatedChanged: ((Bool) -> Void)?
-    var favBreedsPayloadChanged: ((FavoriteBreedsPayload) -> Void)?
+    private var authenticatedContinuation: AsyncStream<Bool>.Continuation?
+    private(set) var authenticatedStream: AsyncStream<Bool>?
+    private var favBreedsContinuation: AsyncStream<FavoriteBreedsPayload>.Continuation?
+    private(set) var favBreedsStream: AsyncStream<FavoriteBreedsPayload>?
     
     private override init() {
         super.init()
+        self.favBreedsStream = AsyncStream { continuation in
+            self.favBreedsContinuation = continuation
+        }
+        self.authenticatedStream = AsyncStream { continuation in
+            self.authenticatedContinuation = continuation
+        }
         session?.delegate = self
         session?.activate()
     }
     
+    deinit {
+        finishStreams()
+    }
+    
     // MARK: - Send
+    
+    func finishStreams() {
+        favBreedsContinuation?.finish()
+        authenticatedContinuation?.finish()
+    }
     
     func sendAuth(flag: Bool) {
         guard let session else { return }

@@ -8,7 +8,7 @@
 import Foundation
 
 protocol WatchFavoriteBreedsConnectivity: AnyObject {
-    var favBreedsPayloadChanged: ((FavoriteBreedsPayload) -> Void)? { get set }
+    var favBreedsStream: AsyncStream<FavoriteBreedsPayload>? { get }
     func sendFavoriteBreeds(_ payload: FavoriteBreedsPayload)
 }
 extension WCService: WatchFavoriteBreedsConnectivity {}

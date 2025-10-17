@@ -14,3 +14,10 @@ enum NetworkConstants {
 enum GlobalImages: String {
     case leftChevron = "chevron.left"
 }
+
+enum ImageName: String {
+    case favoriteOn = "pawPrintSelected"
+    case favoriteOff = "pawPrintNotSelected"
+    case heartOn = "heart.fill"
+    case heartOff = "heart"
+}

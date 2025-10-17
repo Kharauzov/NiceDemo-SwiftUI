@@ -10,4 +10,9 @@ import Foundation
 class BaseResponse: Codable {
     let status: String
     let error: String?
+    
+    init(status: String, error: String?) {
+        self.status = status
+        self.error = error
+    }
 }

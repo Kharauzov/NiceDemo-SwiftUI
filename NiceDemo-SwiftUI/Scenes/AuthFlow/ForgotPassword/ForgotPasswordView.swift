@@ -6,13 +6,12 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct ForgotPasswordView: View {
-    @State private var email: String = ""
+    @Bindable var store: StoreOf<ForgotPasswordFeature>
     @FocusState private var emailFocusedField: TextFieldType?
-    @State var viewModel = ViewModel()
     @Environment(\.dismiss) private var dismiss
-    private let successAlertText = "We sent you instructions for password recovery on your email."
     private var navigationTitle: String {
         "Recover password"
     }
@@ -32,24 +31,29 @@ struct ForgotPasswordView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
-                    dismiss()
+                    store.send(.dismissTap)
                 } label: {
                     Image(systemName: GlobalImages.leftChevron.rawValue)
                         .foregroundColor(Color.AppColors.primary)
                 }
             }
         }
-        .alert("", isPresented: $viewModel.showErrorAlert) {
+        .alert("", isPresented: $store.showErrorAlert) {
             Button("Okay", role: .cancel) {}
         } message: {
-            Text(viewModel.validationError?.localizedDescription ?? "")
+            Text(store.validationError?.localizedDescription ?? "")
         }
-        .alert("", isPresented: $viewModel.showSuccessAlert) {
+        .alert("", isPresented: $store.showSuccessAlert) {
             Button("Okay", role: .cancel) {
-                dismiss()
+                store.send(.dismissTap)
             }
         } message: {
-            Text(successAlertText)
+            Text(store.successAlertText)
+        }
+        .onChange(of: store.shouldDismiss) { _, newValue in
+            if newValue {
+                dismiss()
+            }
         }
     }
     
@@ -64,7 +68,7 @@ struct ForgotPasswordView: View {
     
     private var emailTextField: some View {
         VStack {
-            TextField("Email", text: $email)
+            TextField("Email", text: $store.email)
                 .textFieldStyle(PlainTextFieldStyle())
                 .padding(.vertical, 12)
                 .font(.paperlogy(.regular, fontSize: 18))
@@ -89,7 +93,7 @@ struct ForgotPasswordView: View {
     
     private var submitButton: some View {
         Button(action: {
-            viewModel.handleSubmitButtonTap(email)
+            store.send(.submitButtonTap(store.email))
         }) {
             Text("Submit")
                 .frame(maxWidth: .infinity)
@@ -110,6 +114,8 @@ extension ForgotPasswordView {
 
 #Preview {
     NavigationStack {
-        ForgotPasswordView()
+        ForgotPasswordView(store: Store(initialState: ForgotPasswordFeature.State()) {
+            ForgotPasswordFeature()
+        })
     }
 }

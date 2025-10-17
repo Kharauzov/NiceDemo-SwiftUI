@@ -5,22 +5,13 @@
 //  Created by Serhii Kharauzov on 04.08.2025.
 //
 
+import ComposableArchitecture
 import SwiftUI
 import AppRouter
 
 struct StartView: View {
-    @State var viewModel: ViewModel
     @EnvironmentObject private var appRootManager: AppRootManager
-    
-    init(_ userCredentialsStorage: UserCredentialsFetching = UserCredentialsStorage()) {
-#if os(watchOS)
-        let viewModel = ViewModel(userCredentialsStorage: userCredentialsStorage)
-#endif
-#if os(iOS)
-        let viewModel = ViewModel(userCredentialsStorage: userCredentialsStorage, connectivityService: WCService.shared, favoriteBreedsSyncService: FavoriteBreedsSyncService())
-#endif
-        _viewModel = .init(wrappedValue: viewModel)
-    }
+    @Bindable var store: StoreOf<StartFeature>
     
     var body: some View {
         VStack {
@@ -34,21 +25,27 @@ struct StartView: View {
         .containerRelativeFrame([.horizontal, .vertical])
         .background(Color.AppColors.white)
         .onAppear {
-            Task {
-                if await viewModel.fetchUserAuthState() {
-                    withAnimation(.spring()) {
-                        appRootManager.rootView = .dogsList
-                    }
-                } else {
-                    withAnimation(.spring()) {
-                        appRootManager.rootView = .signIn
-                    }
+            store.send(.fetchUserAuthState)
+        }
+        .onChange(of: store.screenToShow) { _, newScreen in
+            switch newScreen {
+            case .dogsList:
+                withAnimation(.spring()) {
+                    appRootManager.rootView = .dogsList
                 }
+            case .signIn:
+                withAnimation(.spring()) {
+                    appRootManager.rootView = .signIn
+                }
+            case .none:
+                break
             }
         }
     }
 }
 
 #Preview {
-    StartView()
+    StartView(store: Store(initialState: StartFeature.State()) {
+        StartFeature()
+    })
 }

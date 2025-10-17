@@ -9,7 +9,7 @@ import Foundation
 
 protocol WatchSignInConnectivityInterface {
     var isAuthenticated: Bool { get }
-    var isAuthenticatedChanged: ((Bool) -> Void)? { get set }
+    var authenticatedStream: AsyncStream<Bool>? { get }
 }
 
 extension WCService: WatchSignInConnectivityInterface {}

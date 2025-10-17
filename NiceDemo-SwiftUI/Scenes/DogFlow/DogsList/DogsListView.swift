@@ -7,27 +7,18 @@
 
 import SwiftUI
 import AppRouter
+import ComposableArchitecture
 
 struct DogsListView: View {
-    @State private var searchText = ""
-    @State private var selectedFilter: FilterOption = .all
-    @State var viewModel: ViewModel
+    @Bindable var store: StoreOf<DogsListFeature>
     @Environment(SimpleRouter<DogsRoutingDestination, DogsRoutingSheet>.self) private var router
     private var navigationTitle: String {
         "List of dogs"
     }
-    var filteredDogs: [Dog] {
-        viewModel.getDogs(filterOption: selectedFilter, searchText: searchText)
-    }
-    
-    init(_ networkService: DogsListNetwork = DogsNetworkService(), favoriteStorage: DogsListFavoriteStorage = FavoriteDogBreedsStorage()) {
-        let viewModel = ViewModel(networkService: networkService, favoriteStorage: favoriteStorage, favoriteBreedsSyncService: FavoriteBreedsSyncService())
-        _viewModel = .init(wrappedValue: viewModel)
-    }
     
     var body: some View {
         Group {
-            if viewModel.loading {
+            if store.isLoading {
                 loadingView
             } else {
                 dogsListView
@@ -40,7 +31,7 @@ struct DogsListView: View {
 #endif
 #if os(iOS)
         .navigationBarTitleDisplayMode(.inline)
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic))
+        .searchable(text: $store.searchText, placement: .navigationBarDrawer(displayMode: .automatic))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 toolBarMenu
@@ -48,15 +39,18 @@ struct DogsListView: View {
         }
 #endif
         .task {
-            if viewModel.shouldLoadData {
-                viewModel.shouldLoadData.toggle()
+            if store.shouldLoadData {
                 // adding delay due to imitation of heavy request
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-                    self.viewModel.loadData()
+                    self.store.send(.loadDogsList)
                 }
             } else {
-                viewModel.reloadData()
+                store.send(.reloadData)
             }
+            store.send(.onAppear)
+        }
+        .onChange(of: store.isLoading) { _, _ in
+            withAnimation(.spring()) { }
         }
     }
     
@@ -75,12 +69,12 @@ struct DogsListView: View {
     }
     
     @ViewBuilder private var dogsListView: some View {
-        if filteredDogs.count > 0 {
-            List(filteredDogs) { dog in
+        if store.filteredDogs.count > 0 {
+            List(store.filteredDogs) { dog in
                 DogRowView(dog: dog, onTap: {
                     router.navigateTo(.dogDetails(dog))
                 }, onFavoriteTapped: {
-                    viewModel.removeFromFavorite(dog)
+                    store.send(.removeFromFavorite(dog))
                 })
 #if os(iOS)
                 .listRowInsets(EdgeInsets())
@@ -100,11 +94,11 @@ struct DogsListView: View {
 #if os(iOS)
     private var toolBarMenu: some View {
         Menu {
-            ForEach(FilterOption.allCases, id: \.self) { option in
+            ForEach(DogsListFilter.allCases, id: \.self) { option in
                 Button {
-                    selectedFilter = option
+                    store.send(.selectFilter(option))
                 } label: {
-                    Label(option.rawValue, systemImage: selectedFilter == option ? "checkmark" : "")
+                    Label(option.rawValue, systemImage: store.selectedFilter == option ? "checkmark" : "")
                 }
             }
         } label: {
@@ -116,16 +110,11 @@ struct DogsListView: View {
 #endif
 }
 
-extension DogsListView {
-    enum FilterOption: String, CaseIterable {
-        case all = "All"
-        case favorite = "Favorite"
-    }
-}
-
 #Preview {
     NavigationStack {
-        DogsListView()
-            .environment(SimpleRouter<DogsRoutingDestination, DogsRoutingSheet>())
+        DogsListView(store: Store(initialState: DogsListFeature.State()) {
+            DogsListFeature()
+        })
+        .environment(SimpleRouter<DogsRoutingDestination, DogsRoutingSheet>())
     }
 }
