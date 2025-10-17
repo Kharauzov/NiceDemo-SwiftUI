@@ -6,14 +6,14 @@
 //
 
 import SwiftUI
+import ComposableArchitecture
 
 struct SignInView: View {
-    @State var viewModel: ViewModel
+    @Bindable var store: StoreOf<SignInFeature>
     @EnvironmentObject private var appRootManager: AppRootManager
     
-    init(connectivityService: WatchSignInConnectivityInterface = WCService.shared) {
-        let viewModel = ViewModel(connectivityService: connectivityService, userCredentialsStorage: UserCredentialsStorage())
-        _viewModel = .init(wrappedValue: viewModel)
+    init(store: StoreOf<SignInFeature>) {
+        self.store = store
     }
     
     var body: some View {
@@ -34,14 +34,12 @@ struct SignInView: View {
                 .frame(maxWidth: .infinity, alignment: .center)
         }
         .frame(maxWidth: .infinity)
-        .task {
-            if let stream = viewModel.connectivityService.authenticatedStream {
-                for await flag in stream {
-                    viewModel.saveAuthState(flag)
-                    if flag {
-                        showDogsListView()
-                    }
-                }
+        .onAppear {
+            store.send(.onAppear)
+        }
+        .onChange(of: store.shouldShowDogsList) { _, newValue in
+            if newValue {
+                showDogsListView()
             }
         }
     }
@@ -54,5 +52,7 @@ struct SignInView: View {
 }
 
 #Preview {
-    SignInView()
+    SignInView(store: Store(initialState: SignInFeature.State()) {
+        SignInFeature()
+    })
 }

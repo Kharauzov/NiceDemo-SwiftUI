@@ -45,7 +45,9 @@ struct NiceDemo_SwiftUIApp: App {
                     authDestinationView(for: destination)
                 }
 #elseif os(watchOS)
-                SignInView()
+                SignInView(store: Store(initialState: SignInFeature.State()) {
+                    SignInFeature()
+                })
 #endif
             }
         case .dogsList:
