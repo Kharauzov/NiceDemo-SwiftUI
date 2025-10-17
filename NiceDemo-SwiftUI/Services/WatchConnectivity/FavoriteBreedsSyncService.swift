@@ -7,26 +7,40 @@
 
 import Foundation
 
-@objc protocol FavoriteBreedsSyncDelegate: AnyObject {
-    @objc optional func favoritesDidUpdateLocally(_ breeds: [String])
-    @objc optional func favoritesDidUpdateFromPeer(_ breeds: [String])
-}
-
 class FavoriteBreedsSyncService {
     private let favoriteBreedsStorage: FavoriteBreedsStorageInterface
     private let connectivityService: WatchFavoriteBreedsConnectivity
-    weak var delegate: FavoriteBreedsSyncDelegate?
+    
+    private var task: Task<Void, Never>?
+    private var continuation: AsyncStream<[String]>.Continuation?
+    var favBreedsStream: AsyncStream<[String]>?
+    
+    deinit {
+        task?.cancel()
+        finishStream()
+    }
     
     init(favoriteBreedsStorage: FavoriteBreedsStorageInterface = FavoriteDogBreedsStorage(), connectivityService: WatchFavoriteBreedsConnectivity = WCService.shared) {
         self.favoriteBreedsStorage = favoriteBreedsStorage
         self.connectivityService = connectivityService
-        
-        connectivityService.favBreedsPayloadChanged = { [weak self] payload in
-            let flag = self?.favoriteBreedsStorage.refreshFavBreedsPayloadIfNewer(payload) ?? false
-            if flag {
-                self?.delegate?.favoritesDidUpdateFromPeer?(payload.breeds)
+        self.favBreedsStream = AsyncStream { continuation in
+            self.continuation = continuation
+        }
+        task = Task { [weak self] in
+            guard let self else { return }
+            if let favBreedsStream = connectivityService.favBreedsStream {
+                for await payload in favBreedsStream {
+                    let updated = self.favoriteBreedsStorage.refreshFavBreedsPayloadIfNewer(payload)
+                    if updated {
+                        continuation?.yield(payload.breeds)
+                    }
+                }
             }
         }
+    }
+    
+    func finishStream() {
+        continuation?.finish()
     }
     
     func sendFavoriteBreedsViaConnectivity() {

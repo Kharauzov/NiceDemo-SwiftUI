@@ -7,22 +7,15 @@
 
 import SwiftUI
 import AppRouter
+import ComposableArchitecture
 
 struct SignInView: View {
-    @State private var email: String = ""
-    @State private var password: String = ""
-    @FocusState private var emailFocusedField: TextFieldType?
-    @FocusState private var passwordFocusedField: TextFieldType?
-    @State var viewModel: ViewModel
+    @Bindable var store: StoreOf<SignInFeature>
+    @FocusState private var focusedField: TextFieldType?
     @EnvironmentObject private var appRootManager: AppRootManager
     @Environment(SimpleRouter<AuthRoutingDestination, AuthRoutingSheet>.self) private var router
     private var navigationTitle: String {
         "Sign In"
-    }
-    
-    init(_ userCredentialsStorage: UserCredentialsUpdating = UserCredentialsStorage()) {
-        let viewModel = ViewModel(userCredentialsStorage: userCredentialsStorage, connectivityService: WCService.shared)
-        _viewModel = .init(wrappedValue: viewModel)
     }
     
     var body: some View {
@@ -47,32 +40,47 @@ struct SignInView: View {
                 .font(.paperlogy(.semibold, fontSize: 16))
             }
         }
-        .alert("", isPresented: $viewModel.showErrorAlert) {
+        .alert("", isPresented: $store.showErrorAlert) {
             Button("Okay", role: .cancel) {}
         } message: {
-            Text(viewModel.validationError?.localizedDescription ?? "")
+            Text(store.validationError?.localizedDescription ?? "")
+        }
+        .onChange(of: store.shouldDismissKeyboard) { _, newValue in
+            if newValue {
+                dismissKeyboard()
+            }
+        }
+        .onChange(of: store.shouldShowDogsList) { _, newValue in
+            if newValue {
+                showDogsListView()
+            }
+        }
+        .onChange(of: store.shouldShowForgotPassword) { _, newValue in
+            if newValue {
+                showForgotPasswordView()
+            }
         }
     }
     
     private var textFields: some View {
         Group {
             VStack {
-                TextField("Email", text: $email)
+                TextField("Email", text: $store.state.email)
                     .textFieldStyle(PlainTextFieldStyle())
                     .padding(.vertical, 12)
                     .font(.paperlogy(.regular, fontSize: 18))
                     .autocapitalization(.none)
                     .autocorrectionDisabled()
                     .keyboardType(.emailAddress)
-                    .focused($emailFocusedField, equals: .email)
+                    .focused($focusedField, equals: .email)
                 Divider()
             }
             VStack {
-                SecureField("Password", text: $password)
+                SecureField("Password", text: $store.state.password)
                     .textFieldStyle(PlainTextFieldStyle())
                     .padding(.vertical, 12)
                     .font(.paperlogy(.regular, fontSize: 18))
-                    .focused($passwordFocusedField, equals: .password)
+                    .focused($focusedField, equals: .password)
                 Divider()
             }
         }
@@ -90,12 +98,7 @@ struct SignInView: View {
     
     private var signInButton: some View {
         Button(action: {
-            viewModel.handleSignInButtonTap(email, password: password) { success in
-                if success {
-                    dismissKeyboard()
-                    showDogsListView()
-                }
-            }
+            store.send(.signButtonTap)
         }) {
             Text("Sign in")
                 .frame(maxWidth: .infinity)
@@ -109,8 +112,7 @@ struct SignInView: View {
     
     private var forgotPasswordButton: some View {
         Button(action: {
-            router.navigateTo(.forgotPassword)
-            dismissKeyboard()
+            store.send(.forgotPasswordButtonTap)
         }) {
             Text("Forgot password?")
                 .font(.paperlogy(.medium, fontSize: 14))
@@ -119,8 +121,7 @@ struct SignInView: View {
     }
     
     func dismissKeyboard() {
-        emailFocusedField = nil
-        passwordFocusedField = nil
+        focusedField = nil
     }
     
     func showDogsListView() {
@@ -128,11 +129,17 @@ struct SignInView: View {
             appRootManager.rootView = .dogsList
         }
     }
+    
+    func showForgotPasswordView() {
+        router.navigateTo(.forgotPassword)
+    }
 }
 
 struct SignInView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        SignInView(store: Store(initialState: SignInFeature.State()) {
+            SignInFeature()
+        })
     }
 }
 

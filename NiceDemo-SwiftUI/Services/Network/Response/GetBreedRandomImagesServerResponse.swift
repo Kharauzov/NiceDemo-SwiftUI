@@ -10,6 +10,11 @@ import Foundation
 class GetBreedRandomImagesServerResponse: BaseResponse {
     var data: [String]?
     
+    init(data: [String]?) {
+        self.data = data
+        super.init(status: "", error: nil)
+    }
+    
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         self.data = try values.decode([String].self, forKey: .data)

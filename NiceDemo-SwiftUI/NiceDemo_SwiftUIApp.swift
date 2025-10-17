@@ -7,12 +7,16 @@
 
 import SwiftUI
 import AppRouter
+import ComposableArchitecture
 
 @main
 struct NiceDemo_SwiftUIApp: App {
     @State private var authRouter = SimpleRouter<AuthRoutingDestination, AuthRoutingSheet>()
     @State private var dogsFlowRouter = SimpleRouter<DogsRoutingDestination, DogsRoutingSheet>()
     @State private var appRootManager = AppRootManager()
+    private let dogsListStore = Store(initialState: DogsListFeature.State()) {
+        DogsListFeature()
+    }
     
     var body: some Scene {
         WindowGroup {
@@ -28,22 +32,30 @@ struct NiceDemo_SwiftUIApp: App {
     private var rootContent: some View {
         switch appRootManager.rootView {
         case .start:
-            StartView()
+            StartView(store: Store(initialState: StartFeature.State()) {
+                StartFeature()
+            })
         case .signIn:
             NavigationStack(path: $authRouter.path) {
-                SignInView()
-                #if os(iOS)
-                    .navigationDestination(for: AuthRoutingDestination.self) { destination in
-                        authDestinationView(for: destination)
-                    }
-                #endif
+#if os(iOS)
+                SignInView(store: Store(initialState: SignInFeature.State()) {
+                    SignInFeature()
+                })
+                .navigationDestination(for: AuthRoutingDestination.self) { destination in
+                    authDestinationView(for: destination)
+                }
+#elseif os(watchOS)
+                SignInView(store: Store(initialState: SignInFeature.State()) {
+                    SignInFeature()
+                })
+#endif
             }
         case .dogsList:
             NavigationStack(path: $dogsFlowRouter.path) {
-                DogsListView()
-                    .navigationDestination(for: DogsRoutingDestination.self) { destination in
-                        dogsFlowDestinationView(for: destination)
-                    }
+                DogsListView(store: dogsListStore)
+                .navigationDestination(for: DogsRoutingDestination.self) { destination in
+                    dogsFlowDestinationView(for: destination)
+                }
             }
         }
     }
@@ -51,12 +63,14 @@ struct NiceDemo_SwiftUIApp: App {
 
 @ViewBuilder
 private func authDestinationView(for destination: AuthRoutingDestination) -> some View {
-    #if os(iOS)
+#if os(iOS)
     switch destination {
     case .forgotPassword:
-        ForgotPasswordView()
+        ForgotPasswordView(store: Store(initialState: ForgotPasswordFeature.State()) {
+            ForgotPasswordFeature()
+        })
     }
-    #endif
+#endif
 }
 
 
@@ -64,6 +78,14 @@ private func authDestinationView(for destination: AuthRoutingDestination) -> som
 private func dogsFlowDestinationView(for destination: DogsRoutingDestination) -> some View {
     switch destination {
     case .dogDetails(let dog):
-        DogDetailsView(dog: dog)
+        DogDetailsView(
+            store: Store(initialState: DogDetailsFeature.State(
+                dog: dog
+            )) {
+                DogDetailsFeature()
+            }
+        )
     }
 }
+
+let isRunningTests = NSClassFromString("XCTestCase") != nil

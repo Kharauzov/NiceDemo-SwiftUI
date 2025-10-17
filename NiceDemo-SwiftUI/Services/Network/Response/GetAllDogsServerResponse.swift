@@ -19,6 +19,11 @@ class GetAllDogsServerResponse: BaseResponse {
     
     private let data: [String: [String]]?
 
+    init(data: [String: [String]]) {
+        self.data = data
+        super.init(status: "", error: nil)
+    }
+    
     required init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         self.data = try values.decode([String: [String]].self, forKey: .data)
