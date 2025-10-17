@@ -59,8 +59,10 @@ struct DogsListFeature {
                 return .none
             case .onAppear:
                 return .run { send in
-                    for await _ in favoriteBreedsSyncService.favoriteBreedsUpdateFromPeer {
-                        await send(.reloadData)
+                    if let stream = favoriteBreedsSyncService.favBreedsStream {
+                        for await _ in stream {
+                            await send(.reloadData)
+                        }
                     }
                 }
                 .cancellable(id: CancelID.favoriteBreedsUpdates, cancelInFlight: true)

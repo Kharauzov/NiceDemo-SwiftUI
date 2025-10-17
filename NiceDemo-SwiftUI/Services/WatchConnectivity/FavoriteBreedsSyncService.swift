@@ -11,26 +11,30 @@ class FavoriteBreedsSyncService {
     private let favoriteBreedsStorage: FavoriteBreedsStorageInterface
     private let connectivityService: WatchFavoriteBreedsConnectivity
     
+    private var task: Task<Void, Never>?
     private var continuation: AsyncStream<[String]>.Continuation?
-    var favoriteBreedsUpdateFromPeer: AsyncStream<[String]> {
-        AsyncStream { continuation in
-            self.continuation = continuation
-        }
-    }
+    var favBreedsStream: AsyncStream<[String]>?
     
     deinit {
+        task?.cancel()
         finishStream()
     }
     
     init(favoriteBreedsStorage: FavoriteBreedsStorageInterface = FavoriteDogBreedsStorage(), connectivityService: WatchFavoriteBreedsConnectivity = WCService.shared) {
         self.favoriteBreedsStorage = favoriteBreedsStorage
         self.connectivityService = connectivityService
-        
-        connectivityService.favBreedsPayloadChanged = { [weak self] payload in
+        self.favBreedsStream = AsyncStream { continuation in
+            self.continuation = continuation
+        }
+        task = Task { [weak self] in
             guard let self else { return }
-            let flag = self.favoriteBreedsStorage.refreshFavBreedsPayloadIfNewer(payload)
-            if flag {
-                continuation?.yield(payload.breeds)
+            if let favBreedsStream = connectivityService.favBreedsStream {
+                for await payload in favBreedsStream {
+                    let updated = self.favoriteBreedsStorage.refreshFavBreedsPayloadIfNewer(payload)
+                    if updated {
+                        continuation?.yield(payload.breeds)
+                    }
+                }
             }
         }
     }

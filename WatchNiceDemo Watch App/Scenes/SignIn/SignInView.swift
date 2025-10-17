@@ -35,10 +35,12 @@ struct SignInView: View {
         }
         .frame(maxWidth: .infinity)
         .task {
-            viewModel.connectivityService.isAuthenticatedChanged = { flag in
-                viewModel.saveAuthState(flag)
-                if flag {
-                    showDogsListView()
+            if let stream = viewModel.connectivityService.authenticatedStream {
+                for await flag in stream {
+                    viewModel.saveAuthState(flag)
+                    if flag {
+                        showDogsListView()
+                    }
                 }
             }
         }
