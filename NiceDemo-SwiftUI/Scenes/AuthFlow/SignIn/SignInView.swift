@@ -14,9 +14,6 @@ struct SignInView: View {
     @FocusState private var focusedField: TextFieldType?
     @EnvironmentObject private var appRootManager: AppRootManager
     @Environment(SimpleRouter<AuthRoutingDestination, AuthRoutingSheet>.self) private var router
-    private var navigationTitle: String {
-        "Sign In"
-    }
     
     var body: some View {
         VStack(spacing: 20) {
@@ -27,9 +24,7 @@ struct SignInView: View {
             forgotPasswordButton
         }
         .padding()
-        .navigationTitle(navigationTitle)
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
+        .inlineNavigationTitle(.signIn)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Skip") {

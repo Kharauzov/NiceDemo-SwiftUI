@@ -12,9 +12,7 @@ import ComposableArchitecture
 struct DogsListView: View {
     @Bindable var store: StoreOf<DogsListFeature>
     @Environment(SimpleRouter<DogsRoutingDestination, DogsRoutingSheet>.self) private var router
-    private var navigationTitle: String {
-        "List of dogs"
-    }
+    private let navigationTitle = NavigationTitle.listOfDogs
     
     var body: some View {
         Group {
@@ -25,12 +23,12 @@ struct DogsListView: View {
             }
         }
         .listStyle(.plain)
-        .navigationTitle(navigationTitle)
 #if os(watchOS)
+        .navigationTitle(navigationTitle.rawValue)
         .toolbarTitleDisplayMode(.large)
 #endif
 #if os(iOS)
-        .navigationBarTitleDisplayMode(.inline)
+        .inlineNavigationTitle(navigationTitle)
         .searchable(text: $store.searchText, placement: .navigationBarDrawer(displayMode: .automatic))
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {

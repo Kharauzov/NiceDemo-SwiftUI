@@ -12,9 +12,6 @@ struct ForgotPasswordView: View {
     @Bindable var store: StoreOf<ForgotPasswordFeature>
     @FocusState private var emailFocusedField: TextFieldType?
     @Environment(\.dismiss) private var dismiss
-    private var navigationTitle: String {
-        "Recover password"
-    }
     
     var body: some View {
         VStack(spacing: 20) {
@@ -25,9 +22,7 @@ struct ForgotPasswordView: View {
             submitButton
         }
         .padding()
-        .navigationTitle(navigationTitle)
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
+        .inlineNavigationTitle(.recoveryPassword)
         .toolbar {
             ToolbarItem(placement: .navigationBarLeading) {
                 Button {
