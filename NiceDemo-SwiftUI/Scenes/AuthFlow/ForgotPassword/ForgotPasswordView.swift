@@ -10,16 +10,18 @@ import ComposableArchitecture
 
 struct ForgotPasswordView: View {
     @Bindable var store: StoreOf<ForgotPasswordFeature>
-    @FocusState private var emailFocusedField: TextFieldType?
     @Environment(\.dismiss) private var dismiss
+    @FocusState private var focusedField: FocusedField?
     
     var body: some View {
         VStack(spacing: 20) {
-            headerImage
+            AuthHeaderImage(imageName: "walkingWithDog")
             descriptionLabel
-            emailTextField
+            EmailTextField(text: $store.email, focusedType: .email, focusedField: $focusedField)
             Spacer()
-            submitButton
+            AuthActionButton(text: "Submit") {
+                store.send(.submitButtonTap(store.email))
+            }
         }
         .padding()
         .inlineNavigationTitle(.recoveryPassword)
@@ -59,51 +61,6 @@ struct ForgotPasswordView: View {
             .lineSpacing(GridLayout.regularSpace)
             .frame(maxWidth: .infinity, alignment: .leading)
             .padding(.top, 50)
-    }
-    
-    private var emailTextField: some View {
-        VStack {
-            TextField("Email", text: $store.email)
-                .textFieldStyle(PlainTextFieldStyle())
-                .padding(.vertical, 12)
-                .font(.paperlogy(.regular, fontSize: 18))
-                .autocapitalization(.none)
-                .autocorrectionDisabled()
-                .keyboardType(.emailAddress)
-                .focused($emailFocusedField, equals: .email)
-            Divider()
-        }
-    }
-    
-    private var headerImage: some View {
-        Image("walkingWithDog")
-            .renderingMode(.template)
-            .resizable()
-            .scaledToFit()
-            .frame(width: 100, height: 100)
-            .foregroundColor(Color.AppColors.primary)
-            .padding(.top, 30)
-            .padding(.bottom, 20)
-    }
-    
-    private var submitButton: some View {
-        Button(action: {
-            store.send(.submitButtonTap(store.email))
-        }) {
-            Text("Submit")
-                .frame(maxWidth: .infinity)
-                .frame(height: 54)
-                .background(Color.AppColors.primary)
-                .foregroundColor(Color.AppColors.white)
-                .font(.paperlogy(.semibold, fontSize: 22))
-                .cornerRadius(10)
-        }
-    }
-}
-
-extension ForgotPasswordView {
-    enum TextFieldType: Hashable {
-        case email
     }
 }
 
