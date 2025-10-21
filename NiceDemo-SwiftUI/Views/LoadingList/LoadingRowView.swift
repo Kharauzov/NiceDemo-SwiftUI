@@ -1,5 +1,5 @@
 //
-//  LoadingDogRowView.swift
+//  LoadingRowView.swift
 //  NiceDemo-SwiftUI
 //
 //  Created by Serhii Kharauzov on 06.08.2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct LoadingDogRowView: View {
+struct LoadingRowView: View {
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -27,8 +27,8 @@ struct LoadingDogRowView: View {
                     Spacer()
                     VStack {
                         RoundedRectangle(cornerRadius: geometry.size.width / 2)
-                        .foregroundStyle(Color.AppColors.primary.opacity(0.75))
-                        .frame(width: 40, height: 40)
+                            .foregroundStyle(Color.AppColors.primary.opacity(0.75))
+                            .frame(width: 40, height: 40)
                     }
                 }
                 SeparatorView()
@@ -36,18 +36,17 @@ struct LoadingDogRowView: View {
             .padding(.horizontal, GridLayout.doubleRegularSpace)
             .padding(.vertical, GridLayout.regularSpace)
         }
-        
+#if os(iOS)
+        .listRowInsets(EdgeInsets())
+        .listRowSeparator(.hidden)
+#endif
     }
 }
 
 #Preview {
     List {
         ForEach((1...10), id: \.self) { _ in
-            LoadingDogRowView()
-                .listRowInsets(EdgeInsets())
-            #if os(iOS)
-                .listRowSeparator(.hidden)
-            #endif
+            LoadingRowView()
                 .frame(height: 60)
         }
     }

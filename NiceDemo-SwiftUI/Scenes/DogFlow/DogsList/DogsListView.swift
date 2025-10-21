@@ -17,7 +17,7 @@ struct DogsListView: View {
     var body: some View {
         Group {
             if store.isLoading {
-                loadingView
+                LoadingList()
             } else {
                 dogsListView
             }
@@ -52,20 +52,6 @@ struct DogsListView: View {
         }
     }
     
-    private var loadingView: some View {
-        List {
-            ForEach((1...20), id: \.self) { _ in
-                LoadingDogRowView()
-#if os(iOS)
-                    .listRowInsets(EdgeInsets())
-                    .listRowSeparator(.hidden)
-#endif
-                    .frame(height: 60)
-                    .onTapGesture {}
-            }
-        }
-    }
-    
     @ViewBuilder private var dogsListView: some View {
         if store.filteredDogs.count > 0 {
             List(store.filteredDogs) { dog in
@@ -74,19 +60,9 @@ struct DogsListView: View {
                 }, onFavoriteTapped: {
                     store.send(.removeFromFavorite(dog))
                 })
-#if os(iOS)
-                .listRowInsets(EdgeInsets())
-                .listRowSeparator(.hidden)
-#endif
             }
         } else {
-            VStack {
-                Spacer()
-                Text("No results")
-                    .font(.paperlogy(.medium, fontSize: 20))
-                    .tint(Color.AppColors.black)
-                Spacer()
-            }
+            EmptyView()
         }
     }
 #if os(iOS)

@@ -49,9 +49,9 @@ struct DogRowView: View {
                     .buttonStyle(BorderlessButtonStyle())
                 }
             }
-            #if os(iOS)
+#if os(iOS)
             SeparatorView()
-            #endif
+#endif
         }
         .padding(.horizontal, horizontalPadding)
         .padding(.vertical, GridLayout.regularSpace)
@@ -59,6 +59,11 @@ struct DogRowView: View {
         .onTapGesture {
             onTap?()
         }
+#if os(iOS)
+        .listRowInsets(EdgeInsets())
+        .listRowSeparator(.hidden)
+#endif
+        
     }
 }
 
