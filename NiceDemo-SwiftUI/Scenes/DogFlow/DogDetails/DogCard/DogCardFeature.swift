@@ -7,6 +7,7 @@
 
 import ComposableArchitecture
 import Photos
+import SwiftUI
 
 @Reducer
 struct DogCardFeature {
@@ -28,11 +29,10 @@ struct DogCardFeature {
         var showDeniedGalleryAlert = false
         // Inputs when launched from gallery
         var selectedImageUrl: String? = nil
-        // Gesture state
-        var scale: CGFloat = 1.0
-        var lastScale: CGFloat = 1.0
-        var offset: CGSize = .zero
-        var lastOffset: CGSize = .zero
+        
+        var shadowColor: Color {
+            mode == .main ? Color.AppColors.primary.opacity(0.75) : .clear
+        }
     }
     
     enum Action: BindableAction {
@@ -45,12 +45,6 @@ struct DogCardFeature {
         case saveTapped
         case savedToPhotos
         case saveDenied
-        // Gesture actions
-        case scaleChanged(CGFloat)
-        case scaleEnded
-        case offsetChanged(CGSize)
-        case offsetEnded
-        case resetImagePositionAndScale
     }
     
     var body: some Reducer<State, Action> {
@@ -74,6 +68,7 @@ struct DogCardFeature {
                 }
                 
             case .loadRandomImage:
+                state.loadedImageData = nil
                 state.isLoading = true
                 let breed = state.dog.breed
                 return .run { send in
@@ -136,29 +131,6 @@ struct DogCardFeature {
                 
             case .saveDenied:
                 state.showDeniedGalleryAlert = true
-                return .none
-                
-            case .scaleChanged(let newScale):
-                state.scale = max(newScale, 1.0)
-                return .none
-                
-            case .scaleEnded:
-                state.lastScale = state.scale
-                return .none
-                
-            case .offsetChanged(let newOffset):
-                state.offset = newOffset
-                return .none
-                
-            case .offsetEnded:
-                state.lastOffset = state.offset
-                return .none
-                
-            case .resetImagePositionAndScale:
-                state.offset = .zero
-                state.lastOffset = .zero
-                state.scale = 1.0
-                state.lastScale = 1.0
                 return .none
             }
         }

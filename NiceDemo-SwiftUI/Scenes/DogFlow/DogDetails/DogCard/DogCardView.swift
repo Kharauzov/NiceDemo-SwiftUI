@@ -10,14 +10,11 @@ import ComposableArchitecture
 
 struct DogCardView: View {
     @Environment(\.dismiss) private var dismiss
-    var hero: Namespace.ID?
     @Namespace private var defaultNamespace
-    private var shadowColor: Color {
-        store.mode == .main ? Color.AppColors.primary.opacity(0.75) : .clear
-    }
-    var onClose: (() -> Void)?
-
     @Bindable var store: StoreOf<DogCardFeature>
+    var hero: Namespace.ID?
+    var onClose: (() -> Void)?
+    let actionButtonHeight: CGFloat = 45
 
     init(store: StoreOf<DogCardFeature>, hero: Namespace.ID? = nil, onClose: (() -> Void)? = nil) {
         _store = Bindable(wrappedValue: store)
@@ -30,20 +27,22 @@ struct DogCardView: View {
         let cardHeight = store.mode == .main ? nil : screenHeight / 1.5
         ZStack {
             if store.mode != .main {
-                shadowDismissButton
+                ShadowBgDismissButton {
+                    onClose?()
+                }
             }
             VStack {
                 imageView
                 Spacer()
                 if store.mode == .main {
-                    subbreedsView
+                    SubbreedsView(data: store.dog.subbreeds ?? [])
                 }
                 nextImageButton
             }
             .frame(height: cardHeight)
             .background(cardContainerView)
             .clipShape(RoundedRectangle(cornerRadius: 14))
-            .shadow(color: shadowColor, radius: 8, x: 0, y: 0)
+            .shadow(color: store.shadowColor, radius: 8, x: 0, y: 0)
             .padding(edgeInsets)
         }
         .task {
@@ -57,110 +56,14 @@ struct DogCardView: View {
         }
     }
 
-    private var shadowDismissButton: some View {
-        VStack {
-            Button {
-                onClose?()
-            } label: {
-                Rectangle()
-                    .fill(Color.AppColors.black.opacity(0.7))
-            }
-        }
-        .buttonStyle(.plain)
-        .frame(maxHeight: .infinity)
-        .edgesIgnoringSafeArea(.horizontal)
-        .edgesIgnoringSafeArea(.vertical)
-    }
-
     private var imageView: some View {
-        VStack {
-            Rectangle()
-                .overlay {
-                    if let imageData = store.loadedImageData, let image = UIImage(data: imageData) {
-                        Image(uiImage: image)
-                            .resizable()
-                            .scaledToFill()
-                            .scaleEffect(store.scale)
-                            .offset(store.offset)
-                            .gesture(
-                                SimultaneousGesture(
-                                    MagnifyGesture()
-                                        .onChanged { value in
-                                            let newScale = max(store.lastScale * value.magnification, 1)
-                                            store.send(.scaleChanged(newScale))
-                                        }
-                                        .onEnded { _ in
-                                            withAnimation(.easeInOut(duration: 0.3)) {
-                                                _ = store.send(.scaleEnded)
-                                            }
-                                        },
-                                    DragGesture()
-                                        .onChanged { value in
-                                            let newOffset = CGSize(
-                                                width: store.lastOffset.width + value.translation.width,
-                                                height: store.lastOffset.height + value.translation.height
-                                            )
-                                            store.send(.offsetChanged(newOffset))
-                                        }
-                                        .onEnded { _ in
-                                            withAnimation(.easeInOut(duration: 0.3)) {
-                                                _ = store.send(.offsetEnded)
-                                            }
-                                        }
-                                )
-                            )
-                    } else {
-                        if store.isLoading {
-                            ProgressView()
-                                .progressViewStyle(.circular)
-                                .controlSize(.large)
-                                .tint(Color.AppColors.white)
-                        }
-                    }
-                }
-                .foregroundStyle(Color.AppColors.primary.opacity(0.5))
-                .clipShape(.rect(
-                    topLeadingRadius: 14,
-                    bottomLeadingRadius: 0,
-                    bottomTrailingRadius: 0,
-                    topTrailingRadius: 14
-                ))
-        }
-        // photoTile itself (a source to morph to)
-        .matchedGeometryEffect(
-            id: DogDetailsView.AnimationGeometryEffect.cardImage(store.selectedImageUrl ?? "").effectId,
-            in: hero ?? defaultNamespace
-        )
-        .padding(.bottom, GridLayout.commonSpace)
-        .onTapGesture(count: 2, perform: {
-            resetImagePositionAndScale()
-        })
-    }
-
-    @ViewBuilder private var subbreedsView: some View {
-        if let subbreeds = store.dog.subbreeds, subbreeds.count > 0 {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack(spacing: 12) {
-                    ForEach(subbreeds, id: \.self) { breed in
-                        Text(breed)
-                            .font(.paperlogy(.semibold, fontSize: 15))
-                            .padding(.horizontal, 16)
-                            .padding(.vertical, 8)
-                            .background(
-                                RoundedRectangle(cornerRadius: 10)
-                                    .strokeBorder(Color.AppColors.black, lineWidth: 2)
-                            )
-                    }
-                }
-                .padding(.horizontal)
-                .padding(.bottom, 20)
-            }
-        } else {
-            Text("No subbreeds")
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal)
-                .padding(.bottom, 20)
-        }
+        DogCardImage(loadedImageData: store.loadedImageData)
+            // photoTile itself (a source to morph to)
+            .matchedGeometryEffect(
+                id: DogDetailsView.AnimationGeometryEffect.cardImage(store.selectedImageUrl ?? "").effectId,
+                in: hero ?? defaultNamespace
+            )
+            .padding(.bottom, GridLayout.commonSpace)
     }
 
     private var cardContainerView: some View {
@@ -176,30 +79,12 @@ struct DogCardView: View {
     private var nextImageButton: some View {
         HStack(spacing: GridLayout.doubleRegularSpace) {
             if store.mode == .main {
-                Button(action: {
-                    resetImagePositionAndScale()
+                ActionButton(text: "Next", height: actionButtonHeight) {
                     store.send(.loadRandomImage)
-                }) {
-                    Text("Next")
-                        .font(.paperlogy(.semibold, fontSize: 22))
-                        .foregroundColor(Color.AppColors.white)
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 45)
-                        .background(Color.AppColors.primary)
-                        .cornerRadius(10)
                 }
             }
-            Button(action: {
-                resetImagePositionAndScale()
+            ActionButton(text: "Save", height: actionButtonHeight) {
                 store.send(.saveTapped)
-            }) {
-                Text("Save")
-                    .font(.paperlogy(.semibold, fontSize: 22))
-                    .foregroundColor(Color.AppColors.white)
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 45)
-                    .background(Color.AppColors.primary)
-                    .cornerRadius(10)
             }
         }
         .padding(.horizontal)
@@ -209,12 +94,6 @@ struct DogCardView: View {
             id: DogDetailsView.AnimationGeometryEffect.cardControls(store.selectedImageUrl ?? "").effectId,
             in: hero ?? defaultNamespace
         )
-    }
-
-    private func resetImagePositionAndScale() {
-        withAnimation(.easeInOut(duration: 0.3)) {
-            _ = store.send(.resetImagePositionAndScale)
-        }
     }
 }
 

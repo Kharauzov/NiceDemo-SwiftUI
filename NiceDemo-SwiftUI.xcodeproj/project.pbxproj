@@ -13,7 +13,7 @@
 		C50D8AD62EA77A3A00FED9DB /* SecureTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D8AD42EA77A3A00FED9DB /* SecureTextField.swift */; };
 		C50D8AD92EA77B9E00FED9DB /* FocusedField.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D8AD72EA77B9E00FED9DB /* FocusedField.swift */; };
 		C50D8ADC2EA77F2600FED9DB /* FieldContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D8ADA2EA77F2600FED9DB /* FieldContainer.swift */; };
-		C50D8ADE2EA7A7A100FED9DB /* AuthActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D8ADD2EA7A7A100FED9DB /* AuthActionButton.swift */; };
+		C50D8ADE2EA7A7A100FED9DB /* ActionButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D8ADD2EA7A7A100FED9DB /* ActionButton.swift */; };
 		C50D8AE22EA7AD9700FED9DB /* LoadingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D8AE02EA7AD9700FED9DB /* LoadingList.swift */; };
 		C50D8AE32EA7AEBA00FED9DB /* LoadingList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C50D8AE02EA7AD9700FED9DB /* LoadingList.swift */; };
 		C513E7F82E96E2FF002F958A /* DogGalleryFeature+Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = C513E7F62E96D815002F958A /* DogGalleryFeature+Dependencies.swift */; };
@@ -103,6 +103,11 @@
 		C5BC763D2E451E8A007D70F1 /* DogsRouting.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC763C2E451E8A007D70F1 /* DogsRouting.swift */; };
 		C5BC85112EA7C74E0084C71E /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC85102EA7C74E0084C71E /* EmptyView.swift */; };
 		C5BC85122EA7C7530084C71E /* EmptyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC85102EA7C74E0084C71E /* EmptyView.swift */; };
+		C5BC85142EA8C1AB0084C71E /* SubbreedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC85132EA8C1AB0084C71E /* SubbreedsView.swift */; };
+		C5BC85152EA8C1AB0084C71E /* SubbreedsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC85132EA8C1AB0084C71E /* SubbreedsView.swift */; };
+		C5BC85172EA8C2BF0084C71E /* ShadowBgDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC85162EA8C2BF0084C71E /* ShadowBgDismissButton.swift */; };
+		C5BC85182EA8C2BF0084C71E /* ShadowBgDismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC85162EA8C2BF0084C71E /* ShadowBgDismissButton.swift */; };
+		C5BC851A2EA8C5100084C71E /* DogCardImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5BC85192EA8C5100084C71E /* DogCardImage.swift */; };
 		C5C739DC2E5991EA00C517A9 /* WatchNiceDemo-Watch-App-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C5C739DB2E5991EA00C517A9 /* WatchNiceDemo-Watch-App-Info.plist */; };
 		C5CB77652E8DA63700F14960 /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = C5CB77642E8DA63700F14960 /* ComposableArchitecture */; };
 		C5CB77682E8E6F2400F14960 /* StartFeature.swift in Sources */ = {isa = PBXBuildFile; fileRef = C5CB77662E8E6F2400F14960 /* StartFeature.swift */; };
@@ -230,7 +235,7 @@
 		C50D8AD42EA77A3A00FED9DB /* SecureTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureTextField.swift; sourceTree = "<group>"; };
 		C50D8AD72EA77B9E00FED9DB /* FocusedField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FocusedField.swift; sourceTree = "<group>"; };
 		C50D8ADA2EA77F2600FED9DB /* FieldContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FieldContainer.swift; sourceTree = "<group>"; };
-		C50D8ADD2EA7A7A100FED9DB /* AuthActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthActionButton.swift; sourceTree = "<group>"; };
+		C50D8ADD2EA7A7A100FED9DB /* ActionButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionButton.swift; sourceTree = "<group>"; };
 		C50D8AE02EA7AD9700FED9DB /* LoadingList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingList.swift; sourceTree = "<group>"; };
 		C513E7F62E96D815002F958A /* DogGalleryFeature+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DogGalleryFeature+Dependencies.swift"; sourceTree = "<group>"; };
 		C513E7F72E96D81C002F958A /* DogGalleryFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogGalleryFeature.swift; sourceTree = "<group>"; };
@@ -284,6 +289,9 @@
 		C5BC763A2E4502B5007D70F1 /* DogDetailsContract.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogDetailsContract.swift; sourceTree = "<group>"; };
 		C5BC763C2E451E8A007D70F1 /* DogsRouting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogsRouting.swift; sourceTree = "<group>"; };
 		C5BC85102EA7C74E0084C71E /* EmptyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyView.swift; sourceTree = "<group>"; };
+		C5BC85132EA8C1AB0084C71E /* SubbreedsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubbreedsView.swift; sourceTree = "<group>"; };
+		C5BC85162EA8C2BF0084C71E /* ShadowBgDismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShadowBgDismissButton.swift; sourceTree = "<group>"; };
+		C5BC85192EA8C5100084C71E /* DogCardImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DogCardImage.swift; sourceTree = "<group>"; };
 		C5C739DB2E5991EA00C517A9 /* WatchNiceDemo-Watch-App-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "WatchNiceDemo-Watch-App-Info.plist"; sourceTree = "<group>"; };
 		C5CB77662E8E6F2400F14960 /* StartFeature.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartFeature.swift; sourceTree = "<group>"; };
 		C5CB77692E8E7B5700F14960 /* StartFeature+Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StartFeature+Dependencies.swift"; sourceTree = "<group>"; };
@@ -393,7 +401,6 @@
 				C5D70A202EA76F2000F9F347 /* AuthHeaderImage.swift */,
 				C50D8AD12EA7760800FED9DB /* EmailTextField.swift */,
 				C50D8AD42EA77A3A00FED9DB /* SecureTextField.swift */,
-				C50D8ADD2EA7A7A100FED9DB /* AuthActionButton.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -801,6 +808,10 @@
 				C56E6B812E4F89480064490A /* GalleryCellView.swift */,
 				C50D8ADA2EA77F2600FED9DB /* FieldContainer.swift */,
 				C5BC85102EA7C74E0084C71E /* EmptyView.swift */,
+				C50D8ADD2EA7A7A100FED9DB /* ActionButton.swift */,
+				C5BC85132EA8C1AB0084C71E /* SubbreedsView.swift */,
+				C5BC85162EA8C2BF0084C71E /* ShadowBgDismissButton.swift */,
+				C5BC85192EA8C5100084C71E /* DogCardImage.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -1067,6 +1078,7 @@
 				C5CD424E2E43AF29005CE23B /* AppRootManager.swift in Sources */,
 				C5EAAEF42E53AD0F00E196CD /* WCService.swift in Sources */,
 				C5984F862E904FAF000BFEA3 /* SignInFeature+Dependencies.swift in Sources */,
+				C5BC85182EA8C2BF0084C71E /* ShadowBgDismissButton.swift in Sources */,
 				C533A8C82E5633DE00EEE267 /* FavoriteBreedsPayload.swift in Sources */,
 				C57FC6A12E4E41AF005A8991 /* AnimationDuration.swift in Sources */,
 				C5CD424F2E43AF29005CE23B /* AuthRouting.swift in Sources */,
@@ -1125,6 +1137,7 @@
 				C5D70A222EA76F2000F9F347 /* AuthHeaderImage.swift in Sources */,
 				C5CD42682E43AF29005CE23B /* Colors.swift in Sources */,
 				C5B273452E54BDDB00B42907 /* SignInViewContract.swift in Sources */,
+				C5BC851A2EA8C5100084C71E /* DogCardImage.swift in Sources */,
 				C5BC763D2E451E8A007D70F1 /* DogsRouting.swift in Sources */,
 				C5CD42692E43AF29005CE23B /* Font+Paperlogy.swift in Sources */,
 				C5CD426A2E43AF29005CE23B /* Constants.swift in Sources */,
@@ -1140,13 +1153,14 @@
 				C5BC763B2E4502B5007D70F1 /* DogDetailsContract.swift in Sources */,
 				C5CB776A2E8E7B5700F14960 /* StartFeature+Dependencies.swift in Sources */,
 				C5CD426D2E43AF29005CE23B /* SeparatorView.swift in Sources */,
-				C50D8ADE2EA7A7A100FED9DB /* AuthActionButton.swift in Sources */,
+				C50D8ADE2EA7A7A100FED9DB /* ActionButton.swift in Sources */,
 				C5BC76372E44FDA3007D70F1 /* DogDetailsView.swift in Sources */,
 				C5CD426E2E43AF29005CE23B /* NiceDemo_SwiftUIApp.swift in Sources */,
 				C50D8AD32EA7760800FED9DB /* EmailTextField.swift in Sources */,
 				C5447CFE2E950B9E007446D7 /* ForgotPasswordEnvironment.swift in Sources */,
 				C513E8012E97B648002F958A /* DogCardFeature.swift in Sources */,
 				C57E23D52E998A2200C2513E /* DogDetailsFeature+Dependencies.swift in Sources */,
+				C5BC85142EA8C1AB0084C71E /* SubbreedsView.swift in Sources */,
 				C50D8AE22EA7AD9700FED9DB /* LoadingList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1182,6 +1196,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C5BC85152EA8C1AB0084C71E /* SubbreedsView.swift in Sources */,
 				C5EAAED52E539CA600E196CD /* DogsRouting.swift in Sources */,
 				C5B273642E54F9F500B42907 /* DogDetailsContract.swift in Sources */,
 				C50D8ACF2EA7739D00FED9DB /* BaseTextFieldStyle.swift in Sources */,
@@ -1200,6 +1215,7 @@
 				C533A8C32E5603FB00EEE267 /* WatchSignInConnectivityInterface.swift in Sources */,
 				C5BC85122EA7C7530084C71E /* EmptyView.swift in Sources */,
 				C5B2734E2E54CED300B42907 /* DogsListView.swift in Sources */,
+				C5BC85172EA8C2BF0084C71E /* ShadowBgDismissButton.swift in Sources */,
 				C5B2734F2E54CED300B42907 /* DogRowView.swift in Sources */,
 				C5984F492E8E86A2000BFEA3 /* StartFeature.swift in Sources */,
 				C5EAAECC2E539C8000E196CD /* Font+Paperlogy.swift in Sources */,

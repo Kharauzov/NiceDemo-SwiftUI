@@ -19,7 +19,7 @@ struct ForgotPasswordView: View {
             descriptionLabel
             EmailTextField(text: $store.email, focusedType: .email, focusedField: $focusedField)
             Spacer()
-            AuthActionButton(text: "Submit") {
+            ActionButton(text: "Submit") {
                 store.send(.submitButtonTap(store.email))
             }
         }

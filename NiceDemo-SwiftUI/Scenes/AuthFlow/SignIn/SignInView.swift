@@ -20,7 +20,7 @@ struct SignInView: View {
             AuthHeaderImage(imageName: "dog")
             textFields
             Spacer()
-            AuthActionButton(text: "Sign in") {
+            ActionButton(text: "Sign in") {
                 store.send(.signButtonTap)
             }
             forgotPasswordButton
