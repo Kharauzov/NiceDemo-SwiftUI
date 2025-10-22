@@ -72,11 +72,11 @@ struct DogsListView: View {
                 Button {
                     store.send(.selectFilter(option))
                 } label: {
-                    Label(option.rawValue, systemImage: store.selectedFilter == option ? "checkmark" : "")
+                    Label(option.rawValue, systemImage: store.selectedFilter == option ? ImageName.checkmark.rawValue : "")
                 }
             }
         } label: {
-            Image(systemName: "arrow.up.arrow.down")
+            Image(systemName: ImageName.arrowsUpDown.rawValue)
                 .imageScale(.large)
                 .tint(Color.AppColors.primary)
         }

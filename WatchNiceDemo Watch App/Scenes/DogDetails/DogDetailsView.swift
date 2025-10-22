@@ -95,7 +95,7 @@ struct DogDetailsView: View {
                     store.send(.resetImagePositionAndScale)
                     store.send(.loadRandomImage)
                 } label: {
-                    Label("Next", systemImage: "arrow.right")
+                    Label("Next", systemImage: ImageName.arrowRight.rawValue)
                         .font(.headline)
                         .lineLimit(1)
                         .minimumScaleFactor(0.8)

@@ -15,7 +15,7 @@ struct ForgotPasswordView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            AuthHeaderImage(imageName: "walkingWithDog")
+            AuthHeaderImage(imageName: ImageName.walkingWithDog.rawValue)
             descriptionLabel
             EmailTextField(text: $store.email, focusedType: .email, focusedField: $focusedField)
             Spacer()

@@ -17,7 +17,7 @@ struct SignInView: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            AuthHeaderImage(imageName: "dog")
+            AuthHeaderImage(imageName: ImageName.dog.rawValue)
             textFields
             Spacer()
             ActionButton(text: "Sign in") {
