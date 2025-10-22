@@ -18,7 +18,7 @@ struct SignInView: View {
     
     var body: some View {
         VStack(spacing: GridLayout.doubleRegularSpace) {
-            Image("pawPrint")
+            Image(ImageName.pawPrint.rawValue)
                 .renderingMode(.template)
                 .resizable()
                 .scaledToFit()

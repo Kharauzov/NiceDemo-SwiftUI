@@ -47,8 +47,7 @@ struct DogDetailsView: View {
             content
         }
         .frame(maxHeight: .infinity)
-        .navigationTitle(store.dog.breed.capitalized)
-        .navigationBarTitleDisplayMode(.inline)
+        .inlineNavigationTitle(store.dog.breed.capitalized)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button {

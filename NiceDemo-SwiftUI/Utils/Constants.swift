@@ -20,4 +20,10 @@ enum ImageName: String {
     case favoriteOff = "pawPrintNotSelected"
     case heartOn = "heart.fill"
     case heartOff = "heart"
+    case dog
+    case walkingWithDog
+    case checkmark
+    case arrowsUpDown = "arrow.up.arrow.down"
+    case pawPrint
+    case arrowRight = "arrow.right"
 }

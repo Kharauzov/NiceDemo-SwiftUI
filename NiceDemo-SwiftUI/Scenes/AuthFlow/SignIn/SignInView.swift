@@ -11,25 +11,22 @@ import ComposableArchitecture
 
 struct SignInView: View {
     @Bindable var store: StoreOf<SignInFeature>
-    @FocusState private var focusedField: TextFieldType?
+    @FocusState private var focusedField: FocusedField?
     @EnvironmentObject private var appRootManager: AppRootManager
     @Environment(SimpleRouter<AuthRoutingDestination, AuthRoutingSheet>.self) private var router
-    private var navigationTitle: String {
-        "Sign In"
-    }
     
     var body: some View {
         VStack(spacing: 20) {
-            headerImage
+            AuthHeaderImage(imageName: ImageName.dog.rawValue)
             textFields
             Spacer()
-            signInButton
+            ActionButton(text: "Sign in") {
+                store.send(.signButtonTap)
+            }
             forgotPasswordButton
         }
         .padding()
-        .navigationTitle(navigationTitle)
-        .navigationBarTitleDisplayMode(.inline)
-        .navigationBarBackButtonHidden(true)
+        .inlineNavigationTitle(.signIn)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("Skip") {
@@ -64,49 +61,8 @@ struct SignInView: View {
     
     private var textFields: some View {
         Group {
-            VStack {
-                TextField("Email", text: $store.state.email)
-                    .textFieldStyle(PlainTextFieldStyle())
-                    .padding(.vertical, 12)
-                    .font(.paperlogy(.regular, fontSize: 18))
-                    .autocapitalization(.none)
-                    .autocorrectionDisabled()
-                    .keyboardType(.emailAddress)
-                    .focused($focusedField, equals: .email)
-                Divider()
-            }
-            VStack {
-                SecureField("Password", text: $store.state.password)
-                    .textFieldStyle(PlainTextFieldStyle())
-                    .padding(.vertical, 12)
-                    .font(.paperlogy(.regular, fontSize: 18))
-                    .focused($focusedField, equals: .password)
-                Divider()
-            }
-        }
-    }
-    
-    private var headerImage: some View {
-        Image("dog")
-            .resizable()
-            .scaledToFit()
-            .frame(width: 100, height: 100)
-            .foregroundColor(Color.AppColors.primary)
-            .padding(.top, 20)
-            .padding(.bottom, 20)
-    }
-    
-    private var signInButton: some View {
-        Button(action: {
-            store.send(.signButtonTap)
-        }) {
-            Text("Sign in")
-                .frame(maxWidth: .infinity)
-                .frame(height: 54)
-                .background(Color.AppColors.primary)
-                .foregroundColor(Color.AppColors.white)
-                .font(.paperlogy(.semibold, fontSize: 22))
-                .cornerRadius(10)
+            EmailTextField(text: $store.email, focusedType: .email, focusedField: $focusedField)
+            SecureTextField(text: $store.password, focusedType: .password, focusedField: $focusedField)
         }
     }
     
@@ -140,12 +96,5 @@ struct SignInView_Previews: PreviewProvider {
         SignInView(store: Store(initialState: SignInFeature.State()) {
             SignInFeature()
         })
-    }
-}
-
-extension SignInView {
-    enum TextFieldType: Hashable {
-        case email
-        case password
     }
 }
